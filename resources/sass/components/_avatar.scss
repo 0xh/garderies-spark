@@ -1,0 +1,12 @@
+.avatar {
+  svg text {
+      transform: translateY(3px);
+      -moz-transform: translateY(15px);
+  }
+  &.avatar--sm {
+    svg text {
+      transform: translateY(3px);
+      -moz-transform: translateY(10px);
+    }
+  }
+}

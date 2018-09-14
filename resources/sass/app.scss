@@ -1,0 +1,35 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,700");
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// Spark
+@import "./../../spark/resources/assets/sass/spark";
+
+// FontAwesome
+@import "vendor/fontawesome/fontawesome";
+@import "vendor/fontawesome/regular";
+@import "vendor/fontawesome/solid";
+@import "vendor/fontawesome/brands";
+
+// Hamburgers
+@import "vendor/hamburgers";
+
+// App styles
+@import "common/global";
+@import "layouts/header";
+@import "layouts/footer";
+@import "layouts/pages";
+@import "layouts/dashboard";
+@import "components/nav";
+@import "components/spinners";
+@import "components/card";
+@import "components/popover";
+@import "components/alert";
+@import "components/table";
+@import "components/avatar";

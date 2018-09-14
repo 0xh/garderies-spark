@@ -1,0 +1,79 @@
+.dashboard-summary {
+
+  .dashboard-summary__count {
+    color: #455a64;
+    padding: 10px;
+
+    h3 {
+      font-size: 1em;
+      margin-bottom: 0;
+      font-weight: 400;
+    }
+
+    .icon {
+      float: left;
+      font-size: 25px;
+      margin-right: 20px;
+    }
+
+    .number {
+      font-size: 1.4em;
+      line-height: 1.4em;
+    }
+  }
+  .dashboard-summary--nurseries {
+    .icon { color: #5a9eaf; }
+  }
+  .dashboard-summary--employees {
+    .icon { color: #79a55a; }
+  }
+  .dashboard-summary--substitutes {
+    .icon { color: #c37481; }
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@include media-breakpoint-up(sm) {
+  .dashboard__summary {
+    .widget-count {
+      h3 {
+        font-size: .8em;
+      }
+      .icon {
+        font-size: 15px;
+        margin-right: 10px;
+      }
+      .number {
+        font-size: 1.3em;
+      }
+    }
+  }
+}
+// Medium devices (tablets, 768px and up)
+@include media-breakpoint-up(md) {
+  .dashboard-summary {
+    .dashboard-summary--nurseries,
+    .dashboard-summary--employees {
+      border-right: 1px solid $gray-400;
+    }
+  }
+}
+// Large devices (desktops, 992px and up)
+@include media-breakpoint-up(lg) {
+  .dashboard__summary {
+    .widget-count {
+      h3 {
+        font-size: 1em;
+      }
+      .icon {
+        font-size: 25px;
+        margin-right: 20px;
+      }
+      .number {
+        font-size: 1.4em;
+      }
+    }
+  }
+}
+// Extra large devices (large desktops, 1200px and up)
+@include media-breakpoint-up(xl) {}

@@ -1,0 +1,76 @@
+.card {
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 7px 14px 0 rgba(50,50,93,.1), 0 3px 6px 0 rgba(0,0,0,.07);
+
+  .card-header {
+    background: transparent;
+    padding: 0.95rem 1.25rem;
+    font-size: 1.3em;
+    border: transparent;
+  }
+  .card-body {
+
+    .no-bullets {
+      padding: 10px 0;
+
+      li {
+        list-style: none;
+      }
+    }
+
+    .is-invalid {
+      border-color: #d32f2f !important;
+    }
+  }
+
+  .pagination {
+    a {
+      margin: 1px;
+      color: #20aee3;
+    }
+
+    .active {
+      a:hover {
+        color: #fff
+      }
+    }
+
+    .disabled,
+    .disabled .page-link {
+      color: lightgray;
+    }
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@include media-breakpoint-up(sm) {}
+// Medium devices (tablets, 768px and up)
+@include media-breakpoint-up(md) {
+  .card {
+    .pagination {
+      float: right;
+      margin: 0;
+    }
+  }
+}
+// Large devices (desktops, 992px and up)
+@include media-breakpoint-up(lg) {}
+// Extra large devices (large desktops, 1200px and up)
+@include media-breakpoint-up(xl) {}
+// Print
+@media print {
+  .card {
+    .card-header {
+      .input-group {
+        display: none;
+      }
+    }
+
+    .pagination {
+      display: none;
+    }
+
+    .btn-back { display: none; }
+  }
+}

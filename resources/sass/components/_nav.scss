@@ -1,0 +1,97 @@
+.navbar-laravel {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+.navbar-light .navbar-nav .nav-link {
+  color: #3d3f42;
+}
+
+// Nav
+.nav-lateral {
+  ul {
+    list-style: none outside;
+    margin: 0;
+    padding: 0;
+
+    li {
+      margin-bottom: 5px;
+    }
+  }
+  a {
+    display: block;
+    color: $gray-900;
+    vertical-align: top;
+    text-decoration: none;
+    padding: 5px 0;
+  }
+  .icon {
+    margin-right: 5px;
+  }
+  .icon svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.nav-mobile {
+  visibility: hidden;
+  background: #607d8b;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  padding: 0 40px;
+  color: #fff;
+  z-index: 10;
+  font-size: 1.2rem;
+  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-weight: 200;
+
+  ul {
+    list-style: none outside;
+    margin: 0;
+    padding: 0;
+    font-size: 1.3em;
+
+    li {
+      margin-bottom: 10px;
+    }
+  }
+
+  a {
+    color: #fff;
+  }
+
+  &.open {
+    display: flex;
+    visibility: visible;
+    animation: mobileNavOpacityIn .3s ease-out;
+  }
+  &.closed {
+    visibility: hidden;
+    animation: mobileNavOpacityOut .3s ease-out;
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@include media-breakpoint-up(sm) {
+  .nav-mobile {
+    text-align: left;
+    justify-content: flex-start;
+  }
+}
+// Medium devices (tablets, 768px and up)
+@include media-breakpoint-up(md) {
+  .nav-mobile {
+    text-align: center;
+    justify-content: center;
+  }
+}
+// Large devices (desktops, 992px and up)
+@include media-breakpoint-up(lg) {}
+// Extra large devices (large desktops, 1200px and up)
+@include media-breakpoint-up(xl) {}

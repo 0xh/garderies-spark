@@ -1,0 +1,26 @@
+.main {
+  padding: 20px 0 20px;
+}
+
+// User
+.user-card {
+
+  .user-card__avatar {
+    img {
+      border-radius: 100%;
+    }
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@include media-breakpoint-up(sm) {}
+// Medium devices (tablets, 768px and up)
+@include media-breakpoint-up(md) {
+  .main {
+    padding-top: 30px;
+  }
+}
+// Large devices (desktops, 992px and up)
+@include media-breakpoint-up(lg) {}
+// Extra large devices (large desktops, 1200px and up)
+@include media-breakpoint-up(xl) {}

@@ -1,0 +1,69 @@
+.header__top {
+  height: auto;
+  color: #fff;
+  padding: 10px 0;
+  background: #169bf4;
+  background: linear-gradient(135deg, #0277BD 8%, #00BCD4 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0277BD', endColorstr='#00BCD4', GradientType=1);
+
+  .container {
+    position: relative;
+  }
+
+  .brand {
+    img {
+      width: 157px;
+      height: 40px;
+    }
+  }
+}
+
+.header {
+  .navbar-collapse {
+    display: none !important;
+  }
+  .navbar-expand {
+    > .container {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
+}
+
+  .hamburger {
+    position: absolute;
+    right: 15px;
+    top: 19px;
+  }
+
+  // Small devices (landscape phones, 576px and up)
+  @include media-breakpoint-up(sm) {
+  }
+  // Medium devices (tablets, 768px and up)
+  @include media-breakpoint-up(md) {
+    //.nav-mobile { display: none; }
+  }
+  // Large devices (desktops, 992px and up)
+  @include media-breakpoint-up(lg) {
+    .hamburger {
+      display: none;
+    }
+    .header {
+      .navbar-collapse {
+        display: flex !important;
+      }
+    }
+    .navbar {
+      .nav-item {
+        padding: 10px 5px;
+
+        &.active {
+          //border-bottom: 4px solid #fcb002;
+          //padding-bottom: 6px;
+        }
+      }
+    }
+  }
+  // Extra large devices (large desktops, 1200px and up)
+  @include media-breakpoint-up(xl) {
+  }
