@@ -4,6 +4,8 @@
     <script src="https://js.stripe.com/v3/"></script>
 @endsection
 
+@section('title', 'Inscription')
+
 @section('content')
 <spark-register-stripe inline-template>
     <div>

@@ -4,7 +4,7 @@ namespace App\Listeners;
 
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use App\Notifications\UserInvitedToTeam as Notification;
+use App\Notifications\ExistingUserInvitedToTeam as Notification;
 
 class UserInvitedToTeam
 {

@@ -7,20 +7,20 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class UserInvitedToTeam extends Notification
+class NewUserInvitedToTeam extends Notification
 {
     use Queueable;
 
-    private $team;
+    private $invitation;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($team)
+    public function __construct($invitation)
     {
-        $this->team = $team;
+        $this->invitation = $invitation;
     }
 
     /**
@@ -43,9 +43,10 @@ class UserInvitedToTeam extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject("Vous êtes invité dans une équipe")
-                    ->line("Vous êtes invité à rejoindre l'équipe " . $this->team->name)
-                    ->action("Voir l'invitation", url('/settings#/'. \Spark::teamsPrefix()) )
+                    ->subject("Vous êtes invité à rejoindre Garderies.ch")
+                    ->line("Un administrateur de réseau du Garderies.ch vous invite à rejoindre l'équipe " . $this->invitation->team->name . '.')
+                    ->line("Une fois inscrit vous pourrez créer votre profil, déclarer vos disponibilités et profiter d'un réseau de remplaçants.")
+                    ->action("Voir l'invitation", url('register?invitation='.$this->invitation->token) )
                     ->line('Thank you for using our application!');
     }
 

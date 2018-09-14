@@ -3,10 +3,12 @@
 namespace App\Providers;
 
 use App\User;
+use Illuminate\Support\Facades\Notification;
 use Laravel\Cashier\Cashier;
 use Laravel\Spark\Spark;
 use Laravel\Spark\Providers\AppServiceProvider as ServiceProvider;
 use Laravel\Spark\Events\Teams\UserInvitedToTeam;
+use App\Notifications\NewUserInvitedToTeam;
 
 class SparkServiceProvider extends ServiceProvider
 {
@@ -98,8 +100,12 @@ class SparkServiceProvider extends ServiceProvider
             $invitation = $this->createInvitation($team, $email, $invitedUser, $role);
 
             if ($invitedUser) {
-
+                // dispatch an event when the user exists
                 event(new UserInvitedToTeam($team, $invitedUser));
+            } else {
+                // send manual notification if the user doesn't exists
+                Notification::route('mail', $email)
+                    ->notify(new NewUserInvitedToTeam($invitation));
             }
 
             return $invitation;
