@@ -40,6 +40,8 @@ class NetworkController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', 'App\Network');
+
         return view('network.create');
     }
 
@@ -85,6 +87,8 @@ class NetworkController extends Controller
      */
     public function show(Network $network)
     {
+        $this->authorize('view', $network);
+
         $ads            = $network->ads;
         $availabilities = $network->availabilities;
 
@@ -110,6 +114,8 @@ class NetworkController extends Controller
      */
     public function edit(Network $network)
     {
+        $this->authorize('update', $network);
+
         return view('network.edit', ['network' => $network]);
     }
 

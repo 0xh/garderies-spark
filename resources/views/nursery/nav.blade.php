@@ -11,8 +11,10 @@
             <a href="{{route('nurseries.ads', $nursery)}}"><i class="fas fa-ad icon"></i> Annonces</a>
         </li>
         @endif
+        @can ('create', 'App\Nursery')
         <li>
             <a href="{{route('nurseries.create')}}"><i class="fas fa-plus icon"></i> Ajouter</a>
         </li>
+        @endcan
     </ul>
 </nav>

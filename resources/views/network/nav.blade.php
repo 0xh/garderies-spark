@@ -8,8 +8,10 @@
                 <a href="{{route('networks.ads', $network)}}"><i class="fas fa-ad icon"></i> Annonces</a>
             </li>
         @endif
+        @can('create', 'App\Network')
         <li>
             <a href="{{route('networks.create')}}"><i class="fas fa-plus icon"></i> Ajouter</a>
         </li>
+        @endcan
     </ul>
 </nav>

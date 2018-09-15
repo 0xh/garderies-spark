@@ -10,6 +10,11 @@ class NetworkPolicy
 {
     use HandlesAuthorization;
 
+    public function before(User $user)
+    {
+        if ($user->isSuperAdmin()) { return true; }
+    }
+
     /**
      * Determine whether the user can view the network.
      *
@@ -19,7 +24,9 @@ class NetworkPolicy
      */
     public function view(User $user, Network $network)
     {
-        //
+        if ($user->currentTeam()->id == $network->team->id) {
+            return true;
+        }
     }
 
     /**
@@ -30,7 +37,9 @@ class NetworkPolicy
      */
     public function create(User $user)
     {
-        //
+        if ($user->roleOnCurrentTeam() == 'owner') {
+            return true;
+        }
     }
 
     /**
@@ -42,7 +51,9 @@ class NetworkPolicy
      */
     public function update(User $user, Network $network)
     {
-        //
+        if ($user->currentTeam()->id == $network->team->id && $user->roleOnCurrentTeam() == 'owner') {
+            return true;
+        }
     }
 
     /**

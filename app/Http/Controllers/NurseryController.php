@@ -34,10 +34,11 @@ class NurseryController extends Controller
      */
     public function create()
     {
-        $user = auth()->user();
-        $team = $user->currentTeam();
+        $this->authorize('create', 'App\Network');
 
-        $networks = Network::where('team_id', $team->id)->get();
+        $user       = auth()->user();
+        $team       = $user->currentTeam();
+        $networks   = $team->networks;
         return view('nursery.create', ['networks' => $networks]);
     }
 
@@ -81,6 +82,8 @@ class NurseryController extends Controller
      */
     public function show(Nursery $nursery)
     {
+        $this->authorize('view', $nursery);
+
         // get bookings
         $bookings = $nursery->bookings;
         // get the DiplomasPerNursery Chart
@@ -104,6 +107,8 @@ class NurseryController extends Controller
      */
     public function edit(Nursery $nursery)
     {
+        $this->authorize('update', $nursery);
+
         $user       = auth()->user();
         $team       = $user->currentTeam();
         $networks   = Network::where('team_id', $team->id)->get();
@@ -167,6 +172,8 @@ class NurseryController extends Controller
 
     public function planning(Nursery $nursery)
     {
+        $this->authorize('planning', $nursery);
+
         // get bookings
         $bookings           = $nursery->bookings;
         // get the first day of the current month
@@ -184,6 +191,8 @@ class NurseryController extends Controller
 
     public function ads(Nursery $nursery)
     {
+        $this->authorize('ads', $nursery);
+
         $ads = $nursery->ads()->orderBy('created_at', 'desc')->get();
 
         return view('nursery.ads', [

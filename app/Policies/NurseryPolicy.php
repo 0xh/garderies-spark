@@ -10,6 +10,11 @@ class NurseryPolicy
 {
     use HandlesAuthorization;
 
+    public function before(User $user)
+    {
+        if ($user->isSuperAdmin()) { return true; }
+    }
+
     /**
      * Determine whether the user can view the nursery.
      *
@@ -19,7 +24,23 @@ class NurseryPolicy
      */
     public function view(User $user, Nursery $nursery)
     {
-        //
+        if ($user->currentTeam()->id == $nursery->team_id) {
+            return true;
+        }
+    }
+
+    public function planning(User $user, Nursery $nursery)
+    {
+        if ($user->currentTeam()->id == $nursery->team_id) {
+            return true;
+        }
+    }
+
+    public function ads(User $user, Nursery $nursery)
+    {
+        if ($user->currentTeam()->id == $nursery->team_id) {
+            return true;
+        }
     }
 
     /**
@@ -30,7 +51,9 @@ class NurseryPolicy
      */
     public function create(User $user)
     {
-        //
+        if ($user->roleOnCurrentTeam() == 'owner') {
+            return true;
+        }
     }
 
     /**
@@ -42,7 +65,9 @@ class NurseryPolicy
      */
     public function update(User $user, Nursery $nursery)
     {
-        //
+        if ($user->currentTeam()->id == $nursery->team_id) {
+            return true;
+        }
     }
 
     /**
