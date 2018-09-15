@@ -1,7 +1,7 @@
 <?php
 
 return [
-    "create_team" => "Créer équipe",
+    "create_team" => "Créer une équipe",
     "team_name" => "Nom équipe",
     "team_slug" => "Team Slug",
     "team_members" => "Membres équipe",
