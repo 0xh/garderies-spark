@@ -37,6 +37,10 @@ class NetworkPolicy
      */
     public function create(User $user)
     {
+        if ($user->onGenericTrial() && $user->currentTeam()->networks->count() >= 1) {
+            return false;
+        }
+
         if ($user->roleOnCurrentTeam() == 'owner') {
             return true;
         }

@@ -34,7 +34,7 @@ class NurseryController extends Controller
      */
     public function create()
     {
-        $this->authorize('create', 'App\Network');
+        $this->authorize('create', 'App\Nursery');
 
         $user       = auth()->user();
         $team       = $user->currentTeam();

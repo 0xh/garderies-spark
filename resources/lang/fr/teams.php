@@ -13,7 +13,7 @@ return [
     "team" => "Equipe",
     "update_team_name" => "Mettre à jour le nom de l'équipe",
     "team_name_was_updated" => "Le nom de votre équipe a été mis à jour !",
-    "current_teams" => "Equipes courantes",
+    "current_teams" => "Vos équipes",
     "leave_team" => "Quitter l'équipe",
     "are_you_sure_you_want_to_leave_team" => "Etes-vous sûr de vouloir quitter cette équipe ?",
     "delete_team" => "Supprimer équipe",

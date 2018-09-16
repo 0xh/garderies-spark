@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\User;
 use Illuminate\Support\Facades\Notification;
 use Laravel\Cashier\Cashier;
+use Laravel\Spark\Exceptions\IneligibleForPlan;
 use Laravel\Spark\Spark;
 use Laravel\Spark\Providers\AppServiceProvider as ServiceProvider;
 use Laravel\Spark\Events\Teams\UserInvitedToTeam;
@@ -67,15 +68,9 @@ class SparkServiceProvider extends ServiceProvider
 
         Spark::useStripe()->noCardUpFront()->trialDays(10);
 
-        Spark::freePlan()
-            ->maxTeams(1)
-            ->features([
-                'First', 'Second', 'Third'
-            ]);
-
         Spark::plan('Petit (10 employés)', 'plan-small')
             ->price(110)
-            ->maxTeams(2)
+            ->maxTeams(3)
             ->maxCollaborators(20)
             ->maxTeamMembers(10)
             ->features(['CHF 11.- / utilisateur', 'Second', 'Third']);
@@ -92,6 +87,19 @@ class SparkServiceProvider extends ServiceProvider
             ->maxTeamMembers(50)
             ->features(['CHF 9.- / utilisateur', 'Second', 'Third']);
 
+        Spark::checkPlanEligibilityUsing(function ($user, $plan) {
+
+            if ($plan->id == 'plan-small' && $user->currentTeam()->users()->count() > 10) {
+                throw IneligibleForPlan::because("Vous avez trop de membres d'équipes.");
+            }
+            if ($plan->id == 'plan-medium' && $user->currentTeam()->users()->count() > 20) {
+                throw IneligibleForPlan::because("Vous avez trop de membres d'équipes.");
+            }
+
+            return true;
+        });
+
+        // override the invite notification process
         Spark::swap('SendInvitation@handle', function ($team, $email, $role) {
             $invitedUser = Spark::user()->where('email', $email)->first();
 
