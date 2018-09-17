@@ -1,3 +1,8 @@
+<div class="card mb-4" v-if="teams.length == 0">
+    <div class="card-body">
+        Créez une équipe afin de pouvoir ajouter des employés / remplaçants à votre réseau de garderies. Le nombre d'employés que vous pouvez ajouter dépend de <a href="/settings#/subscription">l'abonnement que vous avez choisi.</a>
+    </div>
+</div>
 <spark-create-team inline-template>
     <div class="card card-default mb-4" v-if="canCreateMoreTeams">
         <div class="card-header">{{__('teams.create_team')}}</div>

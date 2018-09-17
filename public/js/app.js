@@ -41329,6 +41329,9 @@ __webpack_require__(209);
 Vue.filter('date', function (value) {
     return moment.utc(value).local().format('DD.MM.YYYY');
 });
+Vue.filter('datetime', function (value) {
+    return moment.utc(value).local().format('DD.MM.YYYY HH:mm');
+});
 
 __webpack_require__(251);
 
@@ -78062,7 +78065,6 @@ module.exports = {
 /* 251 */
 /***/ (function(module, exports, __webpack_require__) {
 
-
 /**
  * Layout Components...
  */
@@ -78891,7 +78893,22 @@ module.exports = {
 var base = __webpack_require__(271);
 
 Vue.component('spark-create-team', {
-    mixins: [base]
+    mixins: [base],
+    methods: {
+        create: function create() {
+            var _this = this;
+
+            Spark.post('/settings/' + Spark.teamsPrefix, this.form).then(function () {
+                _this.form.name = '';
+                _this.form.slug = '';
+
+                Bus.$emit('updateUser');
+                Bus.$emit('updateTeams');
+
+                location.reload();
+            });
+        }
+    }
 });
 
 /***/ }),

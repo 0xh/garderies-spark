@@ -50,7 +50,7 @@
                     <div class="card-body">
                         <h4 class="title"><span class="number">1</span>Créer une équipe</h4>
                         <div class="intro-point__description">
-                            <p class="mb-0">Une équipe vous permet d'ajouter des employés / remplaçants à votre réseau de garderies, les rendant ainsi actifs au sein de votre réseau.</p>
+                            <p class="mb-0"><strong>Une équipe vous permet d'ajouter des employés / remplaçants à votre réseau de garderies</strong>, les rendant ainsi actifs au sein de votre réseau.</p>
                         </div>
                     </div>
                 </div>
@@ -100,7 +100,7 @@
         }
 
         .intro-point .intro-point__description {
-            margin-left: 37px;
+            margin-left: 35px;
         }
     </style>
 @endsection

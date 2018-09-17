@@ -3,6 +3,9 @@ require('spark-bootstrap');
 Vue.filter('date', value => {
     return moment.utc(value).local().format('DD.MM.YYYY');
 });
+Vue.filter('datetime', value => {
+    return moment.utc(value).local().format('DD.MM.YYYY HH:mm');
+});
 
 require('./spark-components/bootstrap');
 
