@@ -44,9 +44,10 @@ class ExistingUserInvitedToTeam extends Notification
     {
         return (new MailMessage)
                     ->subject("Vous êtes invité dans une équipe")
-                    ->line("Vous êtes invité à rejoindre l'équipe " . $this->team->name)
+                    ->line("Vous êtes invité à rejoindre l'équipe \"" . $this->team->name . "\" sur l'application Garderies.ch.")
+                    ->line("Cliquez simplement sur le bouton ci-dessous pour voir l'invitation et accepter d'intégrer l'équipe.")
                     ->action("Voir l'invitation", url('/settings#/'. \Spark::teamsPrefix()) )
-                    ->line('Thank you for using our application!');
+                    ->line('Merci de votre confiance !');
     }
 
     /**
