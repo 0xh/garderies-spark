@@ -45,8 +45,12 @@ class HomeController extends Controller
         } else {
 
             $availabilities     = $authUser->availabilities()->where('start', '>', now())->get();
-            $bookings           = $authUser->bookings()->where('start', '>', now())->get();
-            $bookingRequests    = $authUser->bookingRequests()->where('start', '>', now())->get();
+            $bookings           = $authUser->bookings()
+                ->where('start', '>', now())
+                ->where('status', Booking::STATUS_APPROVED)->get();
+            $bookingRequests    = $authUser->bookingRequests()
+                ->where('start', '>', now())
+                ->where('status', BookingRequest::STATUS_PENDING)->get();
             $favorites          = $authUser->favorite_substitutes;
 
             $months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];

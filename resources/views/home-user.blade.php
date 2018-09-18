@@ -87,7 +87,7 @@
                         </table>
                     </div>
                     @else
-                        <div class="alert alert-info">Aucune demande</div>
+                        <div class="alert alert-info">Aucune demande en attente</div>
                     @endif
                 </div>
             </div>

@@ -79522,7 +79522,11 @@ module.exports = {
 var base = __webpack_require__(287);
 
 Vue.component('spark-send-invitation', {
-    mixins: [base]
+    mixins: [base],
+
+    created: function created() {
+        Spark.defaultRole = 'substitute'; // fix the role reinitialization after inviting someone
+    }
 });
 
 /***/ }),

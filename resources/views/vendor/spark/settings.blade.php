@@ -72,6 +72,7 @@
 
                     <!-- Billing Tabs -->
                     @if (Spark::canBillCustomers())
+                        @if (!auth()->user()->hasTeams() || (auth()->user()->hasTeams() && auth()->user()->roleOnCurrentTeam() == 'owner'))
                         <aside>
                             <h3 class="nav-heading ">
                                 {{__('Billing')}}
@@ -110,6 +111,7 @@
                                 </li>
                             </ul>
                         </aside>
+                        @endif
                     @endif
                 </div>
 
