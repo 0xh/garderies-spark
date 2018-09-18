@@ -60,7 +60,6 @@ class SparkServiceProvider extends ServiceProvider
         Cashier::useCurrency('chf', 'CHF ');
 
         Spark::useRoles([
-            'owner'         => __('Owner'),
             'director'      => __('Director'),
             'substitute'    => __('Substitute'),
         ]);
