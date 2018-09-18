@@ -1,6 +1,6 @@
 <spark-current-teams :user="user" :teams="teams" inline-template>
     <div>
-        <div class="card card-default">
+        <div class="card card-default mb-4">
             <div class="card-header">{{__('teams.current_teams')}}</div>
 
             <div class="table-responsive">
@@ -47,7 +47,7 @@
                                     </button>
                                 </a>
 
-                                <button class="btn btn-outline-warning btn-sm" @click="approveLeavingTeam(team)"
+                                <button class="btn btn-outline-warning btn-sm d-none" @click="approveLeavingTeam(team)"
                                         data-toggle="tooltip" title="{{__('teams.leave_team')}}"
                                         v-if="user.id !== team.owner_id">
                                     <i class="fas fa-sign-out-alt"></i>

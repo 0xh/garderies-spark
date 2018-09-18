@@ -136,8 +136,8 @@ class UserController extends Controller
         $currentNetworksKeys    = array_flatten($user->networks->pluck('id'));
         $currentWorkgroups      = array_flatten($user->workgroups->pluck('id'));
 
-        if ($authUser->roleOnCurrentTeam() == 'owner') {
-            return view('user.owner.edit', [
+        if ($authUser->isSuperAdmin() || $authUser->id == $user->id) {
+            return view('user.edit', [
                 'user'                  => $user,
                 'nurseries'             => $nurseries,
                 'managedNetworks'       => $managedNetworks,
@@ -146,8 +146,8 @@ class UserController extends Controller
                 'currentWorkgroups'     => $currentWorkgroups,
                 'diplomas'              => $diplomas,
             ]);
-        } else {
-            return view('user.edit', [
+        } elseif ($authUser->roleOnCurrentTeam() == 'owner') {
+            return view('user.owner.edit', [
                 'user'                  => $user,
                 'nurseries'             => $nurseries,
                 'managedNetworks'       => $managedNetworks,

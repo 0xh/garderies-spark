@@ -16,7 +16,7 @@
             <div id="navbarSupportedContent" class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto">
                     @if (auth()->user()->subscribed() || auth()->user()->onGenericTrial())
-                        @if (auth()->user()->hasTeams() && auth()->user()->roleOnCurrentTeam() == 'owner')
+                        @if (auth()->user()->hasTeams() && (auth()->user()->roleOnCurrentTeam() == 'owner' || auth()->user()->roleOnCurrentTeam() == 'director'))
                             @includeIf('spark::nav.user-left')
                         @elseif (auth()->user()->hasTeams())
                             @includeIf('spark::nav.substitute-left')

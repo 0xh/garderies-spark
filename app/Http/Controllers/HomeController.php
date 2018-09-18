@@ -19,23 +19,21 @@ class HomeController extends Controller
 
     public function index()
     {
-        $user = \auth()->user();
-    }
-
-    public function dashboard()
-    {
         $authUser       = Auth::user();
         $team           = ($authUser) ? $authUser->currentTeam() : null;
 
+        // Owner view
         if ($team && $authUser->roleOn($team) == 'owner') {
 
-            $count_nursery      = $team->nurseries->count();
+            $nurseries          = $team->nurseries()->orderBy('created_at', 'desc')->get();
+            $count_nursery      = $nurseries->count();
             $count_user         = $team->users->where('id', '!=', $authUser->id)->count();
             $count_booking      = $team->bookings()->whereMonth('start', date('m'))->count();
             $count_booking_req  = $team->bookingRequests()->whereMonth('start', date('m'))->count();
             $bookingsChart      = new BookingsChart();
 
             return view('home', [
+                'nurseries'     => $nurseries,
                 'count_nursery' => $count_nursery,
                 'count_user'    => $count_user,
                 'count_booking' => $count_booking,
@@ -61,7 +59,7 @@ class HomeController extends Controller
                 'favorites'         => $favorites,
                 'months'            => $months
             ]);
-
         }
     }
+
 }

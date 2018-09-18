@@ -47,9 +47,15 @@
         </div>
         <div class="col-lg-4">
             <div class="card mb-4">
-                <div class="card-header">Remplacants les plus actifs</div>
+                <div class="card-header">Garderies</div>
                 <div class="card-body">
-                    <div class="">TODO</div>
+                    <ul class="list-group">
+                        @foreach ($nurseries as $nursery)
+                        <li class="list-group-item">
+                            <a href="{{route('nurseries.show', $nursery)}}">{{$nursery->name}}</a>
+                        </li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
         </div>

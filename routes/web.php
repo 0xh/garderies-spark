@@ -17,7 +17,7 @@ Route::domain('reseau.' . $domain['host'])->group(function () {
     Route::view('/', 'network.website');
 });
 
-Route::get('/', 'HomeController@dashboard')->middleware('auth');
+Route::get('/', 'HomeController@index')->middleware('auth');
 Route::view('blog', 'blog');
 Route::view('account', 'account');
 

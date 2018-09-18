@@ -50,10 +50,13 @@ class BookingController extends Controller
      */
     public function create()
     {
+        $user = auth()->user();
+        $team = $user->currentTeam();
+
         // Get users except for the ID 1, for demo purposes
-        $users      = User::where('id', '!=', 1)->orderBy('name')->get();
+        $users  = $team->users()->where('id', '!=', $user->id)->orderBy('name')->get();
         // Get nuseries
-        $nurseries  = Nursery::orderBy('name')->get();
+        $nurseries  = $team->nurseries()->orderBy('name')->get();
 
         return view('booking.create', ['users' => $users, 'nurseries' => $nurseries]);
     }

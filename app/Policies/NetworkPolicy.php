@@ -41,6 +41,10 @@ class NetworkPolicy
             return false;
         }
 
+        if ($user->roleOnCurrentTeam() == 'director') {
+            return true;
+        }
+
         if ($user->roleOnCurrentTeam() == 'owner') {
             return true;
         }

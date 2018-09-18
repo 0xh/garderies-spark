@@ -7,7 +7,7 @@
         <div>
             <div class="row d-print-none">
                 <div class="col mb-2">
-                    @if ($user->roleOnCurrentTeam() == 'owner')
+                    @if (auth()->user()->roleOnCurrentTeam() == 'owner')
                         <a href="{{route('users.index')}}" class="btn btn-info btn-sm">&larr; Retour aux utilisateurs</a>
                     @else
                         <a href="/" class="btn btn-info btn-sm">&larr; Retour à l'accueil</a>
@@ -211,7 +211,7 @@
                         <div class="card-body">
                             @if (!$availabilities->count())
                                 <div class="alert alert-info">Aucune disponibilité renseignée pour le moment.</div>
-                                <a href="{{route('users.availabilities', $user->id)}}" class="btn btn-info"><i class="fas fa-calendar"></i> Gérer mes disponibilités</a>
+                                <a href="{{route('users.availabilities', $user->id)}}" class="btn btn-info"><i class="fas fa-calendar"></i> Gérer les disponibilités</a>
                             @else
                                 <table class="table table-borderless table-striped table-responsive-lg">
                                     <thead>
