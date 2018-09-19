@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Availability;
+use App\Booking;
+use App\BookingRequest;
 use App\Network;
 use App\Nursery;
 use App\User;
@@ -16,10 +19,13 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Model'         => 'App\Policies\ModelPolicy',
-        User::class         => 'App\Policies\UserPolicy',
-        Nursery::class      => 'App\Policies\NurseryPolicy',
-        Network::class      => 'App\Policies\NetworkPolicy',
+        'App\Model'                 => 'App\Policies\ModelPolicy',
+        User::class                 => 'App\Policies\UserPolicy',
+        Nursery::class              => 'App\Policies\NurseryPolicy',
+        Network::class              => 'App\Policies\NetworkPolicy',
+        Booking::class              => 'App\Policies\BookingPolicy',
+        BookingRequest::class       => 'App\Policies\BookingRequestPolicy',
+        Availability::class         => 'App\Policies\AvailabilityPolicy',
     ];
 
     /**
