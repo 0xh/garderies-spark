@@ -18046,6 +18046,12 @@ img {
   color: lightgray;
 }
 
+.card.blur {
+  -webkit-filter: blur(2px);
+          filter: blur(2px);
+  pointer-events: none;
+}
+
 @media (min-width: 768px) {
   .card .pagination {
     float: right;

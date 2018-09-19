@@ -94,7 +94,7 @@
             {{-- Availabilities --}}
             <div class="card mb-4">
                 <div class="card-header bg-dark text-white">
-                    <i class="fas fa-user-clock mr-2"></i> Prochaines disponibilités
+                    <i class="fas fa-clock mr-2"></i> Prochaines disponibilités
                     <div class="actions float-right">
                         <a href="{{route('users.availabilities', $user->id)}}" class="btn btn-info btn-sm"><i class="fas fa-calendar"></i> Gérer les disponibilités</a>
                     </div>

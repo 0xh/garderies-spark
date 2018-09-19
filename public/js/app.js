@@ -105125,6 +105125,8 @@ var _data = {
                     _data.selectedAvailabilities = [];
                     _data.nursery = 0;
                     _data.workgroup = 0;
+                    _data.purpose = 0;
+                    _data.employee = 0;
                     _data.message = null;
                 });
             });

@@ -3,7 +3,12 @@
 @section('title', 'Créer une garderie')
 
 @section('content')
-    <div class="card card-default">
+    @if (!$can_create)
+        <div class="alert alert-info">
+            <strong>Oops ! </strong> Durant votre période d'essai la quantité de contenu que vous pouvez créer est limitée. <a href="/settings#/subscription">Consultez la page Souscription</a> pour choisir le plan le plus adapté à vos besoins.
+        </div>
+    @endif
+    <div class="card {{($can_create) ?: 'blur'}}">
         <div class="card-header">Ajouter une garderie</div>
         <div class="card-body">
             <form action="{{route('nurseries.store')}}" method="post">

@@ -39,7 +39,11 @@ class NurseryController extends Controller
         $user       = auth()->user();
         $team       = $user->currentTeam();
         $networks   = $team->networks;
-        return view('nursery.create', ['networks' => $networks]);
+        $nurseries  = $team->nurseries->count();
+
+        $can_create = ($user->onGenericTrial() && $nurseries >= 1) ? false : true;
+
+        return view('nursery.create', ['networks' => $networks, 'can_create' => $can_create]);
     }
 
     /**

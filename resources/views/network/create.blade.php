@@ -3,8 +3,13 @@
 @section('title', 'Création réseau')
 
 @section('content')
+    @if (!$can_create)
+        <div class="alert alert-info">
+            <strong>Oops ! </strong> Durant votre période d'essai la quantité de contenu que vous pouvez créer est limitée. <a href="/settings#/subscription">Consultez la page Souscription</a> pour choisir le plan le plus adapté à vos besoins.
+        </div>
+    @endif
     <network-create inline-template>
-        <div class="card card-default">
+        <div class="card {{($can_create) ?: 'blur'}}">
             <div class="card-header">Création réseau</div>
             <div class="card-body">
                 <form action="{{route('networks.store')}}" method="post">

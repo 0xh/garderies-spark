@@ -42,7 +42,13 @@ class NetworkController extends Controller
     {
         $this->authorize('create', 'App\Network');
 
-        return view('network.create');
+        $user = \auth()->user();
+        $team = $user->currentTeam();
+
+        $networks = $team->networks->count();
+        $can_create = ($user->onGenericTrial() && $networks >= 1) ? false : true;
+
+        return view('network.create', ['can_create' => $can_create]);
     }
 
     /**

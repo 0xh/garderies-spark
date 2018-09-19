@@ -51,10 +51,6 @@ class NurseryPolicy
      */
     public function create(User $user)
     {
-        if ($user->onGenericTrial() && $user->currentTeam()->nurseries->count() >= 1) {
-            return false;
-        }
-
         if ($user->roleOnCurrentTeam() == 'owner') {
             return true;
         }

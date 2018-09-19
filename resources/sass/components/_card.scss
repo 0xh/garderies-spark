@@ -41,6 +41,11 @@
       color: lightgray;
     }
   }
+
+  &.blur {
+    filter: blur(2px);
+    pointer-events: none;
+  }
 }
 
 // Small devices (landscape phones, 576px and up)

@@ -57,16 +57,22 @@ class SparkServiceProvider extends ServiceProvider
      */
     public function booted()
     {
+        // Currency
         Cashier::useCurrency('chf', 'CHF ');
 
+        // Define roles
         Spark::useRoles([
             'director'      => __('Director'),
             'substitute'    => __('Substitute'),
         ]);
-        Spark::$defaultRole = 'substitute';
+        Spark::$defaultRole = 'substitute'; // default role
 
+        // Trial days
         Spark::useStripe()->noCardUpFront()->trialDays(10);
 
+        /**
+         * Define plans
+         */
         Spark::plan('Petit (10 employés)', 'plan-small')
             ->price(110)
             ->maxTeams(3)
@@ -86,6 +92,9 @@ class SparkServiceProvider extends ServiceProvider
             ->maxTeamMembers(50)
             ->features(['CHF 9.- / utilisateur', 'Second', 'Third']);
 
+        /**
+         * Handles plans eligibility, constraints on plans attributes
+         */
         Spark::checkPlanEligibilityUsing(function ($user, $plan) {
 
             if ($plan->id == 'plan-small' && $user->currentTeam()->users()->count() > 10) {
