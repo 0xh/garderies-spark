@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.two-columns')
 
 @section('title', 'Demande de remplacement')
 

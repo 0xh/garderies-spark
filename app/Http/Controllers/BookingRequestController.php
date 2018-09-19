@@ -129,7 +129,12 @@ class BookingRequestController extends Controller
 
         $availability   = $bookingRequest->availability;
 
-        return view('booking-request.show', [
+        $view = 'booking-request.owner.show';
+        if (auth()->user()->roleOnCurrentTeam() == 'substitute') {
+            $view = 'booking-request.show';
+        }
+
+        return view($view, [
             'bookingRequest'            => $bookingRequest,
             'availability'              => $availability,
             'conflict_start'            => $conflict_start,
