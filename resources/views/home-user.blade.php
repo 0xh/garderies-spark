@@ -202,7 +202,7 @@
                         </div>
                         <div class="actions pt-2 d-print-none">
                             @can('update', $user)
-                                <a href="{{route('users.edit', [$user->id])}}" class="btn btn-info btn-sm mr-2"><i class="fas fa-edit"></i> Editer</a>
+                                <a href="{{route('users.edit', [$user->id])}}" class="btn btn-info btn-sm mr-2"><i class="fas fa-edit"></i> Editer mon profil</a>
                             @endcan
                             @can('delete', $user)
                                 <a href="#" v-on:click.prevent="deleteUser({{$user->id}})" class="btn btn-danger btn-sm"><i class="fas fa-times"></i> Supprimer</a>
