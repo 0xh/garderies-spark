@@ -21,7 +21,7 @@
           sortField: 'nurseries.name',
           title: 'Garderie'
         }, {
-          name: '__slot:networkslinkrelation',
+          name: '__slot:networksrelation',
           sortField: 'networks.name',
           title: 'Réseaux',
           width: '150px'

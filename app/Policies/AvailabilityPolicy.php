@@ -10,6 +10,11 @@ class AvailabilityPolicy
 {
     use HandlesAuthorization;
 
+    public function before($user, $ability)
+    {
+        if ($user->isSuperAdmin()) { return true; }
+    }
+
     /**
      * Determine whether the user can view the availability.
      *
@@ -79,5 +84,17 @@ class AvailabilityPolicy
     public function forceDelete(User $user, Availability $availability)
     {
         //
+    }
+
+    /**
+     * Determine whether the user can search for availabilities
+     *
+     * @param User $user
+     */
+    public function search(User $user)
+    {
+        if ($user->roleOnCurrentTeam() == 'substitute' || $user->roleOnCurrentTeam() == 'director') {
+            return true;
+        }
     }
 }

@@ -19,7 +19,7 @@
             title: 'Employés',
             width: '150px'
         }, {
-            name: '__slot:networklinkrelation',
+            name: '__slot:networkrelation',
             sortField: 'networks.name',
             title: 'Réseau',
             width: '150px'

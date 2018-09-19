@@ -41,11 +41,13 @@
 
                             <!-- Edit Button -->
                             <td class="td-fit">
+                                @if (auth()->user()->hasTeams() && auth()->user()->roleOnCurrentTeam() == 'owner')
                                 <a :href="'/settings/{{Spark::teamsPrefix()}}/'+team.id">
                                     <button class="btn btn-outline-primary btn-sm">
                                         <i class="far fa-eye"></i>
                                     </button>
                                 </a>
+                                @endif
 
                                 <button class="btn btn-outline-warning btn-sm d-none" @click="approveLeavingTeam(team)"
                                         data-toggle="tooltip" title="{{__('teams.leave_team')}}"

@@ -165,6 +165,14 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="row" v-if="role == 'director'">
+                            <div class="form-group col">
+                                <label for="employee">Employé</label>
+                                <select name="employee" class="form-control selectpicker" title="Sélectionner..." data-live-search="true" data-style="btn-link border text-secondary" v-model="employee">
+                                    <option v-for="employee in employees" :value="employee.id">{{employee.name}}</option>
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label for="message">Message</label>
                             <p class="text-muted">Communiquez à votre remplaçant les informations essentielles.</p>
@@ -235,13 +243,15 @@
         workgroup: 0,
         purposes: [],
         purpose: 0,
+        employees: [],
+        employee: 0,
         message: null,
         loaded: true,
         favoriteOnly: false,
     };
 
     export default {
-        props: ['currentTeam'],
+        props: ['user', 'currentTeam', 'role'],
         data() {
             return data;
         },
@@ -309,17 +319,26 @@
             contactPeopleValidation: function () {
 
                 // retrieve data related to availabilities
-                axios.all([getNurseries(), getWorkgroups(), getPurposes()])
-                    .then(axios.spread(function(nurseries, workgroups, purposes) {
-                       data.nurseries = nurseries.data.data;
-                       data.workgroups = workgroups.data;
-                       data.purposes = purposes.data;
+                axios.all([getNurseries(), getWorkgroups(), getPurposes(), getEmployees()])
+                    .then(axios.spread(function(nurseries, workgroups, purposes, employees) {
+                       data.nurseries   = nurseries.data.data;
+                       data.workgroups  = workgroups.data;
+                       data.purposes    = purposes.data;
+                       data.employees   = employees.data;
                     }));
 
                 $('.contact-modal').modal('show'); // Show the modal
             },
             contactPeople: function () {
                 $('.contact-modal').modal('hide'); // Hide the modal
+
+                swal({
+                    type: "info",
+                    text: "Traitement de votre demande en cours, merci de patienter.",
+                    onOpen: () => {
+                        swal.showLoading();
+                    }
+                });
 
                 axios.post('/api/booking-requests', {
                     // Pass the request data to the API
@@ -328,6 +347,7 @@
                     date_end: data.search.day_start + " " + data.search.hour_end,
                     nursery: data.nursery,
                     workgroup: data.workgroup,
+                    employee: data.employee,
                     message: data.message,
                     uid: this.spark.userId
                 }).then(function (response) {
@@ -401,6 +421,7 @@
     }
 
     function getNurseries() { return axios.get('/api/nurseries', {params: {'uid': vm.spark.userId}}); }
+    function getEmployees() { return axios.get('/api/users', {params: {'uid': vm.spark.userId, 'noPagination': true}}); }
     function getWorkgroups() { return axios.get('/api/workgroups'); }
     function getPurposes() { return axios.get('/api/purposes'); }
 

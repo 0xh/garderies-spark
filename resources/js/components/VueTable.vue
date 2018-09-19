@@ -28,6 +28,10 @@
                         <a :href="'/nurseries/' + props.rowData.slug">{{props.rowData.name}}</a>
                     </template>
 
+                    <template slot="network" slot-scope="props">
+                        <span class="badge badge-pill text-white" v-bind:style="{background: props.rowData.color, verticalAlign: 'middle'}">{{props.rowData.name}}</span>
+                    </template>
+
                     <template slot="networklink" slot-scope="props">
                         <a :href="'/networks/' + props.rowData.slug">
                             <span class="badge badge-pill text-white" v-bind:style="{background: props.rowData.color, verticalAlign: 'middle'}">{{props.rowData.name}}</span>
@@ -72,11 +76,26 @@
                         <span v-if="!props.rowData.networks" class="text-muted">Aucun</span>
                     </template>
 
+                    <template slot="networksrelation" slot-scope="props">
+                        <ul class="list-inline m-0" v-if="props.rowData.networks">
+                            <li class="list-inline-item" v-for="network in props.rowData.networks">
+                                <span class="badge text-white" :style="'background-color: ' + network.color + ';'">{{network.name}}</span>
+                            </li>
+                        </ul>
+                        <span v-if="!props.rowData.networks" class="text-muted">Aucun</span>
+                    </template>
+
                     <template slot="networklinkrelation" slot-scope="props">
                         <a :href="'/networks/' + props.rowData.network.slug" v-if="props.rowData.network">
                         <span class="badge text-white" :style="'background-color: ' + props.rowData.network.color + ';'">
                             {{props.rowData.network.name}}</span>
                         </a>
+                        <span v-if="!props.rowData.network" class="text-muted">Aucun</span>
+                    </template>
+
+                    <template slot="networkrelation" slot-scope="props">
+                        <span class="badge text-white" :style="'background-color: ' + props.rowData.network.color + ';'">
+                            {{props.rowData.network.name}}</span>
                         <span v-if="!props.rowData.network" class="text-muted">Aucun</span>
                     </template>
 

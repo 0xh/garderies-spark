@@ -5,14 +5,23 @@ namespace App\Http\Controllers\API;
 use App\Availability;
 use App\Booking;
 use App\BookingRequest;
+use App\Notifications\BookingRequestNotification;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\BookingRequest as BookingRequestResource;
+use Laravel\Spark\Contracts\Repositories\NotificationRepository;
 
 class BookingRequestController extends Controller
 {
+    private $notifications;
+
+    public function __construct(NotificationRepository $notificationRepository)
+    {
+        $this->notifications = $notificationRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -37,7 +46,11 @@ class BookingRequestController extends Controller
      */
     public function store(Request $request)
     {
-        $user           = User::find($request->uid);
+        if ($request->employee) {
+            $authUser       = User::find($request->employee);
+        } else {
+            $authUser       = User::find($request->uid);
+        }
 
         $availabilities = $request->availabilities;
         $start          = Carbon::parse($request->date_start);
@@ -48,11 +61,13 @@ class BookingRequestController extends Controller
 
         // Loop through availabilities
         foreach ($availabilities as $availability) {
+            $substitute = User::find($availability['user_id']);
+
             $bookingRequest = new BookingRequest();
             $bookingRequest->request_group      = $request_group_ID;
             $bookingRequest->availability_id    = $availability['id'];
-            $bookingRequest->substitute_id      = $availability['user_id'];
-            $bookingRequest->user_id            = $user->id;
+            $bookingRequest->substitute_id      = $substitute->id;
+            $bookingRequest->user_id            = $authUser->id;
             $bookingRequest->nursery_id         = $request->nursery;
             $bookingRequest->workgroup_id       = $request->workgroup;
             $bookingRequest->purpose_id         = $request->purpose;
@@ -60,6 +75,9 @@ class BookingRequestController extends Controller
             $bookingRequest->start              = $start;
             $bookingRequest->end                = $end;
             $bookingRequest->save();
+
+            // Send notifications
+            $substitute->notify(new BookingRequestNotification($bookingRequest));
         }
 
         return response()->json([

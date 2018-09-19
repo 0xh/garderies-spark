@@ -3,7 +3,7 @@
         Créez une équipe afin de pouvoir ajouter des employés / remplaçants à votre réseau de garderies. Le nombre d'employés que vous pouvez ajouter dépend de <a href="/settings#/subscription">l'abonnement que vous avez choisi.</a>
     </div>
 </div>
-@if (!auth()->user()->subscribed() && !auth()->user()->onGenericTrial())
+@if (!auth()->user()->hasTeams() && !auth()->user()->subscribed() && !auth()->user()->onGenericTrial())
     <div class="card mb-4">
         <div class="card-body">
             <p class="m-0">Vous devez souscrire à un abonnement afin de pouvoir ajouter des équipes.</p>

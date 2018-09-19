@@ -124,6 +124,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        $this->authorize('update', $user);
+
         $authUser   = \auth()->user();
         $team       = $authUser->currentTeam();
 
@@ -201,6 +203,8 @@ class UserController extends Controller
             // sync the networks
             $user->networks()->sync($network_ids);
 
+            return redirect()->route('users.show', $user);
+
         } else {
             // validate the request
             $request->validate([
@@ -227,9 +231,9 @@ class UserController extends Controller
                 $workgroup_ids = array_values($request->workgroups);
             }
             $user->workgroups()->sync($workgroup_ids);
-        }
 
-        return redirect()->route('users.show', $user);
+            return redirect('/');
+        }
     }
 
     /**

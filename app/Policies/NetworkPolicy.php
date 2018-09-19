@@ -16,6 +16,19 @@ class NetworkPolicy
     }
 
     /**
+     * Determine whether the user can view the index
+     *
+     * @param User $user
+     * @return bool
+     */
+    public function index(User $user)
+    {
+        if ($user->roleOnCurrentTeam() == 'owner') {
+            return true;
+        }
+    }
+
+    /**
      * Determine whether the user can view the network.
      *
      * @param  \App\User  $user
@@ -24,7 +37,7 @@ class NetworkPolicy
      */
     public function view(User $user, Network $network)
     {
-        if ($user->currentTeam()->id == $network->team->id) {
+        if ($user->currentTeam()->id == $network->team->id && $user->roleOnCurrentTeam() == 'owner') {
             return true;
         }
     }
@@ -39,10 +52,6 @@ class NetworkPolicy
     {
         if ($user->onGenericTrial() && $user->currentTeam()->networks->count() >= 1) {
             return false;
-        }
-
-        if ($user->roleOnCurrentTeam() == 'director') {
-            return true;
         }
 
         if ($user->roleOnCurrentTeam() == 'owner') {

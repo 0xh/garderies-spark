@@ -17746,8 +17746,16 @@ img {
   color: #79a55a;
 }
 
-.dashboard-summary .dashboard-summary--substitutes .icon {
+.dashboard-summary .dashboard-summary--bookings .icon {
   color: #c37481;
+}
+
+.dashboard-summary .dashboard-summary--booking-requests .icon {
+  color: #0ba2bd;
+}
+
+.dashboard-summary .border-right {
+  border-width: 0 !important;
 }
 
 @media (min-width: 576px) {
@@ -17766,9 +17774,8 @@ img {
 }
 
 @media (min-width: 768px) {
-  .dashboard-summary .dashboard-summary--nurseries,
-  .dashboard-summary .dashboard-summary--employees {
-    border-right: 1px solid #ced4da;
+  .dashboard-summary .border-right {
+    border-width: 1px !important;
   }
 }
 

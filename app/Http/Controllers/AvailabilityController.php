@@ -110,6 +110,8 @@ class AvailabilityController extends Controller
 
     public function search()
     {
+        $this->authorize('search', 'App\Availability');
+
         return view('availability.search');
     }
 

@@ -24,21 +24,21 @@ class NurseryPolicy
      */
     public function view(User $user, Nursery $nursery)
     {
-        if ($user->currentTeam()->id == $nursery->team_id) {
+        if ($user->currentTeam()->id == $nursery->team_id && ($user->roleOnCurrentTeam() == 'owner' || $user->roleOnCurrentTeam() == 'director')) {
             return true;
         }
     }
 
     public function planning(User $user, Nursery $nursery)
     {
-        if ($user->currentTeam()->id == $nursery->team_id) {
+        if ($user->currentTeam()->id == $nursery->team_id && ($user->roleOnCurrentTeam() == 'owner' || $user->roleOnCurrentTeam() == 'director')) {
             return true;
         }
     }
 
     public function ads(User $user, Nursery $nursery)
     {
-        if ($user->currentTeam()->id == $nursery->team_id) {
+        if ($user->currentTeam()->id == $nursery->team_id && ($user->roleOnCurrentTeam() == 'owner' || $user->roleOnCurrentTeam() == 'director')) {
             return true;
         }
     }
@@ -69,7 +69,7 @@ class NurseryPolicy
      */
     public function update(User $user, Nursery $nursery)
     {
-        if ($user->currentTeam()->id == $nursery->team_id) {
+        if ($user->currentTeam()->id == $nursery->team_id && ($user->roleOnCurrentTeam() == 'owner' || $user->roleOnCurrentTeam() == 'director')) {
             return true;
         }
     }

@@ -23,7 +23,7 @@ class UserPolicy
      */
     public function view(User $user, User $model)
     {
-        if ($user->roleOnCurrentTeam() == 'owner' && $model->onTeam($user->currentTeam())) {
+        if (($user->roleOnCurrentTeam() == 'owner' || $user->roleOnCurrentTeam() == 'director') && $model->onTeam($user->currentTeam())) {
             return true;
         }
         if ($user->id === $model->id) {

@@ -27,8 +27,15 @@
   .dashboard-summary--employees {
     .icon { color: #79a55a; }
   }
-  .dashboard-summary--substitutes {
+  .dashboard-summary--bookings {
     .icon { color: #c37481; }
+  }
+  .dashboard-summary--booking-requests {
+    .icon { color: #0ba2bd; }
+  }
+
+  .border-right {
+    border-width: 0 !important;
   }
 }
 
@@ -52,10 +59,7 @@
 // Medium devices (tablets, 768px and up)
 @include media-breakpoint-up(md) {
   .dashboard-summary {
-    .dashboard-summary--nurseries,
-    .dashboard-summary--employees {
-      border-right: 1px solid $gray-400;
-    }
+    .border-right { border-width: 1px !important; }
   }
 }
 // Large devices (desktops, 992px and up)

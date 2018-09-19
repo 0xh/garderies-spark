@@ -29,7 +29,13 @@ class UserController extends Controller
             ->leftJoin('networks', 'networks.id', '=', 'network_user.network_id')->with('networks');
 
         if ($user->isSuperAdmin()) {
-            $users = User::select('users.*');
+            $users = User::select('users.*')
+                ->leftJoin('nurseries', 'nurseries.id', '=', 'nursery_id')->with('nursery')
+                ->leftJoin('network_user', 'network_user.user_id', '=', 'users.id')
+                ->leftJoin('networks', 'networks.id', '=', 'network_user.network_id')->with('networks');
+        } else {
+            // exclude roles from results
+            $users->whereNotIn('role', ['director', 'owner']);
         }
 
         if ($nursery) {
@@ -55,12 +61,17 @@ class UserController extends Controller
             list($sortCol, $sortDir) = explode('|', $request->get('sort'));
             $users->orderBy($sortCol, $sortDir);
         } else {
-            //$users->orderBy('users.name', 'asc');
+            $users->orderBy('users.name');
         }
         
         $perPage    = $request->has('per_page') ? (int) $request->per_page : null;
-        $data       = $users->distinct()->paginate($perPage);
-        
+
+        if ($request->noPagination) {
+            $data = $users->get();
+        } else {
+            $data = $users->distinct()->paginate($perPage);
+        }
+
         return response()->json($data);
     }
 

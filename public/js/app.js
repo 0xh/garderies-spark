@@ -79055,7 +79055,15 @@ module.exports = {
 var base = __webpack_require__(273);
 
 Vue.component('spark-pending-invitations', {
-    mixins: [base]
+    mixins: [base],
+    created: function created() {
+        // reload the page after a delay, to display the appropriate nav
+        Bus.$on('updateTeams', function () {
+            setTimeout(function () {
+                location.reload();
+            }, 500);
+        });
+    }
 });
 
 /***/ }),
@@ -104940,6 +104948,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -104992,13 +105008,15 @@ var _data = {
     workgroup: 0,
     purposes: [],
     purpose: 0,
+    employees: [],
+    employee: 0,
     message: null,
     loaded: true,
     favoriteOnly: false
 };
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['currentTeam'],
+    props: ['user', 'currentTeam', 'role'],
     data: function data() {
         return _data;
     },
@@ -105065,16 +105083,25 @@ var _data = {
         contactPeopleValidation: function contactPeopleValidation() {
 
             // retrieve data related to availabilities
-            axios.all([getNurseries(), getWorkgroups(), getPurposes()]).then(axios.spread(function (nurseries, workgroups, purposes) {
+            axios.all([getNurseries(), getWorkgroups(), getPurposes(), getEmployees()]).then(axios.spread(function (nurseries, workgroups, purposes, employees) {
                 _data.nurseries = nurseries.data.data;
                 _data.workgroups = workgroups.data;
                 _data.purposes = purposes.data;
+                _data.employees = employees.data;
             }));
 
             $('.contact-modal').modal('show'); // Show the modal
         },
         contactPeople: function contactPeople() {
             $('.contact-modal').modal('hide'); // Hide the modal
+
+            __WEBPACK_IMPORTED_MODULE_3_sweetalert2___default()({
+                type: "info",
+                text: "Traitement de votre demande en cours, merci de patienter.",
+                onOpen: function onOpen() {
+                    __WEBPACK_IMPORTED_MODULE_3_sweetalert2___default.a.showLoading();
+                }
+            });
 
             axios.post('/api/booking-requests', {
                 // Pass the request data to the API
@@ -105083,6 +105110,7 @@ var _data = {
                 date_end: _data.search.day_start + " " + _data.search.hour_end,
                 nursery: _data.nursery,
                 workgroup: _data.workgroup,
+                employee: _data.employee,
                 message: _data.message,
                 uid: this.spark.userId
             }).then(function (response) {
@@ -105154,6 +105182,9 @@ function formattedDate(date) {
 
 function getNurseries() {
     return axios.get('/api/nurseries', { params: { 'uid': vm.spark.userId } });
+}
+function getEmployees() {
+    return axios.get('/api/users', { params: { 'uid': vm.spark.userId, 'noPagination': true } });
 }
 function getWorkgroups() {
     return axios.get('/api/workgroups');
@@ -105896,6 +105927,59 @@ var render = function() {
                     )
                   ])
                 ]),
+                _vm._v(" "),
+                _vm.role == "director"
+                  ? _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "form-group col" }, [
+                        _c("label", { attrs: { for: "employee" } }, [
+                          _vm._v("Employé")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.employee,
+                                expression: "employee"
+                              }
+                            ],
+                            staticClass: "form-control selectpicker",
+                            attrs: {
+                              name: "employee",
+                              title: "Sélectionner...",
+                              "data-live-search": "true",
+                              "data-style": "btn-link border text-secondary"
+                            },
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.employee = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              }
+                            }
+                          },
+                          _vm._l(_vm.employees, function(employee) {
+                            return _c(
+                              "option",
+                              { domProps: { value: employee.id } },
+                              [_vm._v(_vm._s(employee.name))]
+                            )
+                          })
+                        )
+                      ])
+                    ])
+                  : _vm._e(),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
                   _c("label", { attrs: { for: "message" } }, [
@@ -108202,6 +108286,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__VueTableFilterBar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__VueTableFilterBar__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__CustomActions__ = __webpack_require__(498);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__CustomActions___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__CustomActions__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -113511,6 +113614,24 @@ var render = function() {
                 }
               },
               {
+                key: "network",
+                fn: function(props) {
+                  return [
+                    _c(
+                      "span",
+                      {
+                        staticClass: "badge badge-pill text-white",
+                        style: {
+                          background: props.rowData.color,
+                          verticalAlign: "middle"
+                        }
+                      },
+                      [_vm._v(_vm._s(props.rowData.name))]
+                    )
+                  ]
+                }
+              },
+              {
                 key: "networklink",
                 fn: function(props) {
                   return [
@@ -113683,6 +113804,42 @@ var render = function() {
                 }
               },
               {
+                key: "networksrelation",
+                fn: function(props) {
+                  return [
+                    props.rowData.networks
+                      ? _c(
+                          "ul",
+                          { staticClass: "list-inline m-0" },
+                          _vm._l(props.rowData.networks, function(network) {
+                            return _c(
+                              "li",
+                              { staticClass: "list-inline-item" },
+                              [
+                                _c(
+                                  "span",
+                                  {
+                                    staticClass: "badge text-white",
+                                    style:
+                                      "background-color: " + network.color + ";"
+                                  },
+                                  [_vm._v(_vm._s(network.name))]
+                                )
+                              ]
+                            )
+                          })
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    !props.rowData.networks
+                      ? _c("span", { staticClass: "text-muted" }, [
+                          _vm._v("Aucun")
+                        ])
+                      : _vm._e()
+                  ]
+                }
+              },
+              {
                 key: "networklinkrelation",
                 fn: function(props) {
                   return [
@@ -113714,6 +113871,35 @@ var render = function() {
                           ]
                         )
                       : _vm._e(),
+                    _vm._v(" "),
+                    !props.rowData.network
+                      ? _c("span", { staticClass: "text-muted" }, [
+                          _vm._v("Aucun")
+                        ])
+                      : _vm._e()
+                  ]
+                }
+              },
+              {
+                key: "networkrelation",
+                fn: function(props) {
+                  return [
+                    _c(
+                      "span",
+                      {
+                        staticClass: "badge text-white",
+                        style:
+                          "background-color: " +
+                          props.rowData.network.color +
+                          ";"
+                      },
+                      [
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(props.rowData.network.name)
+                        )
+                      ]
+                    ),
                     _vm._v(" "),
                     !props.rowData.network
                       ? _c("span", { staticClass: "text-muted" }, [

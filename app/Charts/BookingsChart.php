@@ -18,10 +18,10 @@ class BookingsChart extends Chart
     {
         parent::__construct();
 
-        $user  = auth()->user();
-        $team  = ($user) ? $user->currentTeam() : null;
+        $user       = auth()->user();
+        $team       = ($user) ? $user->currentTeam() : null;
 
-        $users = $team->users->where('id', '!=', $user->id);
+        $users      = $team->users->where('id', '!=', $user->id);
         $users_ids  = array_flatten($users->pluck('id'));
 
         $monthly_bookings = DB::table('bookings')

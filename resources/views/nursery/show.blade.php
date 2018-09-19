@@ -41,13 +41,7 @@
                                 <tr>
                                     <td><strong>Réseau :</strong></td>
                                     <td>
-                                        @if ($nursery->network)
-                                            <a href="{{route('networks.show', $nursery->network)}}">
-                                                <span class="badge text-white" style="background-color: {{$nursery->network->color ?? '#ccc'}};">{{$nursery->network->name}}</span>
-                                            </a>
-                                        @else
-                                            <span class="badge text-white" style="background-color: {{$nursery->network->color ?? '#ccc'}};">-</span>
-                                        @endif
+                                        <span class="badge text-white" style="background-color: {{optional($nursery->network)->color ?? '#ccc'}};">{{optional($nursery->network)->name ?? '-'}}</span>
                                     </td>
                                 </tr>
                             </table>
