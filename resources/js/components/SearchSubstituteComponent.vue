@@ -362,6 +362,8 @@
                         data.selectedAvailabilities = [];
                         data.nursery = 0;
                         data.workgroup = 0;
+                        data.purpose = 0;
+                        data.employee = 0;
                         data.message = null;
                     });
                 });
