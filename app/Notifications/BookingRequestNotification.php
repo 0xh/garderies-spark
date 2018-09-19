@@ -9,7 +9,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Laravel\Spark\Notifications\SparkChannel;
 use Laravel\Spark\Notifications\SparkNotification;
 
-class BookingRequestNotification extends Notification
+class BookingRequestNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
