@@ -3,6 +3,7 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Messages\NexmoMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -33,6 +34,7 @@ class BookingRequestNotification extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
+        //return ['mail', SparkChannel::class, 'nexmo'];
         return ['mail', SparkChannel::class];
     }
 
@@ -57,6 +59,18 @@ class BookingRequestNotification extends Notification implements ShouldQueue
             ->icon('fa-user-clock')
             ->body('Nouvelle demande de remplacement !')
             ->action('Voir la demande', route('booking-requests.show', $this->bookingRequest));
+    }
+
+    public function toNexmo($notifiable)
+    {
+        $date       = $this->bookingRequest->start->format('d.m.Y');
+        $start      = $this->bookingRequest->start->format('H:i');
+        $end        = $this->bookingRequest->end->format('H:i');
+        $nursery    = $this->bookingRequest->nursery->name;
+        $user       = $this->bookingRequest->user->name;
+
+        return (new NexmoMessage)
+            ->content('Demande de remplacement pour le ' . $date . ', de ' . $start . ' à ' . $end . ', dans la garderie ' . $nursery);
     }
 
     /**

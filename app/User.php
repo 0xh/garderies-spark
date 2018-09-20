@@ -51,6 +51,11 @@ class User extends SparkUser
         'uses_two_factor_auth' => 'boolean',
     ];
 
+    public function routeNotificationForNexmo($notification)
+    {
+        return $this->phone;
+    }
+
     public function nursery()
     {
         return $this->belongsTo('App\Nursery');
