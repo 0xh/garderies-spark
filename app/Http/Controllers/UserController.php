@@ -148,7 +148,7 @@ class UserController extends Controller
                 'currentWorkgroups'     => $currentWorkgroups,
                 'diplomas'              => $diplomas,
             ]);
-        } elseif ($authUser->roleOnCurrentTeam() == 'owner') {
+        } elseif ($authUser->roleOnCurrentTeam() == 'owner' || $authUser->roleOnCurrentTeam() == 'director') {
             return view('user.owner.edit', [
                 'user'                  => $user,
                 'nurseries'             => $nurseries,

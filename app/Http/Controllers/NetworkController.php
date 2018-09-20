@@ -21,14 +21,14 @@ class NetworkController extends Controller
      */
     public function index()
     {
-        $networks   = Network::all();
+        $this->authorize('index', 'App\Network');
+
         $user       = \auth()->user();
         $id         = encrypt($user->id);
         $api_url    = '/api/networks?id=' . $id;
 
         return view('network.index', [
             'api_url'   => $api_url,
-            'networks'  => $networks,
             'user'      => $user
         ]);
     }

@@ -96,13 +96,13 @@
                 <div class="card-header bg-dark text-white">
                     <i class="fas fa-clock mr-2"></i> Prochaines disponibilités
                     <div class="actions float-right">
-                        <a href="{{route('users.availabilities', $user->id)}}" class="btn btn-info btn-sm"><i class="fas fa-calendar"></i> Gérer les disponibilités</a>
+                        <a href="{{route('users.availabilities', $user->id)}}" class="btn btn-info btn-sm"><i class="fas fa-calendar"></i> Gérer mes disponibilités</a>
                     </div>
                 </div>
                 <div class="card-body">
                     @if (!$availabilities->count())
                         <div class="alert alert-info">Aucune disponibilité renseignée pour le moment.</div>
-                        <a href="{{route('users.availabilities', $user->id)}}" class="btn btn-info"><i class="fas fa-calendar"></i> Gérer les disponibilités</a>
+                        <a href="{{route('users.availabilities', $user->id)}}" class="btn btn-info"><i class="fas fa-calendar"></i> Gérer mes disponibilités</a>
                     @else
                         <table class="table table-borderless table-striped table-responsive-lg">
                             <thead>

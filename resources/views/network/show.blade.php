@@ -26,7 +26,7 @@
                             </tr>
                             <tr>
                                 <td><strong>Administrateur :</strong></td>
-                                <td><a href="{{route('users.show', $network->owner->id ?? 0)}}">{{$network->owner->name ?? '-'}}</a></td>
+                                <td>{{$network->team->owner->name ?? '-'}}</td>
                             </tr>
                             <tr>
                                 <td><strong>Couleur :</strong></td>

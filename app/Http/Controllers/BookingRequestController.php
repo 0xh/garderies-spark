@@ -22,6 +22,8 @@ class BookingRequestController extends Controller
      */
     public function index()
     {
+        $this->authorize('index', 'App\BookingRequest');
+
         $user = auth()->user();
         $team = $user->currentTeam();
         $nurseries = Nursery::where('team_id', $team->id)->get();

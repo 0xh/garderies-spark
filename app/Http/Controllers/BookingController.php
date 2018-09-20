@@ -54,7 +54,7 @@ class BookingController extends Controller
         $team = $user->currentTeam();
 
         // Get users except for the ID 1, for demo purposes
-        $users  = $team->users()->where('id', '!=', $user->id)->orderBy('name')->get();
+        $users  = $team->users()->where('id', '!=', $user->id)->whereNotIn('role', ['director', 'owner'])->orderBy('name')->get();
         // Get nuseries
         $nurseries  = $team->nurseries()->orderBy('name')->get();
 

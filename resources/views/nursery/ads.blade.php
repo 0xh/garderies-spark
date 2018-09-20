@@ -23,7 +23,7 @@
                     </div>
                 </div>
             @empty
-                <div class="alert alert-info">Aucune annonce pour le moment.</div>
+                <div class="alert alert-info">Aucune annonce pour le moment. <a href="{{route('ads.create', $nursery)}}">Créer une annonce</a></div>
             @endforelse
         </div>
     </div>

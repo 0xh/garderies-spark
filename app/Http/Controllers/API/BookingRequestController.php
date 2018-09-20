@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Availability;
 use App\Booking;
 use App\BookingRequest;
+use App\Notifications\BookingRequestAcceptedNotification;
 use App\Notifications\BookingRequestNotification;
 use App\User;
 use Carbon\Carbon;
@@ -189,6 +190,10 @@ class BookingRequestController extends Controller
         BookingRequest::where('request_group', $bookingRequest->request_group)
             ->where('id', '!=', $bookingRequest->id)
             ->update(['status' => BookingRequest::STATUS_DENIED]);
+
+        // Notify the employee and substitute
+        $bookingRequest->user->notify(new BookingRequestAcceptedNotification($bookingRequest));
+        $bookingRequest->substitute->notify(new BookingRequestAcceptedNotification($bookingRequest));
 
         return response()->json([
             'status'    => 'Booking request approved'

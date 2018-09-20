@@ -8,6 +8,8 @@
         <a href="{{config('app.url')}}/?{{str_random(5)}}#tour">Démarrer la visite</a>
     </div>
 
+    @include('components.alert-generictrial-ended')
+
     <div class="card mb-4 dashboard-summary">
         <div class="card-body">
             <div class="row mb-0">

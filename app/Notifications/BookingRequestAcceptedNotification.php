@@ -3,14 +3,13 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Messages\NexmoMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Laravel\Spark\Notifications\SparkChannel;
 use Laravel\Spark\Notifications\SparkNotification;
 
-class BookingRequestNotification extends Notification implements ShouldQueue
+class BookingRequestAcceptedNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -34,7 +33,6 @@ class BookingRequestNotification extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        //return ['mail', SparkChannel::class, 'nexmo'];
         return ['mail', SparkChannel::class];
     }
 
@@ -46,36 +44,26 @@ class BookingRequestNotification extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
+        $date       = $this->bookingRequest->start->format('d.m.Y');
+        $nursery    = $this->bookingRequest->nursery->name;
+
         return (new MailMessage)
-            ->subject("Nouvelle demande de remplacement")
-            ->line("Vous avez reçu une nouvelle demande de remplacement (voir ci-dessous). Connectez-vous à votre compte Garderies.ch afin de voir le détail.")
-            ->line($this->bookingRequest->start->format('d.m.Y H:i') . " à " . $this->bookingRequest->end->format('d.m.Y H:i'))
-            ->action('Mon compte Garderies.ch', route('login'))
+            ->subject("Demande de remplacement acceptée")
+            ->line("La demande de remplacement pour la date du " . $date . " à la garderie " . $nursery . " a été validée.")
+            ->action('Voir la demande de remplacement', route('booking-requests.show', $this->bookingRequest))
             ->line('Merci de votre confiance !');
     }
 
     /**
      * @param $notifiable
-     * @return SparkNotification
+     * @return mixed
      */
     public function toSpark($notifiable)
     {
         return (new SparkNotification)
-            ->icon('fa-user-clock')
-            ->body('Nouvelle demande de remplacement !')
+            ->icon('fa-check')
+            ->body('Demande de remplacement validée !')
             ->action('Voir la demande', route('booking-requests.show', $this->bookingRequest));
-    }
-
-    public function toNexmo($notifiable)
-    {
-        $date       = $this->bookingRequest->start->format('d.m.Y');
-        $start      = $this->bookingRequest->start->format('H:i');
-        $end        = $this->bookingRequest->end->format('H:i');
-        $nursery    = $this->bookingRequest->nursery->name;
-        $user       = $this->bookingRequest->user->name;
-
-        return (new NexmoMessage)
-            ->content('Demande de remplacement pour le ' . $date . ', de ' . $start . ' à ' . $end . ', dans la garderie ' . $nursery);
     }
 
     /**

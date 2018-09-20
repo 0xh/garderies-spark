@@ -18,9 +18,15 @@ class UserSeeder extends Seeder
             'phone'         => '+41211234567',
             'password'      => bcrypt('123456'),
             'created_at'    => \Carbon\Carbon::now(),
-            'trial_ends_at' => now()->addDays(30),
+        ]);
+        DB::table('users')->insert([
+            'name'          => 'Henrique Barbosa',
+            'email'         => 'henrique@devweb.ch',
+            'phone'         => '+41211234567',
+            'password'      => bcrypt('123456'),
+            'created_at'    => \Carbon\Carbon::now(),
         ]);
 
-        factory(App\User::class, 100)->create();
+        factory(App\User::class, 10)->create();
     }
 }

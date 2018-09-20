@@ -3,7 +3,7 @@
 @section('title', 'Réseaux')
 
 @section('content')
-    
+
     <vue-table title="Réseaux" api-url="/api/networks" :user="user.id" :current-team="currentTeam" :fields="[{
               name: '__slot:networklink',
               sortField: 'networks.name',

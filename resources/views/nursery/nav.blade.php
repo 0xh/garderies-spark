@@ -6,18 +6,18 @@
         @if (isset($nursery))
             @can('planning', $nursery)
                 <li>
-                    <a href="{{route('nurseries.planning', $nursery)}}"><i class="fas fa-list-alt icon"></i> Planning</a>
+                    <a href="{{route('nurseries.planning', $nursery)}}" data-toggle="tooltip" data-placement="left" title="Planning à imprimer des remplacements mensuel"><i class="fas fa-list-alt icon"></i> Planning</a>
                 </li>
             @endcan
             @can('ads', $nursery)
                 <li>
-                    <a href="{{route('nurseries.ads', $nursery)}}"><i class="fas fa-ad icon"></i> Annonces</a>
+                    <a href="{{route('nurseries.ads', $nursery)}}" data-toggle="tooltip" data-placement="left" title="Annonces pour cette garderie"><i class="fas fa-ad icon"></i> Annonces</a>
                 </li>
             @endcan
         @endif
         @can ('create', 'App\Nursery')
         <li>
-            <a href="{{route('nurseries.create')}}"><i class="fas fa-plus icon"></i> Ajouter</a>
+            <a href="{{route('nurseries.create')}}" data-toggle="tooltip" data-placement="left" title="Ajouter une garderie"><i class="fas fa-plus icon"></i> Ajouter</a>
         </li>
         @endcan
     </ul>

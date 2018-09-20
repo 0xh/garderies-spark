@@ -10,6 +10,24 @@ class BookingRequestPolicy
 {
     use HandlesAuthorization;
 
+    public function before($user, $ability)
+    {
+        if ($user->isSuperAdmin()) { return true; }
+    }
+
+    /**
+     * Determine whether the user can view the index
+     *
+     * @param User $user
+     * @return bool
+     */
+    public function index(User $user)
+    {
+        if ($user->roleOnCurrentTeam() == 'owner') {
+            return true;
+        }
+    }
+
     /**
      * Determine whether the user can view the booking request.
      *

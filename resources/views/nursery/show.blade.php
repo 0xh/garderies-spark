@@ -9,7 +9,9 @@
                 <div class="card-header">{{$nursery->name}}
                     <div class="actions float-right d-print-none">
                         <a href="{{route('nurseries.edit', [$nursery])}}" class="btn btn-info btn-sm mr-2"><i class="fas fa-edit"></i> Editer</a>
+                        @can('delete', $nursery)
                         <a href="#" v-on:click.prevent="deleteNursery('{{$nursery->slug}}')" class="btn btn-danger btn-sm"><i class="fas fa-edit"></i> Supprimer</a>
+                        @endcan
                     </div>
                 </div>
 

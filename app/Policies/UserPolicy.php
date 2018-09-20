@@ -53,7 +53,7 @@ class UserPolicy
      */
     public function update(User $user, User $model)
     {
-        if ($user->roleOnCurrentTeam() == 'owner') { return true; }
+        if ($user->roleOnCurrentTeam() == 'owner' || $user->roleOnCurrentTeam() == 'director') { return true; }
         if ($user->id === $model->id) { return true; }
     }
 

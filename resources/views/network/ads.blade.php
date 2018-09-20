@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="card">
-        <div class="card-header bg-dark text-white">Annonces</div>
+        <div class="card-header bg-dark text-white">Annonces publiées sur le réseau</div>
         <div class="card-body">
             @forelse($ads as $ad)
                 <div class="card ad mb-4">
@@ -21,7 +21,7 @@
                     </div>
                 </div>
             @empty
-                <div class="alert alert-info">Aucune annonce dans ce réseau de garderies, les annonces sont à insérer par le biais d'une garderie.</div>
+                <div class="alert alert-info">Aucune annonce dans ce réseau de garderies, <strong><a href="{{route('nurseries.index')}}">les annonces sont à insérer par le biais d'une garderie.</a></strong></div>
             @endforelse
         </div>
     </div>

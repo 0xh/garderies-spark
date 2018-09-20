@@ -48,9 +48,9 @@ class HomeController extends Controller
             $nurseries          = $team->nurseries()->orderBy('created_at', 'desc')->get();
             $count_nursery      = $nurseries->count();
             $count_user         = $team->users->where('id', '!=', $authUser->id)->count();
-            $bookings           = $team->bookings()->whereMonth('start', date('m'))->get();
+            $bookings           = $team->bookings()->whereMonth('start', date('m'))->where('start', '>', now())->get();
             $count_booking      = $bookings->count();
-            $booking_requests   = $team->bookingRequests()->whereMonth('start', date('m'))->get();
+            $booking_requests   = $team->bookingRequests()->where('start', '>', now())->get();
             $count_booking_req  = $booking_requests->count();
             $bookingsChart      = new BookingsChart();
 

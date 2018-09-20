@@ -17,8 +17,9 @@ $factory->define(App\User::class, function (Faker $faker) {
     return [
         'name'              => $faker->firstNameFemale . ' ' . $faker->lastName,
         'email'             => $faker->unique()->safeEmail,
-        'phone'             => '+41 79 ' . rand(300, 500) . ' ' . rand(20, 90) . ' ' . rand(20, 90),
+        'phone'             => '+41 79 474 42 37',
         'password'          => bcrypt('123456'), // secret
         'remember_token'    => str_random(10),
+        'trial_ends_at'     => now()->addDays(30),
     ];
 });

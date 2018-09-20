@@ -79,7 +79,9 @@ class NurseryPolicy
      */
     public function delete(User $user, Nursery $nursery)
     {
-        //
+        if ($user->currentTeam()->id == $nursery->team_id && $user->roleOnCurrentTeam() == 'owner') {
+            return true;
+        }
     }
 
     /**
