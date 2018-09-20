@@ -2,7 +2,7 @@
 
     <div class="float-sm-right">
         <div class="input-group form-group mb-0  mt-3 mt-sm-0">
-            <input type="search" v-model="filterText" class="form-control" aria-describedby="basic-addon2"
+            <input type="search" placeholder="Rechercher" v-model="filterText" class="form-control" aria-describedby="basic-addon2"
                    @keyup.enter="doFilter">
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="button" @click.prevent="doFilter"><i
