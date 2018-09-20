@@ -62,7 +62,8 @@ class Kernel extends HttpKernel
         'hasTeam' => \Laravel\Spark\Http\Middleware\VerifyUserHasTeam::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
-        'subscribed' => \Laravel\Spark\Http\Middleware\VerifyUserIsSubscribed::class,
+        //'subscribed' => \Laravel\Spark\Http\Middleware\VerifyUserIsSubscribed::class,
+        'subscribed' => \App\Http\Middleware\VerifyUserIsSubscribed::class,
         'teamSubscribed' => \Laravel\Spark\Http\Middleware\VerifyTeamIsSubscribed::class,
     ];
 }
