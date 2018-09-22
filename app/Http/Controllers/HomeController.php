@@ -27,7 +27,7 @@ class HomeController extends Controller
 
             $nurseries          = $team->nurseries()->orderBy('created_at', 'desc')->get();
             $count_nursery      = $nurseries->count();
-            $count_user         = $team->users->where('id', '!=', $authUser->id)->count();
+            $count_user         = $team->users()->where('id', '!=', $authUser->id)->count();
             $count_booking      = $team->bookings()->whereMonth('start', date('m'))->count();
             $count_booking_req  = $team->bookingRequests()->whereMonth('start', date('m'))->count();
             $bookingsChart      = new BookingsChart();
@@ -47,7 +47,7 @@ class HomeController extends Controller
         elseif ($team && $authUser->roleOn($team) == 'director') {
             $nurseries          = $team->nurseries()->orderBy('created_at', 'desc')->get();
             $count_nursery      = $nurseries->count();
-            $count_user         = $team->users->where('id', '!=', $authUser->id)->count();
+            $count_user         = $team->users()->where('id', '!=', $authUser->id)->where('role', '=', 'substitute')->count();
             $bookings           = $team->bookings()->whereMonth('start', date('m'))->where('start', '>', now())->get();
             $count_booking      = $bookings->count();
             $booking_requests   = $team->bookingRequests()->where('start', '>', now())->get();
@@ -81,13 +81,22 @@ class HomeController extends Controller
 
             $months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
 
+            $contactPreferences = ($authUser->contact_preferences) ? $authUser->contact_preferences : [];
+            $contactPreferencesLabels = [
+                'sms'   => ['label' => 'SMS', 'icon' => 'fas fa-comments'],
+                'email'   => ['label' => 'E-mail', 'icon' => 'fas fa-envelope'],
+                'phone'   => ['label' => 'Téléphone', 'icon' => 'fas fa-phone'],
+            ];
+
             return view('home-user', [
                 'user'              => $authUser,
                 'bookings'          => $bookings,
                 'bookingRequests'   => $bookingRequests,
                 'availabilities'    => $availabilities,
                 'favorites'         => $favorites,
-                'months'            => $months
+                'months'            => $months,
+                'contactPreferences'   => $contactPreferences,
+                'contactPreferencesLabels' => $contactPreferencesLabels
             ]);
         }
     }

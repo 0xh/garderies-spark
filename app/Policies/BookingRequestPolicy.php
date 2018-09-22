@@ -23,7 +23,7 @@ class BookingRequestPolicy
      */
     public function index(User $user)
     {
-        if ($user->roleOnCurrentTeam() == 'owner') {
+        if ($user->roleOnCurrentTeam() == 'owner' || $user->roleOnCurrentTeam() == 'director') {
             return true;
         }
     }

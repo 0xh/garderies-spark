@@ -64,8 +64,9 @@
                                 </li>
                                 <li class="list-group-item">
                                     <strong>Préférences de contact :</strong>
-                                    <span class="text-muted p-1" data-toggle="tooltip" title="Téléphone"><i class="fas fa-phone"></i></span>
-                                    <span class="text-muted p-1" data-toggle="tooltip" title="E-mail"><i class="fas fa-envelope"></i></span>
+                                    @foreach($user->contact_preferences as $preference)
+                                        <span class="text-muted p-1" data-toggle="tooltip" title="{{$contactPreferencesLabels[$preference]['label']}}"><i class="{{$contactPreferencesLabels[$preference]['icon']}}"></i></span>
+                                    @endforeach
                                 </li>
                                 <li class="list-group-item">
                                     <strong>Groupes de travail :</strong>

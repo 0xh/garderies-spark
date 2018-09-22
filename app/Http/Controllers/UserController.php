@@ -137,6 +137,13 @@ class UserController extends Controller
         // current objects IDs
         $currentNetworksKeys    = array_flatten($user->networks->pluck('id'));
         $currentWorkgroups      = array_flatten($user->workgroups->pluck('id'));
+        $contactPreferences     = ($user->contact_preferences) ? $user->contact_preferences : [];
+
+        $contactPreferencesLabels = [
+            'sms'   => ['label' => 'SMS', 'icon' => 'fas fa-comments'],
+            'email'   => ['label' => 'E-mail', 'icon' => 'fas fa-envelope'],
+            'phone'   => ['label' => 'Téléphone', 'icon' => 'fas fa-phone'],
+        ];
 
         if ($authUser->isSuperAdmin() || $authUser->id == $user->id) {
             return view('user.edit', [
@@ -147,6 +154,8 @@ class UserController extends Controller
                 'workgroups'            => $workgroups,
                 'currentWorkgroups'     => $currentWorkgroups,
                 'diplomas'              => $diplomas,
+                'contactPreferences'    => $contactPreferences,
+                'contactPreferencesLabels' => $contactPreferencesLabels
             ]);
         } elseif ($authUser->roleOnCurrentTeam() == 'owner' || $authUser->roleOnCurrentTeam() == 'director') {
             return view('user.owner.edit', [
@@ -222,6 +231,8 @@ class UserController extends Controller
             $user->billing_state    = $request->billing_state;
             $user->billing_zip      = $request->billing_zip;
             $user->billing_city     = $request->billing_city;
+
+            $user->contact_preferences = $request->contact_preferences;
 
             $user->save();
 
