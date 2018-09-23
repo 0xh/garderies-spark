@@ -104,6 +104,13 @@ class UserController extends Controller
         // check if the user being viewed is one of the user favorites
         $isFavorite = $authUser->favorite_substitutes->where('id', $user->id)->count();
 
+        $contactPreferences = ($authUser->contact_preferences) ? $authUser->contact_preferences : [];
+        $contactPreferencesLabels = [
+            'sms'   => ['label' => 'SMS', 'icon' => 'fas fa-comments'],
+            'email'   => ['label' => 'E-mail', 'icon' => 'fas fa-envelope'],
+            'phone'   => ['label' => 'Téléphone', 'icon' => 'fas fa-phone'],
+        ];
+
         return view('user.show', [
             'user'                  => $user,
             'availabilities'        => $availabilities,
@@ -112,7 +119,9 @@ class UserController extends Controller
             'bookingRequests'       => $bookingRequests,
             'userBookingRequests'   => $userBookingRequests,
             'chart'                 => $chart,
-            'isFavorite'            => $isFavorite
+            'isFavorite'            => $isFavorite,
+            'contactPreferences'    => $contactPreferences,
+            'contactPreferencesLabels' => $contactPreferencesLabels
         ]);
     }
 
@@ -182,7 +191,7 @@ class UserController extends Controller
         $authUser           = auth()->user();
         $team               = $authUser->currentTeam;
 
-        if ($authUser->roleOnCurrentTeam() == 'owner') {
+        if ($authUser->roleOnCurrentTeam() == 'owner' || $authUser->roleOnCurrentTeam() == 'director') {
             $user->nursery_id   = $request->nursery;
             $user->save();
 

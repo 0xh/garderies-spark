@@ -1,6 +1,5 @@
 <?php
 use Illuminate\Database\Seeder;
-use Cviebrock\EloquentSluggable\Services\SlugService;
 use App\Network;
 use Faker\Generator as Faker;
 
@@ -15,6 +14,7 @@ class NetworkSeeder extends Seeder
     {
         DB::table('networks')->insert([
             'name'      => 'Réseau DevWeb',
+            'slug'      => 'reseau-devweb',
             'team_id'   => 1,
             'color'     => '#336699',
         ]);

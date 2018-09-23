@@ -74,6 +74,7 @@ class NurserySeeder extends Seeder
 
         DB::table('nurseries')->insert([
             'name'          => 'Garderie DevWeb',
+            'slug'          => 'garderie-devweb',
             'team_id'       => 1,
             'network_id'    => 1
         ]);

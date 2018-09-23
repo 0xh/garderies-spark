@@ -64,7 +64,7 @@
                                 </li>
                                 <li class="list-group-item">
                                     <strong>Préférences de contact :</strong>
-                                    @foreach($user->contact_preferences as $preference)
+                                    @foreach($contactPreferences as $preference)
                                         <span class="text-muted p-1" data-toggle="tooltip" title="{{$contactPreferencesLabels[$preference]['label']}}"><i class="{{$contactPreferencesLabels[$preference]['icon']}}"></i></span>
                                     @endforeach
                                 </li>
