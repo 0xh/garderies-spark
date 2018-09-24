@@ -213,7 +213,7 @@
 
                     // Inject a link element to the events
                     if (event.type === 'availability' && event.status === 0) {
-                        element.append('<a href="/availabilities/' + event.id + '" class="edit-link">Editer</a>');
+                        //element.append('<a href="/availabilities/' + event.id + '" class="edit-link">Editer</a>');
                     }
                 }
             });
