@@ -2,8 +2,12 @@
 
 namespace App\Console;
 
+use App\Booking;
+use App\Notifications\AvailabilityReminder;
+use App\User;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\Notification;
 
 class Kernel extends ConsoleKernel
 {
@@ -26,6 +30,34 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+
+        // generate the spark KPI
+        $schedule->command('spark:kpi')->dailyAt('23:55');
+
+        // remind the user to post availabilities
+        $schedule->call(function (){
+            //$users = User::has('team')->where('role', '=', 'substitute');
+        })->monthlyOn(1);
+
+        // remind users for upcoming bookings
+        $schedule->call(function (){
+            /*
+            // retrieve bookings happening in 3 days or less
+            $bookings = Booking::select('start', 'substitute_id')
+                ->where('start', '>=', now()->subDays(3))
+                ->where('status', Booking::STATUS_APPROVED)
+                ->get();
+
+            // store the substitutes
+            $users = [];
+            foreach ($bookings as $booking) {
+                $users[] = $booking->substitute;
+            }
+
+            // queue the notification
+            Notification::send($users, new AvailabilityReminder());
+            */
+        })->dailyAt('19:00');
     }
 
     /**

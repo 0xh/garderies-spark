@@ -34,8 +34,24 @@ class BookingRequestNotification extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        //return ['mail', SparkChannel::class, 'nexmo'];
-        return ['mail', SparkChannel::class];
+        $user           = $this->bookingRequest->substitute;
+        $via            = [SparkChannel::class];
+        $preferences    = ($user->contact_preferences) ? $user->contact_preferences : [];
+
+        if (count($preferences)) {
+            foreach ($preferences as $preference) {
+                switch ($preference) {
+                    case 'email':
+                        $via[] = 'mail';
+                        break;
+                    case 'sms':
+                        //$via[] = 'nexmo';
+                        break;
+                }
+            }
+        }
+        
+        return $via;
     }
 
     /**
@@ -47,11 +63,8 @@ class BookingRequestNotification extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject("Nouvelle demande de remplacement")
-            ->line("Vous avez reçu une nouvelle demande de remplacement (voir ci-dessous). Connectez-vous à votre compte Garderies.ch afin de voir le détail.")
-            ->line($this->bookingRequest->start->format('d.m.Y H:i') . " à " . $this->bookingRequest->end->format('d.m.Y H:i'))
-            ->action('Mon compte Garderies.ch', route('login'))
-            ->line('Merci de votre confiance !');
+            ->subject('Nouvelle demande de remplacement')
+            ->markdown('emails.bookingRequest', ['bookingRequest' => $this->bookingRequest]);
     }
 
     /**

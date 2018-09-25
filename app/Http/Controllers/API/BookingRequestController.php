@@ -77,6 +77,7 @@ class BookingRequestController extends Controller
             $bookingRequest->end                = $end;
             $bookingRequest->save();
 
+
             // Send notifications
             $substitute->notify(new BookingRequestNotification($bookingRequest));
         }
@@ -87,28 +88,6 @@ class BookingRequestController extends Controller
             'end'               => $end,
             'availabilities'    => $availabilities,
         ]);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\BookingRequest  $bookingRequest
-     * @return \Illuminate\Http\Response
-     */
-    public function show(BookingRequest $bookingRequest)
-    {
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\BookingRequest  $bookingRequest
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, BookingRequest $bookingRequest)
-    {
-        //
     }
 
     /**
