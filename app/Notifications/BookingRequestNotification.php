@@ -34,8 +34,24 @@ class BookingRequestNotification extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        //return ['mail', SparkChannel::class, 'nexmo'];
-        return ['mail', SparkChannel::class];
+        $user           = $this->bookingRequest->substitute;
+        $via            = [SparkChannel::class];
+        $preferences    = ($user->contact_preferences) ? $user->contact_preferences : [];
+
+        if (count($preferences)) {
+            foreach ($preferences as $preference) {
+                switch ($preference) {
+                    case 'email':
+                        $via[] = 'mail';
+                        break;
+                    case 'sms':
+                        //$via[] = 'nexmo';
+                        break;
+                }
+            }
+        }
+        
+        return $via;
     }
 
     /**
