@@ -47,11 +47,8 @@ class BookingRequestNotification extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject("Nouvelle demande de remplacement")
-            ->line("Vous avez reçu une nouvelle demande de remplacement (voir ci-dessous). Connectez-vous à votre compte Garderies.ch afin de voir le détail.")
-            ->line($this->bookingRequest->start->format('d.m.Y H:i') . " à " . $this->bookingRequest->end->format('d.m.Y H:i'))
-            ->action('Mon compte Garderies.ch', route('login'))
-            ->line('Merci de votre confiance !');
+            ->subject('Nouvelle demande de remplacement')
+            ->markdown('emails.bookingRequest', ['bookingRequest' => $this->bookingRequest]);
     }
 
     /**

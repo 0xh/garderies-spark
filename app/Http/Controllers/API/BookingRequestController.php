@@ -77,6 +77,7 @@ class BookingRequestController extends Controller
             $bookingRequest->end                = $end;
             $bookingRequest->save();
 
+
             // Send notifications
             $substitute->notify(new BookingRequestNotification($bookingRequest));
         }
