@@ -110,45 +110,80 @@
                         <a href="{{route('users.availabilities', $user->id)}}" class="btn btn-info"><i
                                     class="fas fa-calendar"></i> Gérer mes disponibilités</a>
                     @else
-                        <table class="table table-borderless table-striped table-responsive-lg">
-                            <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Début</th>
-                                <th>Fin</th>
-                                <th width="30">Status</th>
-                            </tr>
-                            </thead>
-                            @foreach($availabilities as $availability)
+                        <div class="table-responsive">
+                            <table class="table table-borderless table-striped">
+                                <thead>
                                 <tr>
-                                    <td>{{$availability->start->format('d.m.Y')}}</td>
-                                    <td>{{$availability->start->format('H\hi')}}</td>
-                                    <td>{{$availability->end->format('H\hi')}}</td>
-                                    <td>
-                                        @switch($availability->status)
-                                            @case(\App\Availability::STATUS_UNTOUCHED)
-                                            <span class="badge badge-success">{{\App\Availability::STATUS_UNTOUCHED_LABEL}}</span>
-                                            @break
-                                            @case(\App\Availability::STATUS_PARTIALLY_BOOKED)
-                                            <span class="badge badge-warning">{{\App\Availability::STATUS_PARTIALLY_BOOKED_LABEL}}</span>
-                                            @break
-                                            @case(\App\Availability::STATUS_BOOKED)
-                                            <span class="badge badge-danger">{{\App\Availability::STATUS_BOOKED_LABEL}}</span>
-                                            @break
-                                            @case(\App\Availability::STATUS_ARCHIVED)
-                                            <span class="badge badge-dark">{{\App\Availability::STATUS_ARCHIVED_LABEL}}</span>
-                                            @break
-                                        @endswitch
-                                    </td>
+                                    <th>Date</th>
+                                    <th>Début</th>
+                                    <th>Fin</th>
+                                    <th width="30">Status</th>
                                 </tr>
-                            @endforeach
-                        </table>
+                                </thead>
+                                @foreach($availabilities as $availability)
+                                    <tr>
+                                        <td>{{$availability->start->format('d.m.Y')}}</td>
+                                        <td>{{$availability->start->format('H\hi')}}</td>
+                                        <td>{{$availability->end->format('H\hi')}}</td>
+                                        <td>
+                                            @switch($availability->status)
+                                                @case(\App\Availability::STATUS_UNTOUCHED)
+                                                <span class="badge badge-success">{{\App\Availability::STATUS_UNTOUCHED_LABEL}}</span>
+                                                @break
+                                                @case(\App\Availability::STATUS_PARTIALLY_BOOKED)
+                                                <span class="badge badge-warning">{{\App\Availability::STATUS_PARTIALLY_BOOKED_LABEL}}</span>
+                                                @break
+                                                @case(\App\Availability::STATUS_BOOKED)
+                                                <span class="badge badge-danger">{{\App\Availability::STATUS_BOOKED_LABEL}}</span>
+                                                @break
+                                                @case(\App\Availability::STATUS_ARCHIVED)
+                                                <span class="badge badge-dark">{{\App\Availability::STATUS_ARCHIVED_LABEL}}</span>
+                                                @break
+                                            @endswitch
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </table>
+                        </div>
+                    @endif
+                </div>
+            </div>
+            {{-- Own bookings --}}
+            <div class="card mb-4">
+                <div class="card-header bg-secondary text-white"><i class="fas fa-calendar-alt mr-2"></i> Vos remplacements personnels
+                </div>
+                <div class="card-body">
+                    @if($ownBookings->count())
+                        <div class="table-responsive">
+                            <table class="table table-borderless table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Garderie</th>
+                                    <th>Début</th>
+                                    <th>Fin</th>
+                                    <th width="50"></th>
+                                </tr>
+                                </thead>
+                                @foreach($ownBookings as $booking)
+                                    <tr>
+                                        <td>{{$booking->start->format('d.m.Y')}}</td>
+                                        <td><a href="#">{{$booking->nursery->name ?? '-'}}</a></td>
+                                        <td>{{$booking->start->format('H:i')}}</td>
+                                        <td>{{$booking->end->format('H:i')}}</td>
+                                        <td><a href="{{route('bookings.show', $booking)}}">Voir</a></td>
+                                    </tr>
+                                @endforeach
+                            </table>
+                        </div>
+                    @else
+                        <div class="alert alert-info">Vous n'avez pas de remplacement validé</div>
                     @endif
                 </div>
             </div>
             {{-- Favorite substitutes --}}
             <div class="card">
-                <div class="card-header bg-dark text-white"><i class="fas fa-star mr-2"></i> Vos remplacants favoris
+                <div class="card-header bg-secondary text-white"><i class="fas fa-star mr-2"></i> Vos remplacants favoris
                 </div>
                 <div class="card-body">
                     @if($favorites->count())

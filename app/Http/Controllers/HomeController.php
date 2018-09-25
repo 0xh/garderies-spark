@@ -74,6 +74,9 @@ class HomeController extends Controller
             $bookings           = $authUser->bookings()
                 ->where('start', '>', now())
                 ->where('status', Booking::STATUS_APPROVED)->get();
+            $ownBookings        = $authUser->ownBookings()
+                ->where('start', '>', now())
+                ->where('status', Booking::STATUS_APPROVED)->get();
             $bookingRequests    = $authUser->bookingRequests()
                 ->where('start', '>', now())
                 ->where('status', BookingRequest::STATUS_PENDING)->get();
@@ -91,6 +94,7 @@ class HomeController extends Controller
             return view('home-user', [
                 'user'              => $authUser,
                 'bookings'          => $bookings,
+                'ownBookings'       => $ownBookings,
                 'bookingRequests'   => $bookingRequests,
                 'availabilities'    => $availabilities,
                 'favorites'         => $favorites,
