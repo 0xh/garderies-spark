@@ -72,6 +72,11 @@ class User extends SparkUser
         return $this->hasMany('App\Booking', 'substitute_id', 'id');
     }
 
+    public function ownBookings()
+    {
+        return $this->hasMany('App\Booking', 'user_id', 'id');
+    }
+
     public function bookingRequests()
     {
         return $this->hasMany('App\BookingRequest', 'substitute_id', 'id');
