@@ -91,28 +91,6 @@ class BookingRequestController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\BookingRequest  $bookingRequest
-     * @return \Illuminate\Http\Response
-     */
-    public function show(BookingRequest $bookingRequest)
-    {
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\BookingRequest  $bookingRequest
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, BookingRequest $bookingRequest)
-    {
-        //
-    }
-
-    /**
      * Remove the specified resource from storage.
      *
      * @param  \App\BookingRequest  $bookingRequest
