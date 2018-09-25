@@ -110,6 +110,7 @@
             <!-- Tab cards -->
             <div class="col-md-9">
                 <h3>{{Auth::user()->currentTeam()->name}}</h3>
+                <hr>
                 <div class="tab-content">
                     <!-- Owner Information -->
                     @if (Auth::user()->ownsTeam($team))

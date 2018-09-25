@@ -13,11 +13,6 @@ use App\Notifications\NewUserInvitedToTeam;
 
 class SparkServiceProvider extends ServiceProvider
 {
-    protected $plan_small_max_collaborators     = 10;
-    protected $plan_medium_max_collaborators    = 20;
-    protected $plan_large_max_collaborators     = 30;
-
-
     /**
      * Your application and company details.
      *
@@ -80,20 +75,20 @@ class SparkServiceProvider extends ServiceProvider
          */
         Spark::plan('Petit (10 employés)', 'plan-small')
             ->price(110)
-            ->maxTeams(3)
-            ->maxCollaborators(4)
+            ->maxTeams(1)
+            ->maxCollaborators(10)
             ->features(['CHF 11.- / utilisateur', 'Second', 'Third']);
 
         Spark::plan('Moyen (20 employés)', 'plan-medium')
             ->price(200)
-            ->maxTeams(1)
+            ->maxTeams(2)
             ->maxCollaborators(20)
             ->features(['CHF 10.- / utilisateur', 'Second', 'Third']);
 
         Spark::plan('Large (50 employés)', 'plan-large')
             ->price(450)
-            ->maxTeams(1)
-            ->maxCollaborators(50)
+            ->maxTeams(5)
+            ->maxCollaborators(30)
             ->features(['CHF 9.- / utilisateur', 'Second', 'Third']);
 
         /**
@@ -101,16 +96,16 @@ class SparkServiceProvider extends ServiceProvider
          */
         Spark::checkPlanEligibilityUsing(function ($user, $plan) {
 
-            $msg_too_much_members = "Vous avez trop de membres d'équipes.";
+            $msg_too_much_members = "Vous avez trop de membres d'équipes. Vous devez avoir un maximum de %s membres pour pouvoir utiliser ce plan.";
 
-            if ($plan->id == 'plan-small' && $user->currentTeam()->users()->count() > $this->plan_small_max_collaborators) {
-                throw IneligibleForPlan::because($msg_too_much_members);
+            if ($plan->id == 'plan-small' && $user->currentTeam()->users()->count() > 2) {
+                throw IneligibleForPlan::because(sprintf($msg_too_much_members, 2));
             }
-            if ($plan->id == 'plan-medium' && $user->currentTeam()->users()->count() > $this->plan_medium_max_collaborators) {
-                throw IneligibleForPlan::because($msg_too_much_members);
+            if ($plan->id == 'plan-medium' && $user->currentTeam()->users()->count() > 4) {
+                throw IneligibleForPlan::because(sprintf($msg_too_much_members, 4));
             }
-            if ($plan->id == 'plan-large' && $user->currentTeam()->users()->count() > $this->plan_large_max_collaborators) {
-                throw IneligibleForPlan::because($msg_too_much_members);
+            if ($plan->id == 'plan-large' && $user->currentTeam()->users()->count() > 30) {
+                throw IneligibleForPlan::because(sprintf($msg_too_much_members, 30));
             }
 
             return true;
