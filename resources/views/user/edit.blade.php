@@ -1,4 +1,4 @@
-@extends('layouts.two-columns')
+@extends('layouts.app')
 
 @section('title', 'Edition employé')
 
@@ -90,6 +90,23 @@
                                     </div>
                                 @endforeach
                             </div>
+
+                            <div class="form-group">
+                                <label>Préférences de contact</label>
+                                <div class="form-check">
+                                    <input type="checkbox" value="sms" class="form-check-input" id="contact_preference_sms" name="contact_preferences[]" {{(in_array('sms', $contactPreferences) ? 'checked' : '')}}>
+                                    <label for="contact_preference_sms" class="form-check-label">SMS</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" value="email" class="form-check-input" id="contact_preference_email" name="contact_preferences[]" {{(in_array('email', $contactPreferences) ? 'checked' : '')}}>
+                                    <label for="contact_preference_email" class="form-check-label">E-mail</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" value="phone" class="form-check-input" id="contact_preference_phone" name="contact_preferences[]" {{(in_array('phone', $contactPreferences) ? 'checked' : '')}}>
+                                    <label for="contact_preference_phone" class="form-check-label">Téléphone</label>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
     

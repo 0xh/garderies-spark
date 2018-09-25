@@ -72,18 +72,11 @@ class NurserySeeder extends Seeder
             "Le Grenier"
         ];
 
-        for ($i = 1; $i <= 15; $i++) {
-            DB::table('nurseries')->insert([
-                'name'          => $nurseries[$i],
-                'slug'          => SlugService::createSlug(Nursery::class, 'slug', $nurseries[$i]),
-                'created_at'    => \Carbon\Carbon::now(),
-                'address'       => $faker->streetAddress,
-                'post_code'     => rand(1000, 1500),
-                'city'          => $faker->city,
-                'email'         => $faker->companyEmail,
-                'phone'         => '+41 ' . rand(21,22) . ' ' . rand(300, 500) . ' ' . rand(20, 90) . ' ' . rand(20, 90),
-                'network_id'    => rand(1,2)
-            ]);
-        }
+        DB::table('nurseries')->insert([
+            'name'          => 'Garderie DevWeb',
+            'slug'          => 'garderie-devweb',
+            'team_id'       => 1,
+            'network_id'    => 1
+        ]);
     }
 }

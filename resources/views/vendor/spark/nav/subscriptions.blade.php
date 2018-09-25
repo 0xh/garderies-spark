@@ -1,4 +1,4 @@
-@if (Auth::user()->onTrial())
+@if (Auth::user()->onTrial() && Auth::user()->hasTeams() && (Auth::user()->roleOnCurrentTeam() != 'substitute' && Auth::user()->roleOnCurrentTeam() != 'director'))
     <!-- Trial Reminder -->
     <h6 class="dropdown-header">{{__('Trial')}}</h6>
 

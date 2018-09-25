@@ -40,6 +40,7 @@ class CreateUsersTable extends Migration
             $table->string('billing_country', 2)->nullable();
             $table->string('vat_id', 50)->nullable();
             $table->text('extra_billing_information')->nullable();
+            $table->text('contact_preferences')->nullable();
             $table->timestamp('trial_ends_at')->nullable();
             $table->timestamp('last_read_announcements_at')->nullable();
             $table->timestamps();
