@@ -109,6 +109,9 @@ class SparkServiceProvider extends ServiceProvider
             if ($plan->id == 'plan-medium' && $user->currentTeam()->users()->count() > $this->plan_medium_max_collaborators) {
                 throw IneligibleForPlan::because($msg_too_much_members);
             }
+            if ($plan->id == 'plan-large' && $user->currentTeam()->users()->count() > $this->plan_large_max_collaborators) {
+                throw IneligibleForPlan::because($msg_too_much_members);
+            }
 
             return true;
         });
