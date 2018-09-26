@@ -14,7 +14,7 @@ class BookingReminder extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    var $bookingRequest;
+    var $booking;
 
     /**
      * Create a new notification instance.
@@ -23,7 +23,7 @@ class BookingReminder extends Notification implements ShouldQueue
      */
     public function __construct($bookingRequest)
     {
-        $this->bookingRequest = $bookingRequest;
+        $this->booking = $bookingRequest;
     }
 
     /**
@@ -34,7 +34,7 @@ class BookingReminder extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        $user           = $this->bookingRequest->substitute;
+        $user           = $this->booking->substitute;
         $via            = [SparkChannel::class];
         $preferences    = ($user->contact_preferences) ? $user->contact_preferences : [];
 
@@ -64,7 +64,7 @@ class BookingReminder extends Notification implements ShouldQueue
     {
         return (new MailMessage)
             ->subject('Rappel de remplacement')
-            ->markdown('emails.bookingReminder', ['bookingRequest' => $this->bookingRequest]);
+            ->markdown('emails.bookingReminder', ['bookingRequest' => $this->booking]);
     }
 
     /**
@@ -76,16 +76,16 @@ class BookingReminder extends Notification implements ShouldQueue
         return (new SparkNotification)
             ->icon('fa-user-clock')
             ->body('Rappel de remplacement')
-            ->action('Voir la demande', route('booking-requests.show', $this->bookingRequest));
+            ->action('Voir la demande', route('bookings.show', $this->booking));
     }
 
     public function toNexmo($notifiable)
     {
-        $date       = $this->bookingRequest->start->format('d.m.Y');
-        $start      = $this->bookingRequest->start->format('H:i');
-        $end        = $this->bookingRequest->end->format('H:i');
-        $nursery    = $this->bookingRequest->nursery->name;
-        $user       = $this->bookingRequest->user->name;
+        $date       = $this->booking->start->format('d.m.Y');
+        $start      = $this->booking->start->format('H:i');
+        $end        = $this->booking->end->format('H:i');
+        $nursery    = $this->booking->nursery->name;
+        $user       = $this->booking->user->name;
 
         return (new NexmoMessage)
             ->content('Rappel de remplacement pour le ' . $date . ', de ' . $start . ' à ' . $end . ', dans la garderie ' . $nursery);

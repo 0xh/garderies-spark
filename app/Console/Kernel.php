@@ -4,6 +4,7 @@ namespace App\Console;
 
 use App\Booking;
 use App\Notifications\AvailabilityReminder;
+use App\Notifications\BookingReminder;
 use App\User;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -41,22 +42,18 @@ class Kernel extends ConsoleKernel
 
         // remind users for upcoming bookings
         $schedule->call(function (){
-            /*
+
             // retrieve bookings happening in 3 days or less
             $bookings = Booking::select('start', 'substitute_id')
                 ->where('start', '>=', now()->subDays(3))
                 ->where('status', Booking::STATUS_APPROVED)
                 ->get();
 
-            // store the substitutes
-            $users = [];
+            // notify the substitutes
             foreach ($bookings as $booking) {
-                $users[] = $booking->substitute;
+                $booking->substitute->notify(new BookingReminder($booking));
             }
 
-            // queue the notification
-            Notification::send($users, new AvailabilityReminder());
-            */
         })->dailyAt('19:00');
     }
 
