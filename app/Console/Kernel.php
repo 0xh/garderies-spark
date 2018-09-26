@@ -37,15 +37,16 @@ class Kernel extends ConsoleKernel
 
         // remind the user to post availabilities
         $schedule->call(function (){
-            //$users = User::has('team')->where('role', '=', 'substitute');
-        })->monthlyOn(1);
+            $users = User::leftJoin('team_users', 'team_users.user_id', '=', 'users.id')->where('role', '=', 'substitute')->get();
+            Notification::send($users, new AvailabilityReminder());
+        })->dailyAt('08:00');
 
         // remind users for upcoming bookings
         $schedule->call(function (){
 
-            // retrieve bookings happening in 3 days or less
+            // retrieve bookings happening in 3 days
             $bookings = Booking::select('start', 'substitute_id')
-                ->where('start', '>=', now()->subDays(3))
+                ->whereDay('start', '=', now()->addDays(3))
                 ->where('status', Booking::STATUS_APPROVED)
                 ->get();
 
@@ -54,7 +55,7 @@ class Kernel extends ConsoleKernel
                 $booking->substitute->notify(new BookingReminder($booking));
             }
 
-        })->dailyAt('19:00');
+        })->dailyAt('17:00');
     }
 
     /**
