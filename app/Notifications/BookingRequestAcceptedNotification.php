@@ -61,12 +61,15 @@ class BookingRequestAcceptedNotification extends Notification implements ShouldQ
      */
     public function toMail($notifiable)
     {
-        $date       = $this->bookingRequest->start->format('d.m.Y');
-        $nursery    = $this->bookingRequest->nursery->name;
+        $date           = $this->bookingRequest->start->format('d.m.Y');
+        $nursery        = $this->bookingRequest->nursery->name;
+        $user           = $this->bookingRequest->user->name;
+        $substitute     = $this->bookingRequest->substitute->name;
 
         return (new MailMessage)
             ->subject("Demande de remplacement acceptée")
             ->line("La demande de remplacement pour la date du " . $date . " à la garderie " . $nursery . " a été validée.")
+            ->line($user . " sera remplacé(e) par " . $substitute . ".")
             ->action('Voir la demande de remplacement', route('booking-requests.show', $this->bookingRequest))
             ->line('Merci de votre confiance !');
     }
