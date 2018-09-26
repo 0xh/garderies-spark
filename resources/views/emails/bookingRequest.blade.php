@@ -13,6 +13,10 @@ Vous avez reçu une nouvelle demande de remplacement, vous trouverez les informa
 | **Employé**          | {{$bookingRequest->user->name}}             |
 @endcomponent
 
+@component('mail::panel')
+    {{$bookingRequest->message ?? 'Pas de message'}}
+@endcomponent
+
 @component('mail::button', ['url' => route('booking-requests.show', $bookingRequest)])
 Voir la demande
 @endcomponent
