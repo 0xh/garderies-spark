@@ -18,6 +18,10 @@ return [
         'secret' => env('AUTHY_SECRET'),
     ],
 
+    'sparkpost' => [
+        'secret' => '8b19704c6c69aaf6c90eed772f8271d8b1fe94e8',
+    ],
+
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),
