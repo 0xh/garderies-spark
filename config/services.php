@@ -19,7 +19,7 @@ return [
     ],
 
     'sparkpost' => [
-        'secret' => '8b19704c6c69aaf6c90eed772f8271d8b1fe94e8',
+        'secret' => env('SPARKPOST_SECRET'),
     ],
 
     'mailgun' => [
