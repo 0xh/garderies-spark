@@ -12,7 +12,7 @@ class BookingRequestController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['hasTeam']);
+        $this->middleware(['auth', 'hasTeam']);
     }
 
     /**
