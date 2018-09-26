@@ -39,7 +39,7 @@ class Kernel extends ConsoleKernel
         $schedule->call(function (){
             $users = User::leftJoin('team_users', 'team_users.user_id', '=', 'users.id')->where('role', '=', 'substitute')->get();
             Notification::send($users, new AvailabilityReminder());
-        })->dailyAt('08:00');
+        })->monthlyOn(1);
 
         // remind users for upcoming bookings
         $schedule->call(function (){
