@@ -1,5 +1,7 @@
 <h4>Choisir une souscription</h4>
 <p>Sélectionnez le plan vous convenant le mieux, nos offres vous permettent de choisir précisément le nombre d'employés que vous souhaitez pouvoir gérer.</p>
+<p>Nous appliquons un <strong>tarif dégressif avantageux</strong>, plus vous prenez d'utilisateurs plus le prix par utilisateur baisse.</p>
+<p>Pour bénéficier de tarifs <strong>encore plus avantageux</strong>, nous vous invitons à parcourir nos solutions annuelles qui vous offrent jusqu'à <strong>10% de rabais supplémentaire.</strong></p>
 <hr>
 <spark-subscribe-stripe :user="user" :team="team"
                         :plans="plans" :billable-type="billableType" inline-template>

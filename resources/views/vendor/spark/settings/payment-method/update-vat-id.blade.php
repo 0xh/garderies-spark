@@ -1,5 +1,5 @@
 <spark-update-vat-id :user="user" :team="team" :billable-type="billableType" inline-template>
-    <div class="card card-default">
+    <div class="card card-default mb-4">
         <div class="card-header">{{__('Update VAT ID')}}</div>
 
         <div class="card-body">

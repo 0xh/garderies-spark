@@ -6,7 +6,6 @@
     <vue-table title="Employés" api-url="/api/users?nursery=0&network=0" :user="user.id" :current-team="currentTeam" :fields="[
         {
           name: '__slot:photo',
-          title: '',
         }, {
           name: '__slot:userlink',
           sortField: 'users.name',

@@ -55,7 +55,10 @@
         }]">
     </vue-table>
 
-    <vue-table title="Employés" api-url="/api/users?nursery=0&network={{$network->id}}" :user="user.id" :current-team="currentTeam" :fields="[{
+    <vue-table title="Employés" api-url="/api/users?nursery=0&network={{$network->id}}" :user="user.id" :current-team="currentTeam" :fields="[
+            {
+              name: '__slot:photo',
+            }, {
               name: '__slot:userlink',
               sortField: 'users.name',
               title: 'Nom et prénom'

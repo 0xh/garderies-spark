@@ -41,7 +41,7 @@ class NurseryController extends Controller
         $networks   = $team->networks;
         $nurseries  = $team->nurseries->count();
 
-        $can_create = ($user->onGenericTrial() && $nurseries >= 1) ? false : true;
+        $can_create = ($user->onGenericTrial() && $nurseries >= 1 || (!$user->onGenericTrial() && !$user->subscribed())) ? false : true;
 
         return view('nursery.create', ['networks' => $networks, 'can_create' => $can_create]);
     }
@@ -193,6 +193,11 @@ class NurseryController extends Controller
         ]);
     }
 
+    /**
+     * @param Nursery $nursery
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function ads(Nursery $nursery)
     {
         $this->authorize('ads', $nursery);
@@ -204,4 +209,14 @@ class NurseryController extends Controller
             'ads'     => $ads
         ]);
     }
+
+    /**
+     * @param Nursery $nursery
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function site(Nursery $nursery)
+    {
+        return view('nursery.website', ['nursery' => $nursery]);
+    }
+
 }

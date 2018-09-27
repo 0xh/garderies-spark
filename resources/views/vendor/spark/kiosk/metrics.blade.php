@@ -75,7 +75,7 @@
         </div>
 
         <!-- Monthly Recurring Revenue Chart -->
-        <div class="row" v-show="indicators.length > 0">
+        <div class="row mb-4" v-show="indicators.length > 0">
             <div class="col-md-12">
                 <div class="card card-default">
                     <div class="card-header">{{__('Monthly Recurring Revenue')}}</div>
@@ -88,7 +88,7 @@
         </div>
 
         <!-- Yearly Recurring Revenue Chart -->
-        <div class="row" v-show="indicators.length > 0">
+        <div class="row mb-4" v-show="indicators.length > 0">
             <div class="col-md-12">
                 <div class="card card-default">
                     <div class="card-header">{{__('Yearly Recurring Revenue')}}</div>
@@ -100,7 +100,7 @@
             </div>
         </div>
 
-        <div class="row" v-show="indicators.length > 0">
+        <div class="row mb-4" v-show="indicators.length > 0">
             <!-- Daily Volume Chart -->
             <div class="col-md-6">
                 <div class="card card-default">
@@ -125,7 +125,7 @@
         </div>
 
         <!-- Subscribers Per Plan -->
-        <div class="row" v-if="plans.length > 0">
+        <div class="row mb-4" v-if="plans.length > 0">
             <div class="col-md-12">
                 <div class="card card-default">
                     <div class="card-header">{{__('Subscribers')}}</div>

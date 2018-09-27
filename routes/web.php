@@ -13,10 +13,6 @@
 
 $domain = parse_url(config('app.url'));
 
-Route::domain('reseau.' . $domain['host'])->group(function () {
-    Route::view('/', 'network.website');
-});
-
 Route::get('/', 'HomeController@index')->middleware('auth');
 Route::view('blog', 'blog');
 Route::view('account', 'account');
@@ -26,6 +22,7 @@ Route::get('nurseries/{nursery}/planning', 'NurseryController@planning')->name('
 Route::get('nurseries/{nurseries}/ads', 'NurseryController@ads')->name('nurseries.ads');
 Route::get('nurseries/{nurseries}/ads/create', 'AdController@create')->name('ads.create');
 Route::resource('ads', 'AdController')->except(['index', 'create']);
+Route::get('site/{nursery}', 'NurseryController@site');
 
 Route::resource('users', 'UserController');
 Route::get('users/{user}/availabilities', 'UserController@availabilities')->name('users.availabilities');

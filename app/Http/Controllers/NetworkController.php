@@ -46,7 +46,7 @@ class NetworkController extends Controller
         $team = $user->currentTeam();
 
         $networks = $team->networks->count();
-        $can_create = ($user->onGenericTrial() && $networks >= 1) ? false : true;
+        $can_create = ($user->onGenericTrial() && $networks >= 1 || (!$user->onGenericTrial() && !$user->subscribed())) ? false : true;
 
         return view('network.create', ['can_create' => $can_create]);
     }
@@ -157,6 +157,10 @@ class NetworkController extends Controller
         //
     }
 
+    /**
+     * @param Network $network
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function ads(Network $network)
     {
         $ads = $network->ads()->orderBy('created_at', 'desc')->get();
@@ -166,4 +170,14 @@ class NetworkController extends Controller
             'ads'       => $ads
         ]);
     }
+
+    /**
+     * @param Network $network
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function site(Network $network)
+    {
+        return view('network.website', ['network' => $network]);
+    }
+
 }

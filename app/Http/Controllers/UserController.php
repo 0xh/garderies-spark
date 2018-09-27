@@ -149,7 +149,7 @@ class UserController extends Controller
         $contactPreferences     = ($user->contact_preferences) ? $user->contact_preferences : [];
 
         $contactPreferencesLabels = [
-            'sms'   => ['label' => 'SMS', 'icon' => 'fas fa-comments'],
+            'sms'     => ['label' => 'SMS', 'icon' => 'fas fa-comments'],
             'email'   => ['label' => 'E-mail', 'icon' => 'fas fa-envelope'],
             'phone'   => ['label' => 'Téléphone', 'icon' => 'fas fa-phone'],
         ];

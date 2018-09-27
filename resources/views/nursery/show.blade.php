@@ -52,7 +52,10 @@
                 </div>
             </div>
 
-            <vue-table title="Employés" api-url="/api/users?nursery={{$nursery->id}}&network=0" :user="spark.userId" :fields="[{
+            <vue-table title="Employés" api-url="/api/users?nursery={{$nursery->id}}&network=0" :user="spark.userId" :fields="[
+            {
+              name: '__slot:photo',
+            }, {
               name: '__slot:userlink',
               sortField: 'users.name',
               title: 'Nom et prénom'

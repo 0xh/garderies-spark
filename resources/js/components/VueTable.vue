@@ -247,6 +247,7 @@
         vertical-align: middle;
         height: 20px;
         width: 20px;
+        max-width: none;
         border-radius: 50%;
     }
 </style>

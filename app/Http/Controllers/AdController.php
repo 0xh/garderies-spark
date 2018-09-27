@@ -10,7 +10,7 @@ class AdController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('subscribed');
+        $this->middleware(['auth', 'subscribed']);
     }
 
     /**
@@ -64,10 +64,7 @@ class AdController extends Controller
      */
     public function show(Ad $ad)
     {
-        return view('ad.show',
-            [
-                'ad' => $ad
-            ]);
+        return view('ad.show', ['ad' => $ad]);
     }
 
     /**

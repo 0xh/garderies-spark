@@ -71,16 +71,18 @@ class SparkServiceProvider extends ServiceProvider
         // Trial days
         Spark::useStripe()->noCardUpFront()->trialDays(10);
 
+        // TVA Collect
+        //Spark::collectEuropeanVat('CH', 7.7);
+
         /**
-         * Define plans
+         * Define monthly plans
          */
         // 10 employees - CHF 20 per employee
         Spark::plan('Garderies (10 employés)', 'garderies-10')
             ->price(199)
             ->maxTeams(1)
             ->maxCollaborators(10)
-            ->features(["CHF 20.- / utilisateur / mois", "1 équipe"])
-            ->attributes(['fake_limit' => 40]);
+            ->features(["CHF 19.90 / utilisateur / mois"]);
 
         // 20 employees - CHF 19 per employee
         Spark::plan('Garderies (20 employés)', 'garderies-20')
@@ -94,7 +96,7 @@ class SparkServiceProvider extends ServiceProvider
             ->price(699)
             ->maxTeams(4)
             ->maxCollaborators(40)
-            ->features(["CHF 18.- / utilisateur / mois"]);
+            ->features(["CHF 17.50.- / utilisateur / mois"]);
 
         // 80 employees - CHF 17 per employee
         Spark::plan('Garderies (80 employés)', 'garderies-80')
@@ -116,6 +118,58 @@ class SparkServiceProvider extends ServiceProvider
             ->maxTeams(20)
             ->maxCollaborators(200)
             ->features(["CHF 15.- / utilisateur / mois"]);
+
+
+        /**
+         * Define yearly plans
+         */
+        // 10 employees - CHF 20 per employee
+        Spark::plan('Garderies (10 employés)', 'garderies-10-yearly')
+            ->yearly()
+            ->price(2268)
+            ->maxTeams(1)
+            ->maxCollaborators(10)
+            ->features(["5% de rabais", "CHF 18.90 / utilisateur / mois"]);
+
+        // 20 employees - CHF 19 per employee
+        Spark::plan('Garderies (20 employés)', 'garderies-20-yearly')
+            ->yearly()
+            ->price(4332)
+            ->maxTeams(2)
+            ->maxCollaborators(20)
+            ->features(["5% de rabais", "CHF 18.- / utilisateur / mois"]);
+
+        // 40 employees - CHF 18 per employee
+        Spark::plan('Garderies (40 employés)', 'garderies-40-yearly')
+            ->yearly()
+            ->price(7549)
+            ->maxTeams(4)
+            ->maxCollaborators(40)
+            ->features(["10% de rabais", "CHF 15.70 / utilisateur / mois"]);
+
+        // 80 employees - CHF 17 per employee
+        Spark::plan('Garderies (80 employés)', 'garderies-80-yearly')
+            ->yearly()
+            ->price(14688)
+            ->maxTeams(8)
+            ->maxCollaborators(80)
+            ->features(["10% de rabais", "CHF 15.30 / utilisateur / mois"]);
+
+        // 100 employees - CHF 16 per employee
+        Spark::plan('Garderies (100 employés)', 'garderies-100-yearly')
+            ->yearly()
+            ->price(17269)
+            ->maxTeams(10)
+            ->maxCollaborators(100)
+            ->features(["10% de rabais", "CHF 14.40 / utilisateur / mois"]);
+
+        // 200 employees - CHF 15 per employee
+        Spark::plan('Garderies (200 employés)', 'garderies-200-yearly')
+            ->yearly()
+            ->price(32389)
+            ->maxTeams(20)
+            ->maxCollaborators(200)
+            ->features(["10% de rabais", "CHF 13.50 / utilisateur / mois"]);
 
 
         /**
