@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Notifications\SubscriptionWelcome;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -25,9 +26,11 @@ class UserSubscribed
      */
     public function handle($event)
     {
-        $currentPlan = $event instanceof SubscriptionCancelled
-            ? null : $event->user->subscription()->provider_plan;
-
-
+        // store the plan object
+        $sparkPlan = $event instanceof SubscriptionCancelled ? null : $event->user->sparkPlan();
+        // notify the user
+        if ($sparkPlan) {
+            $event->user->notify(new SubscriptionWelcome($sparkPlan));
+        }
     }
 }

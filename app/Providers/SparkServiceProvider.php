@@ -73,23 +73,49 @@ class SparkServiceProvider extends ServiceProvider
         /**
          * Define plans
          */
-        Spark::plan('Petit (10 employés)', 'plan-small')
-            ->price(110)
+        // 10 employees - CHF 20 per employee
+        Spark::plan('Garderies (10 employés)', 'garderies-10')
+            ->price(199)
             ->maxTeams(1)
             ->maxCollaborators(10)
-            ->features(['CHF 11.- / utilisateur', 'Second', 'Third']);
+            ->features(["CHF 20.- / utilisateur / mois", "1 équipe"])
+            ->attributes(['fake_limit' => 40]);
 
-        Spark::plan('Moyen (20 employés)', 'plan-medium')
-            ->price(200)
+        // 20 employees - CHF 19 per employee
+        Spark::plan('Garderies (20 employés)', 'garderies-20')
+            ->price(380)
             ->maxTeams(2)
             ->maxCollaborators(20)
-            ->features(['CHF 10.- / utilisateur', 'Second', 'Third']);
+            ->features(["CHF 19.- / utilisateur / mois"]);
 
-        Spark::plan('Large (50 employés)', 'plan-large')
-            ->price(450)
-            ->maxTeams(5)
-            ->maxCollaborators(30)
-            ->features(['CHF 9.- / utilisateur', 'Second', 'Third']);
+        // 40 employees - CHF 18 per employee
+        Spark::plan('Garderies (40 employés)', 'garderies-40')
+            ->price(699)
+            ->maxTeams(4)
+            ->maxCollaborators(40)
+            ->features(["CHF 18.- / utilisateur / mois"]);
+
+        // 80 employees - CHF 17 per employee
+        Spark::plan('Garderies (80 employés)', 'garderies-80')
+            ->price(1360)
+            ->maxTeams(8)
+            ->maxCollaborators(80)
+            ->features(["CHF 17.- / utilisateur / mois"]);
+
+        // 100 employees - CHF 16 per employee
+        Spark::plan('Garderies (100 employés)', 'garderies-100')
+            ->price(1599)
+            ->maxTeams(10)
+            ->maxCollaborators(100)
+            ->features(["CHF 16.- / utilisateur / mois"]);
+
+        // 200 employees - CHF 15 per employee
+        Spark::plan('Garderies (200 employés)', 'garderies-200')
+            ->price(2999)
+            ->maxTeams(20)
+            ->maxCollaborators(200)
+            ->features(["CHF 15.- / utilisateur / mois"]);
+
 
         /**
          * Handles plans eligibility, constraints on plans attributes
@@ -98,14 +124,23 @@ class SparkServiceProvider extends ServiceProvider
 
             $msg_too_much_members = "Vous avez trop de membres d'équipes. Vous devez avoir un maximum de %s membres pour pouvoir utiliser ce plan.";
 
-            if ($plan->id == 'plan-small' && $user->currentTeam()->users()->count() > 2) {
-                throw IneligibleForPlan::because(sprintf($msg_too_much_members, 2));
+            if ($plan->id == 'garderies-10' && $user->currentTeam()->users()->count() > 10) {
+                throw IneligibleForPlan::because(sprintf($msg_too_much_members, 10));
             }
-            if ($plan->id == 'plan-medium' && $user->currentTeam()->users()->count() > 4) {
-                throw IneligibleForPlan::because(sprintf($msg_too_much_members, 4));
+            if ($plan->id == 'garderies-20' && $user->currentTeam()->users()->count() > 20) {
+                throw IneligibleForPlan::because(sprintf($msg_too_much_members, 20));
             }
-            if ($plan->id == 'plan-large' && $user->currentTeam()->users()->count() > 30) {
-                throw IneligibleForPlan::because(sprintf($msg_too_much_members, 30));
+            if ($plan->id == 'garderies-40' && $user->currentTeam()->users()->count() > 40) {
+                throw IneligibleForPlan::because(sprintf($msg_too_much_members, 40));
+            }
+            if ($plan->id == 'garderies-80' && $user->currentTeam()->users()->count() > 80) {
+                throw IneligibleForPlan::because(sprintf($msg_too_much_members, 80));
+            }
+            if ($plan->id == 'garderies-100' && $user->currentTeam()->users()->count() > 100) {
+                throw IneligibleForPlan::because(sprintf($msg_too_much_members, 100));
+            }
+            if ($plan->id == 'garderies-200' && $user->currentTeam()->users()->count() > 200) {
+                throw IneligibleForPlan::because(sprintf($msg_too_much_members, 200));
             }
 
             return true;

@@ -1,3 +1,6 @@
+<h4>Choisir une souscription</h4>
+<p>Sélectionnez le plan vous convenant le mieux, nos offres vous permettent de choisir précisément le nombre d'employés que vous souhaitez pouvoir gérer.</p>
+<hr>
 <spark-subscribe-stripe :user="user" :team="team"
                         :plans="plans" :billable-type="billableType" inline-template>
 
