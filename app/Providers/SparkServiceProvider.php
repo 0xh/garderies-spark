@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Notification;
 use Laravel\Cashier\Cashier;
 use Laravel\Spark\Exceptions\IneligibleForPlan;
@@ -166,6 +167,37 @@ class SparkServiceProvider extends ServiceProvider
             return $invitation;
         });
 
+        /**
+         * Override account creation to include the account type
+         *
+         */
+        Spark::validateUsersWith(function () {
+            return [
+                'account_type'  => 'required',
+                'name'          => 'required|max:255',
+                'email'         => 'required|email|max:255|unique:users',
+                'password'      => 'required|confirmed|min:6',
+                'terms'         => 'required|accepted',
+            ];
+        });
+
+        Spark::createUsersWith(function ($request) {
+            $user = Spark::user();
+
+            $data = $request->all();
+
+            // disable the trial period for substitutes
+            $trial = ($data['account_type'] == 'network') ? Carbon::now()->addDays(Spark::trialDays()) : null;
+
+            $user->forceFill([
+                'name'          => $data['name'],
+                'email'         => $data['email'],
+                'password'      => bcrypt($data['password']),
+                'trial_ends_at' => $trial,
+            ])->save();
+
+            return $user;
+        });
     }
 
     public function register()

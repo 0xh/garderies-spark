@@ -33,6 +33,21 @@
         @endif
     @endif
 
+    <!-- Account type -->
+    <div class="form-group row">
+        <label class="col-md-4 col-form-label text-md-right">Créer un compte</label>
+        <div class="col-md-6 pt-1">
+            <div class="form-check form-check-inline">
+                <input type="radio" class="form-check-input" name="account_type" v-model="registerForm.account_type" id="account_type_substitute" value="substitute" checked>
+                <label for="account_type_substitute" class="form-check-label">Remplaçant</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input type="radio" class="form-check-input" name="account_type" v-model="registerForm.account_type" id="account_type_network" value="network">
+                <label for="account_type_network" class="form-check-label">Réseau / Garderie</label>
+            </div>
+        </div>
+    </div>
+
     <!-- Name -->
     <div class="form-group row">
         <label class="col-md-4 col-form-label text-md-right">{{__('Name')}}</label>
