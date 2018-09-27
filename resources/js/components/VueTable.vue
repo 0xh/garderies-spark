@@ -20,6 +20,10 @@
                           @vuetable:pagination-data="onPaginationData"
                           no-data-template="Aucune donnée disponible">
 
+                    <template slot="photo" slot-scope="props">
+                        <img :src="props.rowData.photo_url" alt="photo" class="user-profile-picture">
+                    </template>
+
                     <template slot="favorite" slot-scope="props">
                         <i class="far fa-star text-warning"></i>
                     </template>
@@ -235,5 +239,14 @@
 <style lang="scss">
     .vuetable-pagination-info {
         margin-bottom: 20px;
+    }
+    .user-profile-picture {
+        display: inline-block;
+        background-position: 50%;
+        background-size: cover;
+        vertical-align: middle;
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
     }
 </style>
