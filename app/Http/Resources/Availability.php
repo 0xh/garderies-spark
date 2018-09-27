@@ -37,7 +37,6 @@ class Availability extends JsonResource
         $data['nursery']['link']    = route('nurseries.show', $this->user->nursery ?? 0);
         $data['networks']           = $this->user->networks;
 
-        // TODO: update the the current logged user
         $authUser = User::find($request->uid);
         $data['favorite'] = false;
         if ( $authUser->favorite_substitutes->where('id', $this->user->id)->count() ) {
