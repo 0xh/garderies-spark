@@ -104,7 +104,7 @@ class HomeController extends Controller
                 'favorites'         => $favorites,
                 'months'            => $months,
                 'contactPreferences'   => $contactPreferences,
-                'contactPreferencesLabels' => $contactPreferencesLabels
+                'contactPreferencesLabels' => $contactPreferencesLabels,
             ]);
         }
     }

@@ -35,8 +35,8 @@ class BookingRequestNotification extends Notification implements ShouldQueue
     public function via($notifiable)
     {
         $user           = $this->bookingRequest->substitute;
-        $via            = [SparkChannel::class];
         $preferences    = ($user->contact_preferences) ? $user->contact_preferences : [];
+        $via            = [SparkChannel::class];
 
         if (count($preferences)) {
             foreach ($preferences as $preference) {
@@ -88,7 +88,7 @@ class BookingRequestNotification extends Notification implements ShouldQueue
         $user       = $this->bookingRequest->user->name;
 
         return (new NexmoMessage)
-            ->content('Demande de remplacement pour le ' . $date . ', de ' . $start . ' à ' . $end . ', dans la garderie ' . $nursery);
+            ->content('Demande de remplacement pour le ' . $date . ', de ' . $start . ' à ' . $end . ', dans la garderie ' . $nursery . '.');
     }
 
     /**

@@ -3,6 +3,10 @@
 @section('title', 'Logiciels de gestion de garderie')
 
 @section('content')
+    @if (!count($contactPreferences))
+        <div class="alert alert-info">Vous n'avez pas encore défini <a href="{{route('users.edit', $user)}}">vos préférences de contact</a>, éditer votre profil pour choisir comment vous désirez être contacté.</div>
+    @endif
+
     <div class="row">
         <div class="col-md-8">
             {{-- Next bookings --}}
