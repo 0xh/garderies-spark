@@ -14,7 +14,7 @@ class NurseryController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['subscribed', 'hasTeam']);
+        $this->middleware(['auth', 'subscribed', 'hasTeam']);
     }
 
     /**

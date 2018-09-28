@@ -109,57 +109,58 @@ class BookingRequestController extends Controller
     public function approve(BookingRequest $bookingRequest)
     {
         // If we have a booking request
-        if ($bookingRequest->id) {
-
-            // Create the booking object
-            $booking = new Booking();
-            $booking->request_id        = $bookingRequest->id;
-            $booking->user_id           = $bookingRequest->user->id;
-            $booking->substitute_id     = $bookingRequest->substitute->id;
-            $booking->nursery_id        = $bookingRequest->nursery->id;
-
-            $booking->start = ($bookingRequest->start->gte($bookingRequest->availability->start))
-                ? $bookingRequest->start
-                : $bookingRequest->availability->start;
-
-            $booking->end = ($bookingRequest->end->gte($bookingRequest->availability->end))
-                ? $bookingRequest->availability->end
-                : $bookingRequest->end;
-
-            $booking->status            = Booking::STATUS_APPROVED; //TODO: will depends on the process
-            $booking->save();
-
-            // Update the availability status
-            $availability = $bookingRequest->availability;
-
-            /**
-             * If the booking takes up more than half of the availability
-             * we can assume the day is filled
-             */
-            $bookings_duration = 0;
-            $related_bookings = $availability->bookings;
-            foreach ($related_bookings as $booking) {
-                $bookings_duration += $booking->start->diffInHours($booking->end);
-            }
-
-            $availability_duration  = $availability->start->diffInHours($availability->end);
-
-            // determine if the days is considered filled with bookings
-            $day_filled = false;
-            if ($availability_duration > $bookings_duration) {
-                if (($availability_duration - $bookings_duration) < ($availability_duration / 2)) {
-                    $day_filled = true;
-                }
-            } else { $day_filled = true; }
-
-            // select the correct status
-            if ($day_filled) {
-                $availability->status = Availability::STATUS_BOOKED;
-            } else {
-                $availability->status = Availability::STATUS_PARTIALLY_BOOKED;
-            }
-            $availability->save();
+        if (!$bookingRequest->id && $bookingRequest->status != BookingRequest::STATUS_PENDING) {
+            return false;
         }
+
+        // Create the booking object
+        $booking = new Booking();
+        $booking->request_id        = $bookingRequest->id;
+        $booking->user_id           = $bookingRequest->user->id;
+        $booking->substitute_id     = $bookingRequest->substitute->id;
+        $booking->nursery_id        = $bookingRequest->nursery->id;
+
+        $booking->start = ($bookingRequest->start->gte($bookingRequest->availability->start))
+            ? $bookingRequest->start
+            : $bookingRequest->availability->start;
+
+        $booking->end = ($bookingRequest->end->gte($bookingRequest->availability->end))
+            ? $bookingRequest->availability->end
+            : $bookingRequest->end;
+
+        $booking->status            = Booking::STATUS_APPROVED; //TODO: will depends on the process
+        $booking->save();
+
+        // Update the availability status
+        $availability = $bookingRequest->availability;
+
+        /**
+         * If the booking takes up more than half of the availability
+         * we can assume the day is filled
+         */
+        $bookings_duration = 0;
+        $related_bookings = $availability->bookings;
+        foreach ($related_bookings as $booking) {
+            $bookings_duration += $booking->start->diffInHours($booking->end);
+        }
+
+        $availability_duration  = $availability->start->diffInHours($availability->end);
+
+        // determine if the days is considered filled with bookings
+        $day_filled = false;
+        if ($availability_duration > $bookings_duration) {
+            if (($availability_duration - $bookings_duration) < ($availability_duration / 2)) {
+                $day_filled = true;
+            }
+        } else { $day_filled = true; }
+
+        // select the correct status
+        if ($day_filled) {
+            $availability->status = Availability::STATUS_BOOKED;
+        } else {
+            $availability->status = Availability::STATUS_PARTIALLY_BOOKED;
+        }
+        $availability->save();
 
         // update the booking request
         $bookingRequest->status = BookingRequest::STATUS_APPROVED;
