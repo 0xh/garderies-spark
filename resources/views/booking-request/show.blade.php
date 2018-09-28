@@ -14,7 +14,7 @@
                     $bookingRequest->availability->status != \App\Availability::STATUS_BOOKED &&
                     !$conflicts->has_conflicts
                     )
-                        <a href="#" v-on:click.prevent="validateBookingRequest({{$bookingRequest->id}})" class="btn btn-success btn-sm mr-2"><i class="fas fa-check"></i> Valider</a>
+                        <a href="#" v-on:click.prevent="validateBookingRequest({{$bookingRequest->id}})" class="btn btn-success btn-sm mr-2"><i class="fas fa-check"></i> Accepter le remplacement</a>
                     @endif
                 </div>
             </div>
