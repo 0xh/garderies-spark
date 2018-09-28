@@ -90,6 +90,14 @@
                                 @include('spark::nav.support')
                             @endif
 
+                            @if (Auth::user()->isSuperAdmin())
+                                <h6 class="dropdown-header">Horizon</h6>
+                                <a class="dropdown-item" href="/horizon">
+                                    <i class="fa fa-fw text-left fa-btn fa-exchange-alt"></i> Horizon
+                                </a>
+                                <div class="dropdown-divider"></div>
+                            @endif
+
                             <!-- Logout -->
                             <a class="dropdown-item" href="/logout">
                                 <i class="fas fa-fw text-left fa-btn fa-sign-out-alt"></i> {{__('Logout')}}
