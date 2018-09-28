@@ -98,4 +98,9 @@ class BookingRequestAcceptedNotification extends Notification implements ShouldQ
             //
         ];
     }
+
+    public function tags()
+    {
+        return ['notification', 'spark', 'email', 'type:booking-request'];
+    }
 }

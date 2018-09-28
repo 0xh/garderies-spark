@@ -60,4 +60,9 @@ class SubscriptionWelcome extends Notification
             //
         ];
     }
+
+    public function tags()
+    {
+        return ['notification', 'email', 'type:subscription-welcome'];
+    }
 }

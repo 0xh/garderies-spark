@@ -62,4 +62,9 @@ class ExistingUserInvitedToTeam extends Notification
             //
         ];
     }
+
+    public function tags()
+    {
+        return ['notification', 'email', 'type:team-invite-existing'];
+    }
 }

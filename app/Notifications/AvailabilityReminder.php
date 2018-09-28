@@ -60,4 +60,9 @@ class AvailabilityReminder extends Notification implements ShouldQueue
             //
         ];
     }
+
+    public function tags()
+    {
+        return ['notification', 'email', 'type:availability-reminder'];
+    }
 }

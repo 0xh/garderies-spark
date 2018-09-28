@@ -103,4 +103,9 @@ class BookingReminder extends Notification implements ShouldQueue
             //
         ];
     }
+
+    public function tags()
+    {
+        return ['notification', 'sms', 'spark', 'email', 'type:booking-reminder'];
+    }
 }

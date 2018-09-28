@@ -62,4 +62,9 @@ class NewUserInvitedToTeam extends Notification
             //
         ];
     }
+
+    public function tags()
+    {
+        return ['notification', 'email', 'type:team-invite-new'];
+    }
 }

@@ -106,6 +106,6 @@ class BookingRequestNotification extends Notification implements ShouldQueue
 
     public function tags()
     {
-        return ['notification', 'booking-request'];
+        return ['notification', 'sms', 'spark', 'email', 'type:booking-request'];
     }
 }
