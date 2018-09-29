@@ -45,8 +45,7 @@ class Kernel extends ConsoleKernel
         $schedule->call(function (){
 
             // retrieve bookings happening in 3 days
-            $bookings = Booking::select('start', 'substitute_id')
-                ->whereDay('start', '=', now()->addDays(3))
+            $bookings = Booking::whereDay('start', '=', now()->addDays(3))
                 ->where('status', Booking::STATUS_APPROVED)
                 ->get();
 
