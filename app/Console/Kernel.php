@@ -51,7 +51,8 @@ class Kernel extends ConsoleKernel
 
             // notify the substitutes
             foreach ($bookings as $booking) {
-                $booking->substitute->notify(new BookingReminder($booking));
+                $user = $booking->substitute;
+                $user->notify(new BookingReminder($booking));
             }
 
         })->dailyAt('17:00');
