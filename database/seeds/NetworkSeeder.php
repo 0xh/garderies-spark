@@ -16,7 +16,7 @@ class NetworkSeeder extends Seeder
             'name'      => 'Réseau DevWeb',
             'slug'      => 'reseau-devweb',
             'team_id'   => 1,
-            'color'     => '#336699',
+            'color'     => '#3f51b5',
         ]);
     }
 }

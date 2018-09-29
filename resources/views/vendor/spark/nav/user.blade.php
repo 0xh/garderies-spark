@@ -90,13 +90,19 @@
                                 @include('spark::nav.support')
                             @endif
 
-                            @if (Auth::user()->isSuperAdmin())
+                            @if (Auth::user()->isSuperAdmin() && env('APP_ENV' == 'production'))
                                 <h6 class="dropdown-header">Horizon</h6>
                                 <a class="dropdown-item" href="/horizon">
                                     <i class="fa fa-fw text-left fa-btn fa-exchange-alt"></i> Horizon
                                 </a>
                                 <div class="dropdown-divider"></div>
                             @endif
+
+                            <h6 class="dropdown-header">Documentation</h6>
+                            <a class="dropdown-item" href="/docs">
+                                <i class="fa fa-fw text-left fa-btn fa-journal-whills"></i> Documentation
+                            </a>
+                            <div class="dropdown-divider"></div>
 
                             <!-- Logout -->
                             <a class="dropdown-item" href="/logout">

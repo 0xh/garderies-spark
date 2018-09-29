@@ -12,7 +12,6 @@
             return data;
         },
         mounted() {
-            console.log(Spark.currentTeam);
             data.color = this.currentColor;
         },
         components: {
@@ -20,3 +19,10 @@
         }
     }
 </script>
+
+<style lang="scss">
+    .vue-swatches__container,
+    .vue-swatches__wrapper {
+        padding: 0 !important;
+    }
+</style>
