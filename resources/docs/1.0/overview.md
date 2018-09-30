@@ -1,27 +1,20 @@
-# Généralités
+# Guide Garderies.ch
 
 ---
 
-- [First Section](#section-1)
+- [Introduction](#section-1)
+- [Support technique](#section-2)
 
 <a name="section-1"></a>
-## First Section
+## Introduction
+
+Bienvenue sur Garderies.ch, l'application en ligne destinées aux structures d'accueil de l'enfance en Suisse, cette documentation regroupe les informations essentielles pour vous permettre d'opérer de manière optimale votre compte.
 
 Toutes les opérations décrites dans cette documentation sont à effectuer authentifié à votre compte.
 
-Write something `Lorem ipsum` cool.. 🦊
+<a name="section-2"></a>
+## Support technique
 
-```php
-<?php echo 'I am some PHP'; ?>
-```
+En cas de problème technique et si vous ne parvenez pas à trouver les réponses à vos questions dans cette documentation, n'hésitez pas à prendre contact avec l'équipe de Garderies.ch.
 
->{info} Lorem ipsum.
-
-<larecipe-card>
-dfdf
-</larecipe-card>
-
-
-<larecipe-button>
-dfdf
-</larecipe-button>
+[support@garderies.ch](mailto:support@garderies.ch)

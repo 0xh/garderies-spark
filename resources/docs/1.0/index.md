@@ -6,5 +6,5 @@
     - [Employés](/docs/{{version}}/users)
     - [Remplacements](/docs/{{version}}/bookings)
 - ## Abonnement
-    - [Overview](/docs/{{version}}/overview)
+    - [Souscriptions](/docs/{{version}}/subscription)
     
