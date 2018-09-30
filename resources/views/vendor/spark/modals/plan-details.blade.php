@@ -1,5 +1,5 @@
 <div class="modal fade" id="modal-plan-details" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog modal-sfd">
         <div class="modal-content" v-if="detailingPlan">
             <!-- Modal Header -->
             <div class="modal-header">
@@ -11,9 +11,7 @@
             <!-- Modal Body -->
             <div class="modal-body">
                 <ul class="plan-feature-list p-0 m-0">
-                    <li v-for="feature in detailingPlan.features">
-                        @{{ feature }}
-                    </li>
+                    <li v-for="feature in detailingPlan.features" v-html="feature"></li>
                 </ul>
             </div>
 
