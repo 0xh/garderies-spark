@@ -21,9 +21,9 @@ class BookingReminder extends Notification implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($bookingRequest)
+    public function __construct($booking)
     {
-        $this->booking = $bookingRequest;
+        $this->booking = $booking;
     }
 
     /**
