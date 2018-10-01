@@ -153,7 +153,7 @@ class SparkServiceProvider extends ServiceProvider
             ->maxTeams(2)
             ->maxCollaborators(20)
             ->features([
-                "<strong>5% de rabais</strong>",
+                "<span class='badge badge-success'><strong>5% de rabais</strong></span>",
                 "CHF 18.- / utilisateur / mois"
             ]);
 
@@ -164,7 +164,7 @@ class SparkServiceProvider extends ServiceProvider
             ->maxTeams(4)
             ->maxCollaborators(40)
             ->features([
-                "<strong>10% de rabais</strong>",
+                "<span class='badge badge-success'><strong>10% de rabais</strong></span>",
                 "CHF 15.70 / utilisateur / mois"
             ]);
 
@@ -175,7 +175,7 @@ class SparkServiceProvider extends ServiceProvider
             ->maxTeams(8)
             ->maxCollaborators(80)
             ->features([
-                "<strong>10% de rabais</strong>",
+                "<span class='badge badge-success'><strong>10% de rabais</strong></span>",
                 "CHF 15.30 / utilisateur / mois"
             ]);
 
@@ -186,7 +186,7 @@ class SparkServiceProvider extends ServiceProvider
             ->maxTeams(10)
             ->maxCollaborators(100)
             ->features([
-                "<strong>10% de rabais</strong>",
+                "<span class='badge badge-success'><strong>10% de rabais</strong></span>",
                 "CHF 14.40 / utilisateur / mois"
             ]);
 
@@ -197,7 +197,7 @@ class SparkServiceProvider extends ServiceProvider
             ->maxTeams(20)
             ->maxCollaborators(200)
             ->features([
-                "<strong>10% de rabais</strong>",
+                "<span class='badge badge-success'><strong>10% de rabais</strong></span>",
                 "CHF 13.50 / utilisateur / mois"
             ]);
 

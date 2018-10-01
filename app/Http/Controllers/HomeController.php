@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Availability;
 use App\Booking;
 use App\BookingRequest;
 use App\Charts\BookingsChart;
-use App\Nursery;
-use App\User;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
