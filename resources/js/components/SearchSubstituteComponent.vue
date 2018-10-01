@@ -165,7 +165,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="row" v-if="role == 'director'">
+                        <div class="row" v-if="role == 'director' || role == 'owner'">
                             <div class="form-group col">
                                 <label for="employee">Employé</label>
                                 <select name="employee" class="form-control selectpicker" title="Sélectionner..." data-live-search="true" data-style="btn-link border text-secondary" v-model="employee">
