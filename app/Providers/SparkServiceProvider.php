@@ -72,7 +72,7 @@ class SparkServiceProvider extends ServiceProvider
         Spark::useStripe()->noCardUpFront()->trialDays(10);
 
         // TVA Collect
-        //Spark::collectEuropeanVat('CH', 7.7);
+        //Spark::collectEuropeanVat('CH');
 
         /**
          * Define monthly plans
@@ -209,22 +209,22 @@ class SparkServiceProvider extends ServiceProvider
 
             $msg_too_much_members = "Vous avez trop de membres d'équipes. Vous devez avoir un maximum de %s membres pour pouvoir utiliser ce plan.";
 
-            if ($plan->id == 'garderies-10' && $user->currentTeam()->users()->count() > 10) {
+            if ($plan->id == 'garderies-10' && $user->hasTeams() && $user->currentTeam()->users()->count() > 10) {
                 throw IneligibleForPlan::because(sprintf($msg_too_much_members, 10));
             }
-            if ($plan->id == 'garderies-20' && $user->currentTeam()->users()->count() > 20) {
+            if ($plan->id == 'garderies-20' && $user->hasTeams() && $user->currentTeam()->users()->count() > 20) {
                 throw IneligibleForPlan::because(sprintf($msg_too_much_members, 20));
             }
-            if ($plan->id == 'garderies-40' && $user->currentTeam()->users()->count() > 40) {
+            if ($plan->id == 'garderies-40' && $user->hasTeams() && $user->currentTeam()->users()->count() > 40) {
                 throw IneligibleForPlan::because(sprintf($msg_too_much_members, 40));
             }
-            if ($plan->id == 'garderies-80' && $user->currentTeam()->users()->count() > 80) {
+            if ($plan->id == 'garderies-80' && $user->hasTeams() && $user->currentTeam()->users()->count() > 80) {
                 throw IneligibleForPlan::because(sprintf($msg_too_much_members, 80));
             }
-            if ($plan->id == 'garderies-100' && $user->currentTeam()->users()->count() > 100) {
+            if ($plan->id == 'garderies-100' && $user->hasTeams() && $user->currentTeam()->users()->count() > 100) {
                 throw IneligibleForPlan::because(sprintf($msg_too_much_members, 100));
             }
-            if ($plan->id == 'garderies-200' && $user->currentTeam()->users()->count() > 200) {
+            if ($plan->id == 'garderies-200' && $user->hasTeams() && $user->currentTeam()->users()->count() > 200) {
                 throw IneligibleForPlan::because(sprintf($msg_too_much_members, 200));
             }
 
