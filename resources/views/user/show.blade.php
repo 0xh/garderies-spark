@@ -96,7 +96,12 @@
                                 <li class="list-group-item">
                                     <a href="#" v-on:click.prevent="addToFavorite({{$user->id}})">
                                         <i class="text-warning" :class="[favorite ? 'fas fa-star' : 'far fa-star']"></i>
-                                        Ajouter aux favoris
+                                        <span v-if="favorite">
+                                            Ajouté aux favoris
+                                        </span>
+                                        <span v-else>
+                                            Ajouter aux favoris
+                                        </span>
                                     </a>
                                 </li>
                                 @endif
