@@ -52,6 +52,18 @@ class User extends SparkUser
         'contact_preferences'   => 'array',
     ];
 
+    /**
+     * Override the tax percentage for Switzerland, because the rest of the world doesn't know about us.
+     *
+     * @return float|int
+     */
+    public function taxPercentage()
+    {
+        if ($this->card_country == 'CH') {
+            return 7.7;
+        }
+    }
+
     public function routeNotificationForNexmo($notification)
     {
         return $this->phone;

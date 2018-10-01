@@ -11,6 +11,11 @@ require('./auth/register-stripe');
 require('./auth/register-braintree');
 
 /**
+ * Mixins
+ */
+require('./settings/mixins/vat');
+
+/**
  * Settings Component...
  */
 require('./settings/settings');
