@@ -113,6 +113,18 @@
                         </aside>
                         @endif
                     @endif
+                    <aside class="d-none">
+                        <h3 class="nav-heading">Divers</h3>
+                        <ul class="nav flex-column mb-4 ">
+                            <li class="nav-item ">
+                                <a class="nav-link" href="#emails" aria-controls="emails" role="tab" data-toggle="tab">
+                                    <i class="fas fa-envelope mr-3" style="font-size: 20px; color: #abb5be;"></i>
+                                    E-mails
+                                </a>
+                            </li>
+                        </ul>
+                    </aside>
+
                 </div>
 
                 <!-- Tab cards -->
@@ -165,6 +177,14 @@
                                 @include('spark::settings.invoices')
                             </div>
                         @endif
+                        <div role="tabcard" class="tab-pane" id="emails">
+                            <div class="card">
+                                <div class="card-header">E-mails</div>
+                                <div class="card-body">
+                                    Lorem ipsum
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
