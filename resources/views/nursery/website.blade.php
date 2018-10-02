@@ -24,6 +24,7 @@
                         <p class="card-text">Haec dum oriens diu perferret, caeli reserato tepore Constantius consulatu suo septies et Caesaris ter egressus Arelate Valentiam petit, in Gundomadum et Vadomarium fratres Alamannorum reges arma moturus, quorum crebris excursibus vastabantur confines limitibus terrae Gallorum.</p>
                     </div>
                 </div>
+                @if ($nursery->ads->count())
                 <div class="card">
                     <div class="card-header bg-dark text-white">Annonces</div>
                     <div class="card-body">
@@ -40,8 +41,10 @@
                         @endforeach
                     </div>
                 </div>
+                @endif
             </div>
             <div class="col-md-4">
+                @if ($nursery->address)
                 <div class="card bg-info text-white mb-4">
                     <div class="card-header">Informations de contact</div>
                     <div class="card-body">
@@ -50,7 +53,8 @@
                         <p class="m-0"><a href="tel:{{$nursery->phone}}">{{$nursery->phone}}</a></p>
                     </div>
                 </div>
-                <div class="card mb-4">
+                @endif
+                <div class="card mb-4 d-none">
                     <div class="card-header">Horaires</div>
                     <div class="card-body">
                         <table class="table m-0">
