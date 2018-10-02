@@ -20,9 +20,11 @@ La création d'un réseau est extrêmement simple, rendez-vous dans la page "Ré
 
 Le formulaire permet de d'insérer le nom du réseau désiré, prenez le temps de vérifier l'orthographe car une URL unique sera associée à ce réseau i.e `https://garderies.app/networks/mon-reseau`.
 
-<video autoplay="autoplay" loop>
-    <source src="/img/docs/create-network.mp4" type="video/mp4">
-</video>
+<div class="embed-responsive embed-responsive-16by9">
+    <video autoplay="autoplay" loop class="embed-responsive-item">
+        <source src="/img/docs/create-network.mp4" type="video/mp4">
+    </video>
+</div>
 
 <a name="section-3"></a>
 ## Annonces

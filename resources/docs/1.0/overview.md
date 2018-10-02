@@ -17,4 +17,4 @@ Toutes les opérations décrites dans cette documentation sont à effectuer auth
 
 En cas de problème technique et si vous ne parvenez pas à trouver les réponses à vos questions dans cette documentation, n'hésitez pas à prendre contact avec l'équipe de Garderies.ch.
 
-[support@garderies.ch](mailto:support@garderies.ch)
+[Contacter support@garderies.ch](mailto:support@garderies.ch)
