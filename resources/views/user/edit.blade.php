@@ -36,6 +36,10 @@
                                 <input type="text" class="form-control" name="phone" value="{{$user->phone}}" v-mask="'+41 ## ### ## ##'">
                             </div>
                             <div class="form-group">
+                                <label for="birthdate">Date de naissance :</label>
+                                <input type="date" class="form-control" name="birthdate" value="{{$user->birthdate}}" max="{{now()->subYears(16)->format('Y-m-d')}}">
+                            </div>
+                            <div class="form-group">
                                 <label for="diploma">Diplôme :</label>
                                 <select name="diploma" class="form-control selectpicker" title="Sélectionner..." data-style="btn-link border text-secondary">
                                     @foreach($diplomas as $diploma)

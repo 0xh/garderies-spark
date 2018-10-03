@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('password', 60);
             $table->rememberToken();
             $table->text('photo_url')->nullable();
+            $table->date('birthdate')->nullable();
             $table->integer('nursery_id')->nullable();
             $table->integer('diploma_id')->nullable();
             $table->tinyInteger('uses_two_factor_auth')->default(0);

@@ -233,6 +233,7 @@ class UserController extends Controller
             $user->name         = $request->name;
             $user->email        = $request->email;
             $user->phone        = $request->phone;
+            $user->birthdate    = $request->birthdate;
             $user->nursery_id   = $request->nursery;
             $user->diploma_id   = $request->diploma;
 
