@@ -24,13 +24,14 @@ class BookingRequestController extends Controller
     {
         $this->authorize('index', 'App\BookingRequest');
 
-        $user = auth()->user();
-        $team = $user->currentTeam();
-        $nurseries = Nursery::where('team_id', $team->id)->get();
-        $nurseries_ids = array_flatten($nurseries->pluck('id'));
+        $user           = auth()->user();
+        $team           = $user->currentTeam();
+        $nurseries      = $team->nurseries;
+        $nurseries_ids  = array_flatten($nurseries->pluck('id'));
 
         // Get future pending booking requests
-        $pendingBookingRequests = BookingRequest::with('user')
+        $pendingBookingRequests = $team->bookingRequests()
+            ->with('user')
             ->where('start', '>=', now())
             ->where('status', BookingRequest::STATUS_PENDING)
             ->whereIn('nursery_id', $nurseries_ids)
@@ -42,7 +43,8 @@ class BookingRequestController extends Controller
             ->get();
 
         // Get future booking requests that are not pending
-        $bookingRequests = BookingRequest::with('user')
+        $bookingRequests = $team->bookingRequests()
+            ->with('user')
             ->where('start', '>=', now())
             ->where('status', '!=', BookingRequest::STATUS_PENDING)
             ->whereIn('nursery_id', $nurseries_ids)

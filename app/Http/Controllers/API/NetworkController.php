@@ -37,7 +37,6 @@ class NetworkController extends Controller
 
         $perPage = $request->has('per_page') ? (int) $request->per_page : null;
 
-
         $query->where('networks.team_id', $team->id);
 
         $data = $query

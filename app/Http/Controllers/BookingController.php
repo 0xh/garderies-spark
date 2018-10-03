@@ -26,21 +26,7 @@ class BookingController extends Controller
      */
     public function index()
     {
-        // Get future bookings
-        $bookings = Booking::where('start', '>=', now())
-            ->orderBy('status', 'desc')
-            ->orderBy('start')
-            ->get();
-
-        // Get archived bookings
-        $bookings_archive = Booking::where('status', Booking::STATUS_ARCHIVED)
-            ->orderBy('start')
-            ->get();
-
-        return view('booking.index', [
-            'bookings'          => $bookings,
-            'bookings_archive'  => $bookings_archive,
-        ]);
+        return view('booking.index');
     }
 
     /**

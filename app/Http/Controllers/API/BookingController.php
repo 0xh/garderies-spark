@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Booking;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -21,18 +22,22 @@ class BookingController extends Controller
         $status     = $request->status;
         $nursery    = $request->nursery;
 
+        $user   = User::find($request->uid);
+        $team   = $user->currentTeam();
+
         // Retrieve bookings and their relations
-        $bookings = Booking::select(
+        $bookings = $team->bookings()->select(
                 'bookings.*',
                 DB::raw("DATE_FORMAT(bookings.start, '%H:%i') as start_time"),
                 DB::raw("DATE_FORMAT(bookings.end, '%H:%i') as end_time")
             )
             ->join('users', 'users.id', 'bookings.user_id')->with('user')
             ->join('users as substitutes', 'substitutes.id', 'bookings.substitute_id')->with('substitute')
-            ->join('nurseries', 'nurseries.id', 'bookings.nursery_id')->with('nursery');
+            ->join('nurseries as n', 'nurseries.id', 'bookings.nursery_id')->with('nursery')
+            ->distinct();
     
         if ($nursery) {
-            $bookings->where('nurseries.id', '=', $nursery);
+            $bookings->where('n.id', '=', $nursery);
         }
 
         // Filter by status

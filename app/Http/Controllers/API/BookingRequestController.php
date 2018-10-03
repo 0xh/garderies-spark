@@ -30,7 +30,10 @@ class BookingRequestController extends Controller
      */
     public function index()
     {
-        $requests = BookingRequest::where('status', BookingRequest::STATUS_PENDING)
+        $user   = User::find($request->uid);
+        $team   = $user->currentTeam();
+
+        $requests = $team->bookingRequests()->where('status', BookingRequest::STATUS_PENDING)
             ->where('start', '>', now())
             ->get();
         return response()->json([

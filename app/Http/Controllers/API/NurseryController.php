@@ -26,11 +26,8 @@ class NurseryController extends Controller
 
         $network = $request->network;
 
-        $query = $team->nurseries();
-        $query->leftJoin('networks', 'networks.id', 'nurseries.network_id')->with('network');
-
-        //$query = Nursery::leftJoin('networks', 'networks.id', 'nurseries.network_id')
-          //  ->with('network');
+        $query = $team->nurseries()
+            ->leftJoin('networks', 'networks.id', 'nurseries.network_id')->with('network');
 
         // restrict query to a certain network
         if ($network) {

@@ -4,7 +4,7 @@
 
 @section('content')
     
-    <vue-table title="Remplacements" api-url="/api/bookings" :statuses="{
+    <vue-table title="Remplacements" api-url="/api/bookings" :user="user.id" :current-team="currentTeam" :statuses="{
         pending: {{ \App\Booking::STATUS_PENDING }},
         approved: {{ \App\Booking::STATUS_APPROVED }},
         denied: {{ \App\Booking::STATUS_DENIED }},
@@ -46,7 +46,7 @@
             }]"></vue-table>
 
 
-    <vue-table title="Remplacements archivés" api-url="/api/bookings?status=3" card-bg-class="bg-secondary" :statuses="{
+    <vue-table title="Remplacements archivés" api-url="/api/bookings?status=3" :user="user.id" :current-team="currentTeam" card-bg-class="bg-secondary" :statuses="{
         pending: {{ \App\Booking::STATUS_PENDING }},
         approved: {{ \App\Booking::STATUS_APPROVED }},
         denied: {{ \App\Booking::STATUS_DENIED }},
