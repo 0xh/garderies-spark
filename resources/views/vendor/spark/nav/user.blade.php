@@ -80,7 +80,7 @@
 
                             <div class="dropdown-divider"></div>
 
-                            @if (Spark::usesTeams() && (Spark::createsAdditionalTeams() || Spark::showsTeamSwitcher()))
+                            @if (Spark::usesTeams() && (Spark::createsAdditionalTeams() || Spark::showsTeamSwitcher()) && Auth::user()->hasTeams())
                                 <!-- Team Settings -->
                                 @include('spark::nav.teams')
                             @endif
