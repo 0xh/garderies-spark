@@ -32,11 +32,11 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col mb-4">
+    <div class="row mb-4">
+        <div class="col-md-8">
             {{-- Next bookings --}}
-            <div class="card">
-                <div class="card-header bg-dark text-white"><i class="fas fa-calendar-alt mr-2"></i> Prochains remplacements</div>
+            <div class="card mb-4">
+                <div class="card-header bg-dark text-white"><i class="fas fa-calendar-alt mr-2"></i> Remplacements planifiés</div>
                 <div class="card-body">
                     @if($bookings->count())
                         <div class="table-responsive">
@@ -62,14 +62,10 @@
                             </table>
                         </div>
                     @else
-                        <div class="alert alert-info">Aucun remplacement prévu</div>
+                        <div class="alert alert-info m-0">Aucun remplacement prévu</div>
                     @endif
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col mb-4">
             {{-- Pending booking requests --}}
             <div class="card">
                 <div class="card-header bg-dark text-white"><i class="fas fa-user-clock mr-2"></i> Demandes de remplacements en attente</div>
@@ -126,7 +122,28 @@
                             </table>
                         </div>
                     @else
-                        <div class="alert alert-info">Aucune demande en attente</div>
+                        <div class="alert alert-info m-0">Aucune demande en attente</div>
+                    @endif
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <i class="fas fa-birthday-cake mr-2"></i> Anniversaires à venir
+                </div>
+                <div class="card-body">
+                    @if ($birthdays->count())
+                    <table class="table table-borderless table-striped table-sm m-0">
+                        @foreach($birthdays as $birthday)
+                        <tr>
+                            <td>{{$birthday->birthdate->format('d.m.') . now()->format('Y')}}</td>
+                            <td>{{$birthday->name}}</td>
+                        </tr>
+                        @endforeach
+                    </table>
+                    @else
+                        <div class="alert alert-info m-0">Aucun anniversaire à venir</div>
                     @endif
                 </div>
             </div>

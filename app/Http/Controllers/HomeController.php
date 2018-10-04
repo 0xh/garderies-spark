@@ -6,6 +6,7 @@ use App\Booking;
 use App\BookingRequest;
 use App\Charts\BookingsChart;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -50,6 +51,10 @@ class HomeController extends Controller
             $booking_requests   = $team->bookingRequests()->where('start', '>', now())->get();
             $count_booking_req  = $booking_requests->count();
             $bookingsChart      = new BookingsChart();
+            $birthdays          = $team->users()
+                ->whereMonth('birthdate', '=', 10)
+                ->orWhereMonth('birthdate', '=', 11)
+                ->get();
 
             return view('home-director', [
                 'nurseries'             => $nurseries,
@@ -60,7 +65,8 @@ class HomeController extends Controller
                 'chartBookings'         => $bookingsChart,
                 'team'                  => $team,
                 'bookings'              => $bookings,
-                'bookingRequests'       => $booking_requests
+                'bookingRequests'       => $booking_requests,
+                'birthdays'             => $birthdays
             ]);
         }
         // Substitute view

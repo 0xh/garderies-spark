@@ -21,5 +21,6 @@ $factory->define(App\User::class, function (Faker $faker) {
         'password'          => bcrypt('123456'), // secret
         'remember_token'    => str_random(10),
         'trial_ends_at'     => now()->addDays(10),
+        'birthdate'         => '2000-' . rand(1,12) . '-' . rand(1,28)
     ];
 });

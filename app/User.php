@@ -52,6 +52,10 @@ class User extends SparkUser
         'contact_preferences'   => 'array',
     ];
 
+    protected $dates = [
+        'birthdate'
+    ];
+
     /**
      * Override the tax percentage for Switzerland, because the rest of the world doesn't know about us.
      *
