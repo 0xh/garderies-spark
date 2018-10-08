@@ -7,9 +7,7 @@
         data() {
             return data;
         },
-        mounted() {
-            console.log('User edit component mounted.');
-        },
+        mounted() {},
         methods: {},
         directives: {mask}
     }

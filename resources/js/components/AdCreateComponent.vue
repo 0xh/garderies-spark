@@ -8,10 +8,7 @@
         data() {
             return data;
         },
-        mounted() {
-            console.log('Ad create component mounted.');
-
-        },
+        mounted() {},
         components: {
             'editor': Editor
         }

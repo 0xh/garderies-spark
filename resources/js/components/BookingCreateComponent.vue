@@ -25,9 +25,7 @@
         data() {
             return data;
         },
-        mounted() {
-            console.log('Booking create component mounted.');
-        },
+        mounted() {},
         components: {
             flatPickr
         }

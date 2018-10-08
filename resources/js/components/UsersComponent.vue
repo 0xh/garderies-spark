@@ -52,8 +52,6 @@
             }
         },
         mounted() {
-            console.log('Component mounted.');
-
             axios.get('/api/users', {
                 params: {
                     nursery: this.nursery,
@@ -61,7 +59,6 @@
                 }
             })
             .then(function (response) {
-                console.log(response);
                 data.users = response.data;
             });
         }

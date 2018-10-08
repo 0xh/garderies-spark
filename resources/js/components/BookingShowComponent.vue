@@ -28,8 +28,6 @@
             validateBooking: function (booking) {
                 axios.post('/api/bookings/approve/' + booking)
                     .then(function (response) {
-                        console.log(response);
-
                         swal({
                             title: 'Confirmé',
                             text: "Le remplacement a bien été validé.",
@@ -54,7 +52,6 @@
                     if (result.value) {
                         axios.delete('/api/bookings/' + booking)
                             .then(function (response) {
-                                console.log(response);
                                 window.location.replace(response.data.redirect);
                             });
                     }

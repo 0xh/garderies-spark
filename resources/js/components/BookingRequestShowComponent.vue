@@ -8,16 +8,11 @@
         data() {
             return data;
         },
-        mounted() {
-            console.log('Booking request show component mounted.');
-        },
+        mounted() {},
         methods: {
             validateBookingRequest: function (request) {
-                console.log('validate this shit');
                 axios.post('/api/booking-requests/approve/' + request)
                     .then(function (response) {
-                        console.log(response);
-
                         swal({
                             title: 'Confirmé',
                             text: "La demande a bien été validée.",
@@ -30,7 +25,6 @@
                     });
             },
             deleteBookingRequest: function (request) {
-                console.log('try to delete');
                 if (!request) {
                     return;
                 }
@@ -45,7 +39,6 @@
                     if (result.value) {
                         axios.delete('/api/booking-requests/' + request)
                             .then(function (response) {
-                                console.log(response);
                                 window.location.replace(response.data.redirect);
                             });
                     }

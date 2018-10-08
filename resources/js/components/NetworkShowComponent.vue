@@ -8,12 +8,9 @@
         data() {
             return data;
         },
-        mounted() {
-            console.log('Network show component mounted.');
-        },
+        mounted() {},
         methods: {
             deleteNetwork: function (network) {
-                console.log('try to delete');
                 if (!network) { return; }
                 swal({
                     title: 'Attention !',
@@ -26,7 +23,6 @@
                     if (result.value) {
                         axios.delete('/api/networks/' + network)
                         .then(function(response){
-                            console.log(response);
                             window.location.replace(response.data.redirect);
                         });
                     }

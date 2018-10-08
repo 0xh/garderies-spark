@@ -23,7 +23,6 @@
                     if (result.value) {
                         axios.delete('/api/nurseries/' + nursery)
                         .then(function(response){
-                            console.log(response);
                             window.location.replace(response.data.redirect);
                         });
                     }

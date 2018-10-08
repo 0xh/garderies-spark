@@ -96,8 +96,6 @@
                     confirmButtonText: "Oui !",
                     cancelButtonText: "Non merci"
                 }).then((response) => {
-                    console.log(response);
-
                     if (response.value) {
                         this.$tours['myTour'].start();
                         $('.alert-guided-tour').hide();

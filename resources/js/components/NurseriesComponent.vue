@@ -33,11 +33,8 @@
             return data;
         },
         mounted() {
-            console.log('Component mounted.');
-
             axios.get('/api/nurseries')
                 .then(function(response){
-                    console.log(response);
                     data.nurseries = response.data.data;
                 });
         }

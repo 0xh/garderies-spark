@@ -21,9 +21,7 @@
         data() {
             return data;
         },
-        mounted() {
-            console.log('Availability edit component mounted.')
-        },
+        mounted() {},
         components: {
             flatPickr
         }
