@@ -57,6 +57,7 @@ class Kernel extends ConsoleKernel
 
         })->dailyAt('17:00');
 
+        // generate a snapshot for horizon in production
         if (env('APP_ENV') == 'production') {
             $schedule->command('horizon:snapshot')->everyFiveMinutes();
         }

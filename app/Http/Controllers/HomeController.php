@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Booking;
 use App\BookingRequest;
 use App\Charts\BookingsChart;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -61,9 +62,11 @@ class HomeController extends Controller
                 ->get();
             $count_booking_req  = $booking_requests->count();
             $bookingsChart      = new BookingsChart();
+            $birthdays_limit    = now()->addMonth(1);
             $birthdays          = $team->users()
-                ->whereMonth('birthdate', '=', 10)
-                ->orWhereMonth('birthdate', '=', 11)
+                ->whereMonth('birthdate', '=', now()->month)
+                ->orWhereMonth('birthdate', '=', $birthdays_limit->month)
+                ->where('team_id', $team->id)
                 ->get();
 
             return view('home-director', [
