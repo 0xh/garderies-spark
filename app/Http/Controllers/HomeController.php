@@ -45,10 +45,20 @@ class HomeController extends Controller
         elseif ($team && $authUser->roleOn($team) == 'director') {
             $nurseries          = $team->nurseries()->orderBy('created_at', 'desc')->get();
             $count_nursery      = $nurseries->count();
-            $count_user         = $team->users()->where('id', '!=', $authUser->id)->where('role', '=', 'substitute')->count();
-            $bookings           = $team->bookings()->whereMonth('start', date('m'))->where('start', '>', now())->get();
+            $count_user         = $team->users()
+                ->where('id', '!=', $authUser->id)
+                ->where('role', '=', 'substitute')
+                ->count();
+            $bookings           = $team->bookings()
+                ->whereMonth('start', date('m'))
+                ->where('start', '>', now())
+                ->where('status', Booking::STATUS_APPROVED)
+                ->get();
             $count_booking      = $bookings->count();
-            $booking_requests   = $team->bookingRequests()->where('start', '>', now())->get();
+            $booking_requests   = $team->bookingRequests()
+                ->where('start', '>', now())
+                ->where('status', BookingRequest::STATUS_PENDING)
+                ->get();
             $count_booking_req  = $booking_requests->count();
             $bookingsChart      = new BookingsChart();
             $birthdays          = $team->users()

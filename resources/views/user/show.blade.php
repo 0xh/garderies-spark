@@ -120,7 +120,7 @@
                         <div class="card-header">Prochains remplacements</div>
                         <div class="card-body">
                             @if (!$bookings->count())
-                                <div class="alert alert-info">Aucun remplacement prévu.</div>
+                                <div class="alert alert-info m-0">Aucun remplacement prévu.</div>
                             @else
                                 <table class="table table-borderless table-striped table-responsive-lg">
                                     <thead>
@@ -164,7 +164,7 @@
                         <div class="card-header">Demandes en attente</div>
                         <div class="card-body">
                             @if (!$bookingRequests->count())
-                                <div class="alert alert-info">Aucune demande en attente.</div>
+                                <div class="alert alert-info m-0">Aucune demande en attente.</div>
                             @else
                                 <table class="table table-borderless table-striped table-responsive-lg">
                                     <thead>
@@ -216,8 +216,7 @@
                         </div>
                         <div class="card-body">
                             @if (!$availabilities->count())
-                                <div class="alert alert-info">Aucune disponibilité renseignée pour le moment.</div>
-                                <a href="{{route('users.availabilities', $user->id)}}" class="btn btn-info"><i class="fas fa-calendar"></i> Gérer les disponibilités</a>
+                                <div class="alert alert-info m-0">Aucune disponibilité renseignée pour le moment.</div>
                             @else
                                 <table class="table table-borderless table-striped table-responsive-lg">
                                     <thead>
@@ -260,7 +259,7 @@
                         <div class="card-header">Demandes de remplacement pour cet utilisateur</div>
                         <div class="card-body">
                             @if (!$userBookingRequests->count())
-                                <div class="alert alert-info">Aucune demande en attente.</div>
+                                <div class="alert alert-info m-0">Aucune demande en attente.</div>
                             @else
                                 <table class="table table-borderless table-striped table-responsive-lg">
                                     <thead>

@@ -39,7 +39,7 @@
                             </table>
                         </div>
                     @else
-                        <div class="alert alert-info">Aucun remplacement prévu</div>
+                        <div class="alert alert-info m-0">Aucun remplacement prévu</div>
                     @endif
                 </div>
             </div>
@@ -95,7 +95,7 @@
                             </table>
                         </div>
                     @else
-                        <div class="alert alert-info">Aucune demande en attente</div>
+                        <div class="alert alert-info m-0">Aucune demande en attente</div>
                     @endif
                 </div>
             </div>
@@ -104,15 +104,13 @@
                 <div class="card-header bg-dark text-white">
                     <i class="fas fa-clock mr-2"></i> Prochaines disponibilités
                     <div class="actions float-right">
-                        <a href="{{route('users.availabilities', $user->id)}}" class="btn btn-info btn-sm"><i
+                        <a href="{{route('users.availabilities', $user)}}" class="btn btn-info btn-sm"><i
                                     class="fas fa-calendar"></i> Gérer mes disponibilités</a>
                     </div>
                 </div>
                 <div class="card-body">
                     @if (!$availabilities->count())
-                        <div class="alert alert-info">Aucune disponibilité renseignée pour le moment.</div>
-                        <a href="{{route('users.availabilities', $user->id)}}" class="btn btn-info"><i
-                                    class="fas fa-calendar"></i> Gérer mes disponibilités</a>
+                        <div class="alert alert-info m-0">Aucune disponibilité renseignée pour le moment.</div>
                     @else
                         <div class="table-responsive">
                             <table class="table table-borderless table-striped">
@@ -181,7 +179,7 @@
                             </table>
                         </div>
                     @else
-                        <div class="alert alert-info">Vous n'avez pas de remplacement validé</div>
+                        <div class="alert alert-info m-0">Vous n'avez pas de remplacement validé</div>
                     @endif
                 </div>
             </div>
@@ -219,7 +217,7 @@
                             </table>
                         </div>
                     @else
-                        <div class="alert alert-info">Vous n'avez pas encore de remplaçant favoris</div>
+                        <div class="alert alert-info m-0">Vous n'avez pas encore de remplaçant favoris</div>
                     @endif
                 </div>
             </div>
