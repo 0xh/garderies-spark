@@ -45,7 +45,7 @@ class BookingReminder extends Notification implements ShouldQueue
                         $via[] = 'mail';
                         break;
                     case 'sms':
-                        //$via[] = 'nexmo';
+                        $via[] = 'nexmo';
                         break;
                 }
             }
