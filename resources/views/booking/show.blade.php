@@ -19,8 +19,10 @@
                         <a href="#" v-on:click.prevent="addFeedback({{$booking->id}})" class="btn btn-info btn-sm"><i
                                     class="far fa-clipboard"></i> Ajouter un rapport</a>
                             @endif
+                        @can('delete', $booking)
                         <a href="#" v-on:click.prevent="deleteBooking({{$booking->id}})"
                            class="btn btn-danger btn-sm"><i class="fas fa-edit"></i> Supprimer</a>
+                            @endcan
                     </div>
                 </div>
                 <div class="card-body">
