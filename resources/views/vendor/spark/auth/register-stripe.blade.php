@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.registration')
 
 @section('scripts-head')
     <script src="https://js.stripe.com/v3/"></script>
@@ -9,13 +9,13 @@
 @section('content')
 <spark-register-stripe inline-template>
     <div>
-        <div class="spark-screen container">
+        <div class="spark-screen">
             <!-- Common Register Form Contents -->
             @include('spark::auth.register-common')
 
             <!-- Billing Information -->
             <div class="row justify-content-center" v-if="selectedPlan && selectedPlan.price > 0">
-                <div class="col-lg-8">
+                <div class="col-lg-8 p-0">
                     <div class="card card-default">
                         <div class="card-header">{{__('Billing Information')}}</div>
 

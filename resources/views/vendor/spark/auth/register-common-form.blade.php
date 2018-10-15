@@ -45,6 +45,7 @@
                 <input type="radio" class="form-check-input" name="account_type" v-model="registerForm.account_type" id="account_type_network" value="network">
                 <label for="account_type_network" class="form-check-label">Réseau / Garderie</label>
             </div>
+            <p class="text-muted">Sélectionnez quel type de compte vous avez besoin, selon votre rôle.</p>
         </div>
     </div>
 

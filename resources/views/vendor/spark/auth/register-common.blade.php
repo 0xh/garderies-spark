@@ -24,7 +24,7 @@
 
 <!-- Plan Selection -->
 <div class="row justify-content-center" v-if="paidPlans.length > 0">
-    <div class="col-lg-8">
+    <div class="col-lg-12 p-0">
         <div class="card card-default">
             <div class="card-header">
                 <div class="float-left" :class="{'btn-table-align': hasMonthlyAndYearlyPlans}">
@@ -120,32 +120,31 @@
 
 <!-- Basic Profile -->
 <div class="row justify-content-center">
-    <div class="col-lg-8 p-0">
-        <div class="card card-default">
-            <div class="card-header">
-                <span v-if="paidPlans.length > 0">
-                    {{__('Profile')}}
-                </span>
+    <div class="col-10 pt-5 pb-5">
 
-                <span v-else>
-                    {{__('Register')}}
-                </span>
+        <h1 class="text-center mb-4">
+            <span v-if="paidPlans.length > 0">
+                {{__('Profile')}}
+            </span>
+
+            <span v-else>
+                {{__('Register')}}
+            </span>
+        </h1>
+
+        <div>
+            <!-- Generic Error Message -->
+            <div class="alert alert-danger" v-if="registerForm.errors.has('form')">
+                @{{ registerForm.errors.get('form') }}
             </div>
 
-            <div class="card-body">
-                <!-- Generic Error Message -->
-                <div class="alert alert-danger" v-if="registerForm.errors.has('form')">
-                    @{{ registerForm.errors.get('form') }}
-                </div>
-
-                <!-- Invitation Code Error -->
-                <div class="alert alert-danger" v-if="registerForm.errors.has('invitation')">
-                    @{{ registerForm.errors.get('invitation') }}
-                </div>
-
-                <!-- Registration Form -->
-                @include('spark::auth.register-common-form')
+            <!-- Invitation Code Error -->
+            <div class="alert alert-danger" v-if="registerForm.errors.has('invitation')">
+                @{{ registerForm.errors.get('invitation') }}
             </div>
+
+            <!-- Registration Form -->
+            @include('spark::auth.register-common-form')
         </div>
     </div>
 </div>
