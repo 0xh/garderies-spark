@@ -8,7 +8,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 text-center">
-                            <img src="{{asset('img/logo_garderies.png')}}" alt="Garderies" width="200">
+                            <img src="{{asset('img/logo_garderies_white.png')}}" alt="Garderies" width="200">
                         </div>
                     </div>
                     <div class="row">

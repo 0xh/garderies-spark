@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\Booking;
 use App\BookingRequest;
 use App\Charts\BookingsChart;
-use App\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -31,7 +29,7 @@ class HomeController extends Controller
             $count_booking_req  = $team->bookingRequests()->whereMonth('start', date('m'))->count();
             $bookingsChart      = new BookingsChart();
 
-            return view('home', [
+            $data = [
                 'nurseries'     => $nurseries,
                 'count_nursery' => $count_nursery,
                 'count_user'    => $count_user,
@@ -39,7 +37,9 @@ class HomeController extends Controller
                 'count_booking_req' => $count_booking_req,
                 'chartBookings' => $bookingsChart,
                 'team'          => $team
-            ]);
+            ];
+
+            return view('home', $data);
 
         }
         // Director view

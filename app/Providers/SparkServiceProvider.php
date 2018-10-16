@@ -272,11 +272,13 @@ class SparkServiceProvider extends ServiceProvider
 
             // disable the trial period for substitutes
             $trial = ($data['account_type'] == 'network') ? Carbon::now()->addDays(Spark::trialDays()) : null;
+            $birthdate = ($data['account_type'] == 'substitute') ? Carbon::parse($data['birthdate']) : null;
 
             $user->forceFill([
                 'name'          => $data['name'],
                 'email'         => $data['email'],
                 'password'      => bcrypt($data['password']),
+                'birthdate'     => $birthdate,
                 'trial_ends_at' => $trial,
             ])->save();
 

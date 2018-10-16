@@ -49,15 +49,36 @@
         </div>
     </div>
 
+    <div class="row" v-if="registerForm.account_type == 'network'">
+        <div class="col-md-4"></div>
+        <div class="col-md-6">
+            <p class="text-muted">Veuillez renseigner les informations de la personne responsable de la gestion de la facturation.</p>
+        </div>
+    </div>
+
+
     <!-- Name -->
     <div class="form-group row">
-        <label class="col-md-4 col-form-label text-md-right">{{__('Name')}}</label>
+        <label class="col-md-4 col-form-label text-md-right">Nom et prénom</label>
 
         <div class="col-md-6">
             <input type="text" class="form-control" name="name" v-model="registerForm.name" :class="{'is-invalid': registerForm.errors.has('name')}" autofocus>
 
             <span class="invalid-feedback" v-show="registerForm.errors.has('name')">
                 @{{ registerForm.errors.get('name') }}
+            </span>
+        </div>
+    </div>
+
+    <!-- Birthdate -->
+    <div class="form-group row" v-if="registerForm.account_type == 'substitute'">
+        <label class="col-md-4 col-form-label text-md-right">{{__('Birthdate')}}</label>
+
+        <div class="col-md-6">
+            <input type="date" max="{{now()->subYears(16)->format('Y-m-d')}}" class="form-control" name="birthdate" v-model="registerForm.birthdate" :class="{'is-invalid': registerForm.errors.has('birthdate')}" autofocus>
+
+            <span class="invalid-feedback" v-show="registerForm.errors.has('birthdate')">
+                @{{ registerForm.errors.get('birthdate') }}
             </span>
         </div>
     </div>

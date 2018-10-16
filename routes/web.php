@@ -17,6 +17,13 @@ Route::get('/', 'HomeController@index')->middleware('auth');
 Route::view('blog', 'blog');
 Route::view('account', 'account');
 
+Route::get('pdf', function () {
+    $pdf = \PDF::loadView('letter');
+    return $pdf->stream();
+
+    return view('pdf');
+});
+
 Route::resource('nurseries', 'NurseryController');
 Route::get('nurseries/{nursery}/planning', 'NurseryController@planning')->name('nurseries.planning');
 Route::get('nurseries/{nurseries}/ads', 'NurseryController@ads')->name('nurseries.ads');
