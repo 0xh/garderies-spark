@@ -2,14 +2,41 @@
   padding: 20px 0 20px;
 }
 
+.login {
+  background: #fff;
+
+  .main {
+    background: url(/img/header-bg-square.jpg) no-repeat;
+    background-size: cover;
+    background-position: center bottom;
+    padding: 100px 0;
+
+    h1 { color: #fff; }
+
+    form {
+      color: #fff;
+
+      label {
+        color: #fff !important;
+      }
+      .text-muted {
+        color: #dcdcdc !important;
+      }
+      a {
+        color: #fff;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
 .registration {
   background: #fff;
 
   .main {
-    background: url(/img/header-bg-1.png) no-repeat;
+    background: url(/img/header-bg-square.jpg) no-repeat;
     background-size: cover;
     background-position: center bottom;
-    margin-bottom: 30px;
     padding-bottom: 40px;
 
     h1 { color: #fff; }

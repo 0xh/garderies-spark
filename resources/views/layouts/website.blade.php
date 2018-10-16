@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
     @include('common.head')
-    <body>
+    <body class="@yield('body-class')">
         <div class="wrapper" id="spark-app" v-cloak>
             <div class="main">
                 @yield('hook-vue')
