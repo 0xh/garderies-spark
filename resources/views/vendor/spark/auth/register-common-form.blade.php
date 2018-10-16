@@ -39,7 +39,7 @@
         <div class="col-md-6 pt-1">
             <div class="form-check form-check-inline">
                 <input type="radio" class="form-check-input" name="account_type" v-model="registerForm.account_type" id="account_type_substitute" value="substitute" checked>
-                <label for="account_type_substitute" class="form-check-label">Remplaçant</label>
+                <label for="account_type_substitute" class="form-check-label">Remplaçant / employé</label>
             </div>
             <div class="form-check form-check-inline">
                 <input type="radio" class="form-check-input" name="account_type" v-model="registerForm.account_type" id="account_type_network" value="network">
