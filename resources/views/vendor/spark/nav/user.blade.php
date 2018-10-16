@@ -98,6 +98,12 @@
                                 <div class="dropdown-divider"></div>
                             @endif
 
+                            <h6 class="dropdown-header">Mon profil</h6>
+                            <a class="dropdown-item" href="{{route('users.edit', auth()->user())}}">
+                                <i class="fa fa-pencil-alt text-left fa-btn fa-cog"></i> Editer mon profil
+                            </a>
+                            <div class="dropdown-divider"></div>
+
                             <h6 class="dropdown-header">Documentation</h6>
                             <a class="dropdown-item" href="/docs">
                                 <i class="fa fa-fw text-left fa-btn fa-journal-whills"></i> Documentation

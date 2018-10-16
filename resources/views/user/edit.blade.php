@@ -37,8 +37,15 @@
                             </div>
                             <div class="form-group">
                                 <label for="birthdate">Date de naissance :</label>
-                                <input type="date" class="form-control" name="birthdate" value="{{$user->birthdate}}" max="{{now()->subYears(16)->format('Y-m-d')}}">
+                                <flat-pickr
+                                        :config="flatPickrConfig"
+                                        value="{{($user->birthdate) ? $user->birthdate->format('d.m.Y') : now()->subYears(16)->format('d.m.Y')}}"
+                                        class="form-control"
+                                        placeholder="Select a date"
+                                        name="birthdate">
+                                </flat-pickr>
                             </div>
+                            @if ($user->roleOnCurrentTeam() == 'substitute')
                             <div class="form-group">
                                 <label for="diploma">Diplôme :</label>
                                 <select name="diploma" class="form-control selectpicker" title="Sélectionner..." data-style="btn-link border text-secondary">
@@ -47,16 +54,10 @@
                                     @endforeach
                                 </select>
                             </div>
+                            @endif
                             <div class="form-group">
                                 <label for="billing_address">Adresse :</label>
                                 <input type="text" name="billing_address" class="form-control" value="{{$user->billing_address}}">
-                            </div>
-                            <div class="form-group">
-                                <label for="billing_state">Canton :</label>
-                                <select name="billing_state" class="form-control">
-                                    <option value="">Sélectionner...</option>
-                                    <option value="Vaud" {{($user->billing_state == 'Vaud') ? 'selected' : ''}}>Vaud</option>
-                                </select>
                             </div>
                             <div class="row">
                                 <div class="col-4">
@@ -72,7 +73,15 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label for="billing_state">Canton :</label>
+                                <select name="billing_state" class="form-control">
+                                    <option value="">Sélectionner...</option>
+                                    <option value="Vaud" {{($user->billing_state == 'Vaud') ? 'selected' : ''}}>Vaud</option>
+                                </select>
+                            </div>
                         </div>
+                        @if ($user->roleOnCurrentTeam() == 'substitute')
                         <div class="col-md-5">
                             <div class="mb-4">
                                 <h5>Réseaux de travail</h5>
@@ -110,11 +119,10 @@
                                     <label for="contact_preference_phone" class="form-check-label">Téléphone</label>
                                 </div>
                             </div>
-
                         </div>
+                        @endif
                     </div>
     
-                    <a href="{{ route('users.show', $user) }}" class="btn btn-outline-primary btn-back">&larr; Retour</a>
                     <button class="btn btn-primary float-right" type="submit">Enregistrer</button>
                 </form>
             </div>

@@ -167,7 +167,7 @@
                         </div>
                         <div class="row" v-if="role == 'director' || role == 'owner'">
                             <div class="form-group col">
-                                <label for="employee">Employé</label>
+                                <label for="employee">Employé à remplacer</label>
                                 <select name="employee" class="form-control selectpicker" title="Sélectionner..." data-live-search="true" data-style="btn-link border text-secondary" v-model="employee">
                                     <option v-for="employee in employees" :value="employee.id">{{employee.name}}</option>
                                 </select>

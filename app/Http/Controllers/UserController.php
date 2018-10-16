@@ -154,6 +154,10 @@ class UserController extends Controller
             'phone'   => ['label' => 'Téléphone', 'icon' => 'fas fa-phone'],
         ];
 
+        $cantons = [
+            'Vaud', 'Genève', 'Fribourg'
+        ];
+
         if ($authUser->isSuperAdmin() || $authUser->id == $user->id) {
             return view('user.edit', [
                 'user'                  => $user,
@@ -221,8 +225,6 @@ class UserController extends Controller
             // sync the networks
             $user->networks()->sync($network_ids);
 
-            return redirect()->route('users.show', $user);
-
         } else {
             // validate the request
             $request->validate([
@@ -233,7 +235,7 @@ class UserController extends Controller
             $user->name         = $request->name;
             $user->email        = $request->email;
             $user->phone        = $request->phone;
-            $user->birthdate    = $request->birthdate;
+            $user->birthdate    = ($request->birthdate) ? Carbon::parse($request->birthdate) : null;
             $user->nursery_id   = $request->nursery;
             $user->diploma_id   = $request->diploma;
 
@@ -252,9 +254,9 @@ class UserController extends Controller
                 $workgroup_ids = array_values($request->workgroups);
             }
             $user->workgroups()->sync($workgroup_ids);
-
-            return redirect('/');
         }
+
+        return redirect('/');
     }
 
     /**

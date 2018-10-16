@@ -75,7 +75,14 @@
         <label class="col-md-4 col-form-label text-md-right">{{__('Birthdate')}}</label>
 
         <div class="col-md-6">
-            <input type="date" max="{{now()->subYears(16)->format('Y-m-d')}}" class="form-control" name="birthdate" v-model="registerForm.birthdate" :class="{'is-invalid': registerForm.errors.has('birthdate')}" autofocus>
+            <flat-pickr
+                    :config="flatPickrConfig"
+                    value=""
+                    class="form-control"
+                    placeholder="Cliquez pour sélectionner une date"
+                    v-model="registerForm.birthdate"
+                    name="birthdate">
+            </flat-pickr>
 
             <span class="invalid-feedback" v-show="registerForm.errors.has('birthdate')">
                 @{{ registerForm.errors.get('birthdate') }}

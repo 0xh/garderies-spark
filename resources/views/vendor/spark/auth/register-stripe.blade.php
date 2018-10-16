@@ -7,7 +7,7 @@
 @section('title', 'Inscription')
 
 @section('content')
-<spark-register-stripe inline-template>
+<spark-register-stripe inline-template max-date="{{now()->subYears(16)->format('d.m.Y')}}">
     <div>
         <div class="spark-screen">
             <!-- Common Register Form Contents -->
