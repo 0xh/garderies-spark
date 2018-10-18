@@ -196,7 +196,9 @@ class UserController extends Controller
         $team               = $authUser->currentTeam;
 
         if ($authUser->roleOnCurrentTeam() == 'owner' || $authUser->roleOnCurrentTeam() == 'director') {
-            $user->nursery_id   = $request->nursery;
+            if ($request->nursery) {
+                $user->nursery_id   = $request->nursery;
+            }
             $user->save();
 
             /**
@@ -254,6 +256,10 @@ class UserController extends Controller
                 $workgroup_ids = array_values($request->workgroups);
             }
             $user->workgroups()->sync($workgroup_ids);
+        }
+
+        if ($authUser->roleOnCurrentTeam() == 'owner' || $authUser->roleOnCurrentTeam() == 'director') {
+            return redirect()->route('users.index');
         }
 
         return redirect('/');
