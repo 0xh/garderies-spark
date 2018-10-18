@@ -28,6 +28,10 @@
                         <i class="far fa-star text-warning"></i>
                     </template>
 
+                    <template slot="nursery" slot-scope="props">
+                        <span v-if="props.rowData.nursery">{{props.rowData.nursery.name}}</span>
+                    </template>
+
                     <template slot="nurserylink" slot-scope="props">
                         <a :href="'/nurseries/' + props.rowData.slug">{{props.rowData.name}}</a>
                     </template>

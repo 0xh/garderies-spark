@@ -19,7 +19,7 @@
           sortField: 'email',
           title: 'E-mail'
         }, {
-          name: '__slot:nurserylinkrelation',
+          name: '__slot:nursery',
           sortField: 'nurseries.name',
           title: 'Garderie'
         }, {
