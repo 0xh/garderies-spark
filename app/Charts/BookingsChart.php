@@ -64,7 +64,7 @@ class BookingsChart extends Chart
                 'pointHoverBackgroundColor'  => '#20aee3',
                 'pointHoverBorderColor'      => '#20aee3',
                 'pointStyle'            => 'circle',
-                'borderWidth'           => 3,
+                'borderWidth'           => 4,
                 'lineTension'           => 0.3
             ]);
 
@@ -78,7 +78,7 @@ class BookingsChart extends Chart
                 'pointHoverBorderColor'      => '#8bc34a',
 
                 'pointStyle'            => 'circle',
-                'borderWidth'           => 3,
+                'borderWidth'           => 4,
                 'lineTension'           => 0.3
             ]);
 
@@ -94,7 +94,7 @@ class BookingsChart extends Chart
             ],
             'elements' => [
                 'point' => [
-                    'radius' => 2,
+                    'radius' => 3,
                     'hoverRadius' => 5,
                     'hitRadius' => 10,
                 ]
