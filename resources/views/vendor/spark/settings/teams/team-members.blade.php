@@ -11,7 +11,7 @@
                         <th class="th-fit"></th>
                         <th>{{__('Name')}}</th>
                         <th v-if="roles.length > 1">{{__('Role')}}</th>
-                        <th>Courrier</th>
+                        <th class="d-none">Courrier</th>
                         <th>&nbsp;</th>
                     </thead>
 
@@ -38,7 +38,7 @@
                                 @{{ teamMemberRole(member) }}
                             </td>
 
-                            <td>
+                            <td class="d-none">
                                 <a :href="'/teams/letter/' + member.id" target="_blank">Télécharger lettre</a>
                             </td>
 
