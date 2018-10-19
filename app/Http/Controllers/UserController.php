@@ -195,11 +195,16 @@ class UserController extends Controller
         $authUser           = auth()->user();
         $team               = $authUser->currentTeam;
 
+        // validate the request
+        $request->validate([
+            'name'  => 'required',
+            'email' => 'required|email',
+        ]);
+
         if ($authUser->roleOnCurrentTeam() == 'owner' || $authUser->roleOnCurrentTeam() == 'director') {
             if ($request->nursery) {
                 $user->nursery_id   = $request->nursery;
             }
-            $user->save();
 
             /**
              * Networks sync
@@ -226,37 +231,30 @@ class UserController extends Controller
             }
             // sync the networks
             $user->networks()->sync($network_ids);
-
-        } else {
-            // validate the request
-            $request->validate([
-                'name' => 'required',
-                'email' => 'required|email',
-            ]);
-
-            $user->name         = $request->name;
-            $user->email        = $request->email;
-            $user->phone        = $request->phone;
-            $user->birthdate    = ($request->birthdate) ? Carbon::parse($request->birthdate) : null;
-            $user->nursery_id   = $request->nursery;
-            $user->diploma_id   = $request->diploma;
-
-            $user->billing_address  = $request->billing_address;
-            $user->billing_state    = $request->billing_state;
-            $user->billing_zip      = $request->billing_zip;
-            $user->billing_city     = $request->billing_city;
-
-            $user->contact_preferences = $request->contact_preferences;
-
-            $user->save();
-
-            // workgroups
-            $workgroup_ids = [];
-            if ($request->workgroups) {
-                $workgroup_ids = array_values($request->workgroups);
-            }
-            $user->workgroups()->sync($workgroup_ids);
         }
+
+        $user->name         = $request->name;
+        $user->email        = $request->email;
+        $user->phone        = $request->phone;
+        $user->birthdate    = ($request->birthdate) ? Carbon::parse($request->birthdate) : null;
+        $user->diploma_id   = $request->diploma;
+
+        $user->billing_address  = $request->billing_address;
+        $user->billing_state    = $request->billing_state;
+        $user->billing_zip      = $request->billing_zip;
+        $user->billing_city     = $request->billing_city;
+
+        $user->contact_preferences = $request->contact_preferences;
+
+        $user->save();
+
+        // workgroups
+        $workgroup_ids = [];
+        if ($request->workgroups) {
+            $workgroup_ids = array_values($request->workgroups);
+        }
+        $user->workgroups()->sync($workgroup_ids);
+
 
         if ($authUser->roleOnCurrentTeam() == 'owner' || $authUser->roleOnCurrentTeam() == 'director') {
             return redirect()->route('users.index');

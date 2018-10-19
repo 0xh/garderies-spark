@@ -45,7 +45,7 @@
                                         name="birthdate">
                                 </flat-pickr>
                             </div>
-                            @if ($user->roleOnCurrentTeam() == 'substitute')
+                            @if ($user->hasTeams() && $user->roleOnCurrentTeam() == 'substitute')
                             <div class="form-group">
                                 <label for="diploma">Diplôme :</label>
                                 <select name="diploma" class="form-control selectpicker" title="Sélectionner..." data-style="btn-link border text-secondary">
@@ -81,7 +81,7 @@
                                 </select>
                             </div>
                         </div>
-                        @if ($user->roleOnCurrentTeam() == 'substitute')
+                        @if ($user->hasTeams() && $user->roleOnCurrentTeam() == 'substitute')
                         <div class="col-md-5">
                             <div class="mb-4">
                                 <h5>Réseaux de travail</h5>
