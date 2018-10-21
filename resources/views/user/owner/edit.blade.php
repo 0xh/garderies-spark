@@ -29,6 +29,28 @@
                                 <label for="diploma">Diplôme :</label>
                                 <input type="text" class="form-control" name="diploma" value="{{$user->diploma->name ?? ''}}" disabled>
                             </div>
+                            <div class="form-group">
+                                <label for="billing_address">Adresse :</label>
+                                <input type="text" name="billing_address" class="form-control" value="{{$user->billing_address}}" disabled>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="billing_zip">NPA :</label>
+                                        <input type="text" name="billing_zip" class="form-control" value="{{$user->billing_zip}}" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-8">
+                                    <div class="form-group">
+                                        <label for="billing_city">Adresse :</label>
+                                        <input type="text" name="billing_city" class="form-control" value="{{$user->billing_city}}" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="billing_state">Canton :</label>
+                                <input type="text" name="billing_state" class="form-control" value="{{$user->billing_state}}" disabled>
+                            </div>
                         </div>
                         <div class="col-md-5">
                             <div class="form-group">

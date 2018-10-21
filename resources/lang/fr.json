@@ -84,7 +84,7 @@
     "Here is your new API token.": "Here is your new API token.",
     "Hi :name": "Bonjour :name",
     "Hi!": "Bonjour !",
-    "I Accept :linkOpen The Terms Of Service :linkClose": "J'accepte :linkOpen Les condition générales d'utilisation :linkClose",
+    "I Accept :linkOpen The Terms Of Service :linkClose": "J'accepte :linkOpen Les conditions générales d'utilisation :linkClose",
     "If you do not already have an account, you may click the following link to get started:": "Si vous n'avez pas encore de compte, vous pouvez cliquer sur le lien ci-dessous pour démarrer :",
     "If you’re having trouble clicking the \":actionText\" button, copy and paste the URL below\n into your web browser: [:actionURL](:actionURL)": "Si vous n'arrivez pas à cliquer sur le bouton \":actionText\", copiez et collez l'url ci-dessous\n dans votre navigateur web : [:actionURL](:actionURL)",
     "If you lose your two-factor authentication device, you may use this emergency reset token to disable two-factor authentication on your account.": "If you lose your two-factor authentication device, you may use this emergency reset token to disable two-factor authentication on your account.",

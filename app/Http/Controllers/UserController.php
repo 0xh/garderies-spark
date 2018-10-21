@@ -233,18 +233,19 @@ class UserController extends Controller
             $user->networks()->sync($network_ids);
         }
 
-        $user->name         = $request->name;
-        $user->email        = $request->email;
-        $user->phone        = $request->phone;
-        $user->birthdate    = ($request->birthdate) ? Carbon::parse($request->birthdate) : null;
-        $user->diploma_id   = $request->diploma;
-
-        $user->billing_address  = $request->billing_address;
-        $user->billing_state    = $request->billing_state;
-        $user->billing_zip      = $request->billing_zip;
-        $user->billing_city     = $request->billing_city;
-
-        $user->contact_preferences = $request->contact_preferences;
+        // if the user is himself
+        if ($user->id === $authUser->id) {
+            $user->name         = $request->name;
+            $user->email        = $request->email;
+            $user->phone        = $request->phone;
+            $user->birthdate    = ($request->birthdate) ? Carbon::parse($request->birthdate) : null;
+            $user->diploma_id   = $request->diploma;
+            $user->billing_address  = $request->billing_address;
+            $user->billing_state    = $request->billing_state;
+            $user->billing_zip      = $request->billing_zip;
+            $user->billing_city     = $request->billing_city;
+            $user->contact_preferences = $request->contact_preferences;
+        }
 
         $user->save();
 
