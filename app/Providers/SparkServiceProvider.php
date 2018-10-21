@@ -288,6 +288,6 @@ class SparkServiceProvider extends ServiceProvider
 
     public function register()
     {
-        Spark::prefixTeamsAs('equipe');
+        Spark::prefixTeamsAs('liste');
     }
 }

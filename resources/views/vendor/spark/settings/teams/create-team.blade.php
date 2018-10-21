@@ -1,6 +1,11 @@
 <div class="card mb-4" v-if="teams.length == 0">
     <div class="card-body">
-        Créez une équipe afin de pouvoir ajouter des employés / remplaçants à votre réseau de garderies. Le nombre d'employés que vous pouvez ajouter dépend de <a href="/settings#/subscription">l'abonnement que vous avez choisi.</a>
+        <p>
+            Créez une liste d'employés afin de pouvoir ajouter des employés / remplaçants à votre réseau de garderies. Le nombre d'employés que vous pouvez ajouter dépend de <a href="/settings#/subscription">l'abonnement que vous avez choisi.</a>
+        </p>
+        <p class="mb-0">
+            Les listes vous permettent de compartimenter vos employés, vous n'êtes pas obligé de les compartimenter mais au moins une liste est requise. <strong>Le nom de cette liste sera affiché dans les e-mails d'invitations.</strong>
+        </p>
     </div>
 </div>
 @if (!auth()->user()->isSuperAdmin() && !auth()->user()->hasTeams() && !auth()->user()->subscribed() && !auth()->user()->onGenericTrial())

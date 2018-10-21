@@ -11,14 +11,14 @@
 
 Les réseaux vous permettent de `classer vos garderies par groupes`, ainsi vous pouvez suivre les activités de vos établissement au sein d'un même réseau.
 
-Les réseaux permettent également de gérer les champs de travail autorisés à vos employés, lorque vous gérer plusieurs réseaux de garderies vous souhaitez peut-être limité dans quels réseaux certains employés peuvent travailler.
+Les réseaux permettent également de gérer les champs de travail autorisés à vos employés, lorsque vous gérez plusieurs réseaux de garderies vous souhaitez peut-être limiter dans quels réseaux certains employés peuvent travailler.
 
 <a name="section-2"></a>
 ## Créer un réseau
 
 La création d'un réseau est extrêmement simple, rendez-vous dans la page "Réseaux" et trouvez-y le lien "Créer".
 
-Le formulaire permet de d'insérer le nom du réseau désiré, prenez le temps de vérifier l'orthographe car une URL unique sera associée à ce réseau i.e `https://garderies.app/networks/mon-reseau`.
+Le formulaire permet d'insérer le nom du réseau désiré, prenez le temps de vérifier l'orthographe car une URL unique sera associée à ce réseau i.e `https://garderies.app/networks/mon-reseau`.
 
 <div class="embed-responsive embed-responsive-16by9">
     <video autoplay="autoplay" loop class="embed-responsive-item">
@@ -29,7 +29,7 @@ Le formulaire permet de d'insérer le nom du réseau désiré, prenez le temps d
 <a name="section-3"></a>
 ## Annonces
 
-Un réseau a la possibilité de regrouper toutes les annonces publiées dans les garderies lui appartenant. Ces annonces seront plus tard reprisent automatiquement sur la page publique du réseau.
+Un réseau a la possibilité de regrouper toutes les annonces publiées dans les garderies lui appartenant. Ces annonces seront plus tard reprises automatiquement sur la page publique du réseau.
 
 Vous ne pouvez toutefois pas créer d'annonce directement depuis un réseau, il faut vous rendre dans la garderie concernée et l'insérer là.
 

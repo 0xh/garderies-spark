@@ -10,6 +10,7 @@ Vue.component('spark-subscribe-stripe', {
 
         Bus.$on('updateUser', function () {
 
+            /*
             swal({
                 type: "success",
                 text: "Nous vous remercions pour votre souscription, veuillez patienter quelques secondes le temps que nous préparions votre compte.",
@@ -21,6 +22,7 @@ Vue.component('spark-subscribe-stripe', {
                     window.location.reload();
                 }
             });
+            */
         });
     }
 });

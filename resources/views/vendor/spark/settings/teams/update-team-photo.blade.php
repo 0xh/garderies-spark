@@ -1,5 +1,5 @@
 <spark-update-team-photo :user="user" :team="team" inline-template>
-    <div class="card card-default mb-4" v-if="user">
+    <div class="card card-default mb-4 d-none" v-if="user">
         <div class="card-header">
             {{__('teams.team_photo')}}
         </div>
