@@ -43,7 +43,7 @@ class UserWelcome extends Notification
         return (new MailMessage)
             ->subject('Bienvenue sur Garderies')
             ->line("Nous vous remercions d'avoir créé un compte sur Garderies.ch !")
-            ->line("L'application en ligne vous permettra de gagner un temps considérable lors de la gestion de vos structures d'accueil.")
+            ->line("L'application en ligne vous permettra de gagner un temps considérable que vous soyez un employé ou un responsable de structure d'accueil.")
             ->action("Voir mon compte", url('/'))
             ->line("Notre équipe se tient à votre disposition en cas de questions.");
     }
