@@ -74,6 +74,10 @@ class EventServiceProvider extends ServiceProvider
             'Laravel\Spark\Listeners\Teams\CreateInvitationNotification',
             'App\Listeners\UserInvitedToTeam'
         ],
+
+        'Laravel\Spark\Events\Auth\UserRegistered' => [
+            'App\Listeners\UserRegistered'
+        ]
     ];
 
     /**

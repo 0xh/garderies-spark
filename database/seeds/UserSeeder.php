@@ -26,7 +26,5 @@ class UserSeeder extends Seeder
             'password'      => bcrypt('123456'),
             'created_at'    => \Carbon\Carbon::now(),
         ]);
-
-        factory(App\User::class, 10)->create();
     }
 }
