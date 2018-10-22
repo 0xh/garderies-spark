@@ -40,16 +40,16 @@
             return {
                 steps: [
                     {
-                        target: '.dashboard__summary',
-                        content: "Ceci est votre tableau de bord en tant que réseau de garderies."
+                        target: '.dashboard-summary',
+                        content: "Vous êtes <strong>le propriétaire</strong> du compte, voici votre tableau de bord. Vous êtes responsable de l'insertion des réseaux et garderies. Vos directeurs-trices ont la possiblité d'inviter des utilisateurs à rejoindre l'application."
                     },
                     {
-                        target: '.v-step-0',  // We're using document.querySelector() under the hood
-                        content: "Gardez un oeil sur tous vos garderies"
+                        target: '.v-step-0',
+                        content: "Gérez vos garderies"
                     },
                     {
                         target: '.v-step-1',
-                        content: "Gérez vos employées"
+                        content: "Gérez vos employés."
                     },
                     {
                         target: '.v-step-2',
@@ -64,15 +64,15 @@
                     },
                     {
                         target: '.link-networks',
-                        content: "Vous gérez plusieurs garderies ? Organisez-les en réseaux pour plus de clareté !"
+                        content: "Vos réseaux sont ici, utilisez-les pour organiser vos garderies."
                     },
                     {
                         target: '.link-nurseries',
-                        content: "Vos garderies."
+                        content: "Vos garderies peuvent être ajoutées ici."
                     },
                     {
                         target: '.link-users',
-                        content: "Gérez ici tous vos employés."
+                        content: "Gérez ici tous vos employés. Vous pouvez les associer à une garderie."
                     },
                     {
                         target: '.link-bookings',
@@ -90,10 +90,10 @@
             if (window.location.hash === '#tour') {
                 swal({
                     type: 'info',
-                    title: 'Bienvenue',
-                    text: 'Désirez-vous suivre la présentation assistée ?',
+                    title: 'Bienvenue sur Garderies',
+                    text: 'Désirez-vous suivre la présentation assistée et découvrir les fonctionnalités essentielles ?',
                     showCancelButton: true,
-                    confirmButtonText: "Oui !",
+                    confirmButtonText: "Démarrer",
                     cancelButtonText: "Non merci"
                 }).then((response) => {
                     if (response.value) {
@@ -110,8 +110,8 @@
 <style lang="scss">
     $blue: #1976d2;
 
-    #app .v-step {
-        z-index: 1;
+    #spark-app .v-step {
+        z-index: 10;
         background: $blue;
         max-width: 380px;
         padding: 2rem;

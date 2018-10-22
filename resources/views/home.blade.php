@@ -3,12 +3,15 @@
 @section('title', 'Logiciels de gestion de garderie')
 
 @section('content')
-    <div class="alert alert-primary alert-guided-tour" style="display: none;">
-        Nouvel utilisateur ? Suivez la visite guidée pour découvrir en quoi <em>Garderies</em> peut vous simplifier la gestion de vos structures d'accueil.
-        <a href="{{config('app.url')}}/?{{str_random(5)}}#tour">Démarrer la visite</a>
-    </div>
 
     @include('components.alert-generictrial-ended')
+
+    @if ($count_nursery == 0 || $count_user == 0)
+        <div class="alert alert-primary alert-guided-tour">
+            Nouveau sur <em>Garderies</em> ? Découvrez comment nous pouvons vous simplifier la gestion de vos structures d'accueil.
+            <a href="{{config('app.url')}}/?{{str_random(5)}}#tour">Démarrer la visite</a>
+        </div>
+    @endif
 
     <div class="card mb-4 dashboard-summary">
         <div class="card-body">
@@ -51,6 +54,7 @@
 @endsection
 
 @section('hook-vue')
+    <owner-tour></owner-tour>
 @endsection
 
 @section('scripts')

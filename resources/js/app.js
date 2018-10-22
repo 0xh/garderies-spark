@@ -9,8 +9,8 @@ Vue.filter('datetime', value => {
 
 require('./spark-components/bootstrap');
 
-Vue.component('home', require('./components/HomeComponent'));
-Vue.component('tour', require('./components/TourComponent'));
+Vue.component('owner-tour', require('./components/OwnerTourComponent'));
+Vue.component('director-tour', require('./components/DirectorTourComponent'));
 Vue.component('user-availabilities', require('./components/UserAvailabilitiesComponent'));
 Vue.component('search-substitute', require('./components/SearchSubstituteComponent'));
 Vue.component('availability-edit', require('./components/AvailabilityEditComponent'));
