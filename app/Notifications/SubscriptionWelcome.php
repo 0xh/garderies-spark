@@ -43,7 +43,7 @@ class SubscriptionWelcome extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject("Bienvenue sur Garderies")
+            ->subject("Merci pour votre abonnement !")
             ->line("Nous vous remercions pour votre souscription au plan " . $this->plan->name . " !")
             ->line("Vous avez désormais accès à toutes les fonctionnalités de l'application Garderies, selon votre abonnement.");
     }

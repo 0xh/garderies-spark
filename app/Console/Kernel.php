@@ -5,6 +5,7 @@ namespace App\Console;
 use App\Booking;
 use App\Notifications\AvailabilityReminder;
 use App\Notifications\BookingReminder;
+use App\Notifications\UserTrialEnding;
 use App\User;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -56,6 +57,18 @@ class Kernel extends ConsoleKernel
             }
 
         })->dailyAt('17:00');
+
+        // remind users for ending trials
+        $schedule->call(function () {
+            // get user where the trial ends in 3 days
+            $users_on_trial = User::whereDay('trial_ends_at', '=', now()->addDays(3))->get();
+
+            foreach ($users_on_trial as $user) {
+                $user->notify(new UserTrialEnding());
+            }
+
+        })->dailyAt('08:00');
+
 
         // generate a snapshot for horizon in production
         if (env('APP_ENV') == 'production') {
