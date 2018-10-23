@@ -6,6 +6,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Laravel\Spark\Notifications\SparkChannel;
+use Laravel\Spark\Notifications\SparkNotification;
 
 class UserWelcome extends Notification
 {
@@ -29,7 +31,7 @@ class UserWelcome extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', SparkChannel::class];
     }
 
     /**
@@ -46,6 +48,14 @@ class UserWelcome extends Notification
             ->line("L'application en ligne vous permettra de gagner un temps considérable que vous soyez un employé ou un responsable de structure d'accueil.")
             ->action("Voir mon compte", url('/'))
             ->line("Notre équipe se tient à votre disposition en cas de questions.");
+    }
+
+    public function toSpark($notifiable)
+    {
+        return (new SparkNotification)
+            ->icon('fa-info')
+            ->body('Bienvenue sur Garderies ! Découvrez comment optimiser votre temps de travail avec notre documentation en ligne.')
+            ->action('Documentation', '/docs');
     }
 
     /**
