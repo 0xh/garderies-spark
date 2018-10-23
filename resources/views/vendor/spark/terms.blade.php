@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', "Conditions d'utilisations")
+
 @section('content')
     <!-- Terms of Service -->
     <div class="row justify-content-center">
