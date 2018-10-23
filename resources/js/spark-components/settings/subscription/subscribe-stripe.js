@@ -10,17 +10,19 @@ Vue.component('spark-subscribe-stripe', {
 
         Bus.$on('updateUser', function () {
 
-            swal({
-                type: "success",
-                text: "Nous vous remercions pour votre souscription, veuillez patienter quelques secondes le temps que nous préparions votre compte.",
-                timer: 5000,
-                onOpen: () => {
-                    swal.showLoading();
-                },
-                onAfterClose: () => {
-                    window.location.reload();
-                }
-            });
+            if (window.location.hash === '#/subscription') {
+                swal({
+                    type: "success",
+                    text: "Nous vous remercions pour votre souscription, veuillez patienter quelques secondes le temps que nous préparions votre compte.",
+                    timer: 5000,
+                    onOpen: () => {
+                        swal.showLoading();
+                    },
+                    onAfterClose: () => {
+                        window.location.reload();
+                    }
+                });
+            }
 
         });
     }
