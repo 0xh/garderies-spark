@@ -14,14 +14,22 @@
                         Prêt à démarrer ?
                     </h4>
                     <p class="intro-copy">
-                        Il semble que vous ne fassiez pas partie d'une liste ! <br>Suivez les étapes ci-dessous selon votre situation.
+                        Il semble que vous ne fassiez pas partie d'une liste ! <br>Nous vous invitons à suivre les étapes ci-dessous pour bien démarrer.
                     </p>
                 </div>
             </div>
-            <div class="col-12 text-center mb-4">
-                <h2>Je suis :</h2>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="alert alert-info">
+                    <p>Vous avez un compte de type "{{(auth()->user()->trial_ends_at == null) ? 'Employé' : 'Garderies / Réseau'}}", si vous pensez qu'il s'agit d'une erreur n'hésitez pas à nous contacter.</p>
+                    <p class="mb-0"><a href="mailto:support@garderies.ch" class="btn btn-primary">support@garderies.ch</a></p>
+                </div>
             </div>
-            <div class="col-md-6">
+        </div>
+        <div class="row justify-content-center">
+            @if (auth()->user()->trial_ends_at == null)
+            <div class="col-md-8">
                 <h3 class="mb-4 p-2"><i class="far fa-user mr-3"></i> Un employé</h3>
                 <div class="intro-point mb-4 card">
                     <div class="card-body">
@@ -43,7 +51,8 @@
                 </div>
                 <p class="text-center">Lorsque vous ferez partie d'un réseau vous ne verrez plus cet écran.</p>
             </div>
-            <div class="col-md-6 border-left">
+            @else
+            <div class="col-md-8">
                 <h3 class="mb-4 p-2"><i class="far fa-building mr-3"></i> Une garderie / un réseau de garderies</h3>
 
                 <div class="intro-point mb-4 card">
@@ -78,7 +87,7 @@
                 </div>
 
             </div>
-
+            @endif
         </div>
     </div>
 @endsection
