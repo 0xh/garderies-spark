@@ -27,7 +27,7 @@
                         constitute l'acceptation de celles-ci.</p>
 
                     <p>Les conditions suivantes sont application à ce site internet et tous les sous-domaines
-                        appartenant à Garderies.ch.</p>
+                        appartenant à <em>Garderies.ch</em> ainsi que <em>Garderies.app</em>.</p>
 
                     <h4>Section 1 - Préambule</h4>
                     <p>Nos services sont réservés exclusivement à des personnes morales ou personnes physique majeures,

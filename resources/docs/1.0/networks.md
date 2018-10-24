@@ -18,7 +18,7 @@ Les réseaux permettent également de gérer les champs de travail autorisés à
 
 La création d'un réseau est extrêmement simple, rendez-vous dans la page "Réseaux" et trouvez-y le lien "Créer".
 
-Le formulaire permet d'insérer le nom du réseau désiré, prenez le temps de vérifier l'orthographe car une URL unique sera associée à ce réseau i.e `https://garderies.app/networks/mon-reseau`.
+Le formulaire permet d'insérer le nom du réseau désiré, prenez le temps de vérifier l'orthographe car une URL unique sera associée à ce réseau e.g. `https://garderies.app/networks/mon-reseau`.
 
 <div class="embed-responsive embed-responsive-16by9">
     <video autoplay="autoplay" loop class="embed-responsive-item">
