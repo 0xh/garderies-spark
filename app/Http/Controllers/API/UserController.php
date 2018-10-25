@@ -23,6 +23,7 @@ class UserController extends Controller
         $team   = $user->currentTeam();
 
         $users = $team->users()
+            ->distinct()
             ->where('users.id', '!=', $user->id)
             ->leftJoin('nurseries', 'nurseries.id', '=', 'nursery_id')->with('nursery')
             ->leftJoin('network_user', 'network_user.user_id', '=', 'users.id')
