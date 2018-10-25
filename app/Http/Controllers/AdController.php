@@ -10,7 +10,7 @@ class AdController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'subscribed']);
+        $this->middleware([]);
     }
 
     /**

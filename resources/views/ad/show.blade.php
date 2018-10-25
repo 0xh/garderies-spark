@@ -19,6 +19,7 @@
             </div>
         </div>
     </div>
+    @can('create', 'App\Ad')
     <div class="row justify-content-around mt-4">
         <div class="col-md-2 mb-2 mb-md-0">
             <a href="{{route('nurseries.ads', $ad->nursery)}}" class="btn btn-info btn-sm">&larr; Annonces de la garderie</a>
@@ -31,6 +32,7 @@
             </form>
         </div>
     </div>
+    @endcan
 @endsection
 
 @section('nav-lateral')

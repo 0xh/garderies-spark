@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Ad;
 use App\Availability;
 use App\Booking;
 use App\BookingRequest;
@@ -26,6 +27,7 @@ class AuthServiceProvider extends ServiceProvider
         Booking::class              => 'App\Policies\BookingPolicy',
         BookingRequest::class       => 'App\Policies\BookingRequestPolicy',
         Availability::class         => 'App\Policies\AvailabilityPolicy',
+        Ad::class                   => 'App\Policies\AdPolicy',
     ];
 
     /**
