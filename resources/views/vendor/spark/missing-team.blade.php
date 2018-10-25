@@ -30,7 +30,7 @@
         <div class="row justify-content-center">
             @if (auth()->user()->trial_ends_at == null)
             <div class="col-md-8">
-                <h3 class="mb-4 p-2"><i class="far fa-user mr-3"></i> Un employé</h3>
+                <h3 class="mb-4 p-2">Etapes suivantes</h3>
                 <div class="intro-point mb-4 card">
                     <div class="card-body">
                         <h4 class="title"><span class="number">1</span>Etre invité dans une liste</h4>
@@ -53,8 +53,7 @@
             </div>
             @else
             <div class="col-md-8">
-                <h3 class="mb-4 p-2"><i class="far fa-building mr-3"></i> Une garderie / un réseau de garderies</h3>
-
+                <h3 class="mb-4 p-2">Etapes suivantes</h3>
                 <div class="intro-point mb-4 card">
                     <div class="card-body">
                         <h4 class="title"><span class="number">1</span>Créer une liste</h4>

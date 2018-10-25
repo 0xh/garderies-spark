@@ -268,13 +268,16 @@ class SparkServiceProvider extends ServiceProvider
          *
          */
         Spark::validateUsersWith(function () {
-            return [
+
+            $required_fields = [
                 'account_type'  => 'required',
                 'name'          => 'required|max:255',
                 'email'         => 'required|email|max:255|unique:users',
                 'password'      => 'required|confirmed|min:6',
                 'terms'         => 'required|accepted',
             ];
+
+            return $required_fields;
         });
 
         Spark::createUsersWith(function ($request) {
@@ -284,7 +287,14 @@ class SparkServiceProvider extends ServiceProvider
 
             // disable the trial period for substitutes
             $trial = ($data['account_type'] == 'network') ? Carbon::now()->addDays(Spark::trialDays()) : null;
-            $birthdate = ($data['account_type'] == 'substitute') ? Carbon::parse($data['birthdate']) : null;
+
+            $birthdate = null;
+            if ($data['account_type'] == 'substitute') {
+                $bday   = ($data['birthdate_day']) ? $data['birthdate_day'] : date('d');
+                $bmonth = ($data['birthdate_month']) ? $data['birthdate_month'] : date('m');
+                $byear  = ($data['birthdate_year']) ? $data['birthdate_year'] : date('Y');
+                $birthdate = Carbon::parse($bday . "." . $bmonth . "." . $byear);
+            }
 
             $user->forceFill([
                 'name'          => $data['name'],

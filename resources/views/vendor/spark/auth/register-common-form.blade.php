@@ -75,14 +75,41 @@
         <label class="col-md-4 col-form-label text-md-right">{{__('Birthdate')}}</label>
 
         <div class="col-md-6">
-            <flat-pickr
-                    :config="flatPickrConfig"
-                    value=""
-                    class="form-control"
-                    placeholder="Cliquez pour sélectionner une date"
-                    v-model="registerForm.birthdate"
-                    name="birthdate">
-            </flat-pickr>
+            <div class="row">
+                <div class="col-md-3">
+                    <select name="birthdate_day" v-model="registerForm.birthdate_day" class="form-control">
+                        <option value="">Jour</option>
+                        @for($i=1; $i <= 31; $i++)
+                            <option value="{{$i}}">{{$i}}</option>
+                        @endfor
+                    </select>
+                </div>
+                <div class="col-md-5">
+                    <select name="birthdate_month" v-model="registerForm.birthdate_month" class="form-control">
+                        <option value="">Mois</option>
+                        <option value="1">Janvier</option>
+                        <option value="2">Février</option>
+                        <option value="3">Mars</option>
+                        <option value="4">Avril</option>
+                        <option value="5">Mai</option>
+                        <option value="6">Juin</option>
+                        <option value="7">Juillet</option>
+                        <option value="8">Août</option>
+                        <option value="9">Septembre</option>
+                        <option value="10">Octobre</option>
+                        <option value="11">Novembre</option>
+                        <option value="12">Décembre</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <select name="birthdate_year" v-model="registerForm.birthdate_year" class="form-control">
+                        <option value="">Année</option>
+                        @for($i=(date('Y') - 16); $i >= (date('Y') - 100); $i--)
+                            <option value="{{$i}}">{{$i}}</option>
+                        @endfor
+                    </select>
+                </div>
+            </div>
 
             <span class="invalid-feedback" v-show="registerForm.errors.has('birthdate')">
                 @{{ registerForm.errors.get('birthdate') }}
