@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Nursery')
+@section('title', 'Planning imprimable')
 
 @section('content')
     <div class="print-header d-none d-print-block">
