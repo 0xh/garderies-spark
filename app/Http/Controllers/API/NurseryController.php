@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Booking;
-use App\Http\Resources\Nursery as NurseryResource;
+use App\Http\Resources\NurseryResource;
 use App\Nursery;
 use App\User;
 use Carbon\Carbon;
@@ -130,5 +130,15 @@ class NurseryController extends Controller
         $bookings = BookingResource::collection($bookings);
 
         return response()->json($bookings);
+    }
+
+    public function resources(Request $request)
+    {
+        $nursery_ID = $request->nursery;
+
+        $users = User::where('nursery_id', $nursery_ID)->get();
+        $users = NurseryResource::collection($users);
+
+        return response()->json($users);
     }
 }

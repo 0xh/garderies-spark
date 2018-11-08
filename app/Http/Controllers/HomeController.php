@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Booking;
 use App\BookingRequest;
 use App\Charts\BookingsChart;
+use App\Team;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -12,6 +14,37 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware(['hasTeam']);
+    }
+
+    public function bookingReport()
+    {
+        $owners = User::leftJoin('team_users', 'team_users.user_id', '=', 'users.id')
+            ->distinct('team_id')
+            ->where('role', 'owner')
+            ->orWhere('role', 'director')
+            ->get();
+
+        /*foreach ($owners as $owner) {
+            $team = Team::find($owner->team_id);
+
+            $monthlyBookings = $team->bookings()
+                ->whereMonth('bookings.created_at', 10)
+                ->whereYear('bookings.created_at', 2018)
+                ->count();
+
+            $data = [
+                'team' => $team->id,
+                'bookings' => $monthlyBookings
+            ];
+
+
+        }*/
+
+        $team = Team::find(3);
+        $data = $team->availabilities;
+
+        return '<pre>' . print_r($data, true) . '</pre>';
+
     }
 
     public function index()

@@ -91,9 +91,12 @@
                             @endif
 
                             @if (Auth::user()->isSuperAdmin() && env('APP_ENV') == 'production')
-                                <h6 class="dropdown-header">Horizon</h6>
+                                <h6 class="dropdown-header">Dev tools</h6>
                                 <a class="dropdown-item" href="/horizon">
                                     <i class="fa fa-fw text-left fa-btn fa-exchange-alt"></i> Horizon
+                                </a>
+                                <a class="dropdown-item" href="/telescope">
+                                    <i class="fa fa-fw text-left fa-btn fa-rocket"></i> Telescope
                                 </a>
                                 <div class="dropdown-divider"></div>
                             @endif

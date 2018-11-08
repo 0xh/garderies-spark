@@ -193,6 +193,11 @@ class NurseryController extends Controller
         ]);
     }
 
+    public function scheduling(Nursery $nursery)
+    {
+        return view('nursery.scheduling', ['nursery' => $nursery]);
+    }
+
     /**
      * @param Nursery $nursery
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View

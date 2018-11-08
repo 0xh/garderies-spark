@@ -13,12 +13,18 @@
 
 $domain = parse_url(config('app.url'));
 
+Route::get('bookingReportEmail', function () {
+    return new \App\Mail\BookingsReport();
+});
+Route::get('bookingReport', 'HomeController@bookingReport');
+
 Route::get('/', 'HomeController@index')->middleware('auth');
 Route::view('blog', 'blog');
 Route::view('account', 'account');
 
 Route::resource('nurseries', 'NurseryController');
 Route::get('nurseries/{nursery}/planning', 'NurseryController@planning')->name('nurseries.planning');
+Route::get('nurseries/{nursery}/scheduling', 'NurseryController@scheduling')->name('nurseries.scheduling');
 Route::get('nurseries/{nurseries}/ads', 'NurseryController@ads')->name('nurseries.ads');
 Route::get('nurseries/{nurseries}/ads/create', 'AdController@create')->name('ads.create');
 Route::resource('ads', 'AdController')->except(['index', 'create']);

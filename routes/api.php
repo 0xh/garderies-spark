@@ -21,6 +21,7 @@ Route::resource('users', 'API\UserController');
 Route::post('users/favorites', 'API\UserController@addToFavorites');
 
 Route::get('nurseries/planning', 'API\NurseryController@planning');
+Route::get('nurseries/resources', 'API\NurseryController@resources');
 Route::resource('nurseries', 'API\NurseryController');
 Route::resource('networks', 'API\NetworkController');
 Route::resource('workgroups', 'API\WorkgroupController');
