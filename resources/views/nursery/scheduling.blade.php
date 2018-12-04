@@ -17,6 +17,10 @@
 @endsection
 
 @section('content')
+    @if($nursery->users()->count() <= 0)
+        <div class="alert alert-info">Vous n'avez pas encore d'employés dans cette garderie.</div>
+    @endif
+
     <nursery-scheduling inline-template :nursery="{{$nursery->id}}">
         <div>
             <div class="card">
