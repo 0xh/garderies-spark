@@ -195,7 +195,9 @@ class NurseryController extends Controller
 
     public function scheduling(Nursery $nursery)
     {
-        return view('nursery.scheduling', ['nursery' => $nursery]);
+        $users = $nursery->users;
+
+        return view('nursery.scheduling', ['nursery' => $nursery, 'users' => $users]);
     }
 
     /**

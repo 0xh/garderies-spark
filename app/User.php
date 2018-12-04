@@ -128,6 +128,11 @@ class User extends SparkUser
         return $this->belongsToMany('App\User', 'user_favorites','user_id', 'substitute_id');
     }
 
+    public function schedule()
+    {
+        return $this->hasMany('App\Schedule');
+    }
+
     public function isSuperAdmin()
     {
         $devs = \Spark::$developers;

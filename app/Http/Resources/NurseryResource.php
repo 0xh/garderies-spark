@@ -15,8 +15,8 @@ class NurseryResource extends JsonResource
     public function toArray($request)
     {
         $data = [
-            'id'        => $this->id,
-            'title'     => $this->name
+            'id'      => $this->id,
+            'title'   => $this->name
         ];
 
         return $data;

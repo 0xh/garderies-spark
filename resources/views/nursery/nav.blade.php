@@ -5,11 +5,11 @@
         </li>
         @if (isset($nursery))
             <li>
-                <a href="{{route('nurseries.scheduling', $nursery)}}" data-toggle="tooltip" data-placement="left" title="Planning des employés"><i class="fas fa-list-alt icon"></i> Planning employés</a>
+                <a href="{{route('nurseries.scheduling', $nursery)}}" data-toggle="tooltip" data-placement="left" title="Planning des employés"><i class="fas fa-users icon"></i> Planning employés</a>
             </li>
             @can('planning', $nursery)
                 <li>
-                    <a href="{{route('nurseries.planning', $nursery)}}" data-toggle="tooltip" data-placement="left" title="Planning à imprimer des remplacements mensuel"><i class="fas fa-list-alt icon"></i> Planning</a>
+                    <a href="{{route('nurseries.planning', $nursery)}}" data-toggle="tooltip" data-placement="left" title="Planning à imprimer des remplacements mensuel"><i class="fas fa-list-alt icon"></i> Remplacements</a>
                 </li>
             @endcan
             @can('ads', $nursery)

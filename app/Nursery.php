@@ -53,4 +53,9 @@ class Nursery extends Model
     {
         return $this->hasMany('App\Ad');
     }
+
+    public function schedule()
+    {
+        return $this->hasManyThrough('App\Schedule', 'App\User');
+    }
 }

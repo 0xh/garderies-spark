@@ -22,6 +22,7 @@ Route::post('users/favorites', 'API\UserController@addToFavorites');
 
 Route::get('nurseries/planning', 'API\NurseryController@planning');
 Route::get('nurseries/resources', 'API\NurseryController@resources');
+Route::get('nurseries/schedules', 'API\NurseryController@schedules');
 Route::resource('nurseries', 'API\NurseryController');
 Route::resource('networks', 'API\NetworkController');
 Route::resource('workgroups', 'API\WorkgroupController');
@@ -39,3 +40,4 @@ Route::post('booking-requests/approve/{bookingRequest}', 'API\BookingRequestCont
 
 Route::resource('feedbacks', 'API\FeedbackController');
 Route::resource('purposes', 'API\PurposeController');
+Route::resource('schedules', 'API\ScheduleController');

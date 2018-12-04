@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Booking;
 use App\Http\Resources\NurseryResource;
+use App\Http\Resources\NurserySchelude;
 use App\Nursery;
 use App\User;
 use Carbon\Carbon;
@@ -140,5 +141,16 @@ class NurseryController extends Controller
         $users = NurseryResource::collection($users);
 
         return response()->json($users);
+    }
+
+    public function schedules(Request $request)
+    {
+        $nursery_ID = $request->nursery;
+        $nursery    = Nursery::find($nursery_ID);
+
+        $schedules = $nursery->schedule()->whereBetween('start', [$request->start, $request->end])->get();
+        $schedules = NurserySchelude::collection($schedules);
+
+        return response()->json($schedules);
     }
 }

@@ -85,6 +85,7 @@
 
             // Instantiate the calendar
             calendar = $('#calendar').fullCalendar({
+                schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
                 themeSystem: 'bootstrap4',
                 contentHeight: 'auto',
                 defaultView: 'agendaWeek',
@@ -92,7 +93,7 @@
                 locale: 'fr-ch',
                 header: {
                     left: 'title',
-                    center: 'agendaWeek',
+                    center: '',
                     right: 'today prev,next'
                 },
                 buttonText: {
@@ -198,7 +199,7 @@
                     // Limit the event to events that are availabilities
                     if (event.type !== 'availability') { return; }
 
-                    // Display the modale
+                    // Display the modal
                     $('.modal-event').modal({show: true, focus: false}); // focus on the modal messes up with flatpickr
 
                     // Fill the event object for edit
