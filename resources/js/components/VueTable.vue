@@ -102,7 +102,7 @@
                     </template>
 
                     <template slot="networkrelation" slot-scope="props">
-                        <span class="badge text-white" :style="'background-color: ' + props.rowData.network.color + ';'">
+                        <span v-if="props.rowData.network" class="badge text-white" :style="'background-color: ' + props.rowData.network.color + ';'">
                             {{props.rowData.network.name}}</span>
                         <span v-if="!props.rowData.network" class="text-muted">Aucun</span>
                     </template>
